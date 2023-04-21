@@ -1,5 +1,4 @@
-import './App.css'
-import StoryCard from './components/StoryCard'
+import StoryCard from './components/Stories/StoryCard'
 
 function App() {
   return (
