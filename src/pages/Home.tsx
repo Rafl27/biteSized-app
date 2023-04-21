@@ -1,5 +1,5 @@
 import React from 'react'
-
+import StoryCard from '../components/Stories/StoryCard'
 const Home: React.FC = () => {
   return (
     <div
@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         height: '100vh',
       }}
     >
-      <h1>Welcome!</h1>
+      <StoryCard />
     </div>
   )
 }
