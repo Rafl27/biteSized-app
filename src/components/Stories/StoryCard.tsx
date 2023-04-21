@@ -61,17 +61,6 @@ const StoryCard: React.FC = () => {
                     <button className="btn btn-secondary">
                       Continue reading
                     </button>
-                    {/* <div>
-                      {comment.replies.map((reply) => (
-                        <div key={reply._id} className="card">
-                          <div className="card-body">
-                            <p className="card-text">{reply.text}</p>
-                            <button className="btn btn-primary">Edit</button>
-                            <button className="btn btn-danger">Delete</button>
-                          </div>
-                        </div>
-                      ))}
-                    </div> */}
                   </div>
                 </div>
               ))}
