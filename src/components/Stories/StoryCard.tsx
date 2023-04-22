@@ -38,16 +38,27 @@ const StoryCard: React.FC = () => {
 
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
     >
       {stories.map((story) => (
         <div
           key={story._id}
-          className="card col-1 h-100"
-          style={{ width: '60vw' }}
+          className="card "
+          style={{ width: '48%', height: '100%' }}
         >
           <div className="card-body">
-            <img src={story.img} alt={story.name} className="card-img-top" />
+            <img
+              src={story.img}
+              alt={story.name}
+              className="card-img-top"
+              style={{ maxHeight: '400px', maxWidth: '500px' }}
+            />
             <h3 className="card-title">{story.name}</h3>
             <p className="card-text">{story.text}</p>
 

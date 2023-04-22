@@ -2,22 +2,25 @@ import React from 'react'
 import StoryCard from '../components/Stories/StoryCard'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Sidebar2 from '../components/sideBar2/SideBar2'
-import { AiFillHome } from 'react-icons/ai'
+import { MdCookie } from 'react-icons/md'
+import { GiPlagueDoctorProfile } from 'react-icons/gi'
 import { BiTrendingUp } from 'react-icons/bi'
 
 // background: 'linear-gradient(to right, #f8b195, #f67280)',
 
 const items = [
-  { name: 'BiteSized', icon: AiFillHome, link: '/' },
-  { name: 'Profile', icon: BiTrendingUp, link: '/about' },
-  { name: 'Trending', icon: 'email', link: '/contact' },
+  { name: 'BiteSized', icon: MdCookie, link: '/' },
+  { name: 'Profile', icon: GiPlagueDoctorProfile, link: '/profile' },
+  { name: 'Trending', icon: BiTrendingUp, link: '/trending' },
 ]
 
 const Home: React.FC = () => {
   return (
     <>
-      <Sidebar2 items={items} />
-      <StoryCard />
+      <div style={{ display: 'flex' }}>
+        <Sidebar2 items={items} />
+        <StoryCard />
+      </div>
     </>
   )
 }
