@@ -36,7 +36,9 @@ const StoryCard: React.FC = () => {
   }, [])
 
   return (
-    <div className="d-flex flex-wrap">
+    <div
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       {stories.map((story) => (
         <div
           key={story._id}
