@@ -9,7 +9,7 @@ import { BiTrendingUp } from 'react-icons/bi'
 // background: 'linear-gradient(to right, #f8b195, #f67280)',
 
 const items = [
-  { name: 'BiteSized', icon: MdCookie, link: '/' },
+  { name: 'BiteSized', icon: MdCookie, link: '/home' },
   { name: 'Profile', icon: GiPlagueDoctorProfile, link: '/profile' },
   { name: 'Trending', icon: BiTrendingUp, link: '/trending' },
 ]

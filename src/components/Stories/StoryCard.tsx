@@ -19,6 +19,7 @@ interface Story {
   text: string
   img: string
   comments: Comment[]
+  date: string
 }
 
 const StoryCard: React.FC = () => {
@@ -50,9 +51,10 @@ const StoryCard: React.FC = () => {
         <div
           key={story._id}
           className="card "
-          style={{ width: '48%', height: '100%' }}
+          style={{ flex: '0 0 48%', margin: '1%' }}
         >
-          <div className="card-body">
+          <div className="card-body" style={{ flex: '1 1 auto' }}>
+            <p>Created: {story.date}</p>
             <img
               src={story.img}
               alt={story.name}
