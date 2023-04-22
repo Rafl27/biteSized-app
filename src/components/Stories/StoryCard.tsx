@@ -59,7 +59,7 @@ const StoryCard: React.FC = () => {
               src={story.img}
               alt={story.name}
               className="card-img-top"
-              style={{ maxHeight: '400px', maxWidth: '500px' }}
+              // style={{ maxHeight: '400px', maxWidth: '500px' }}
             />
             <h3 className="card-title">{story.name}</h3>
             <p className="card-text">{story.text}</p>

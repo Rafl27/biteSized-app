@@ -17,7 +17,12 @@ const items = [
 const Home: React.FC = () => {
   return (
     <>
-      <div style={{ display: 'flex' }}>
+      <div
+        style={{
+          display: 'flex',
+          background: '#FF784F',
+        }}
+      >
         <Sidebar2 items={items} />
         <StoryCard />
       </div>

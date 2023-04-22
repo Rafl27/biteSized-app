@@ -19,7 +19,14 @@ interface SidebarItem {
 
 const Sidebar2: React.FC<SidebarProps> = ({ items }) => {
   return (
-    <div className="sidebar">
+    <div
+      className="sidebar"
+      style={
+        {
+          // background: '#FFE19C',
+        }
+      }
+    >
       <Nav className="flex-column">
         {items.map((item, index) => (
           <Nav.Item key={index}>
