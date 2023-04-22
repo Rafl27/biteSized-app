@@ -1,0 +1,26 @@
+.sidebar {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 15%;
+}
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #eee;
+}
+
+.sidebar .material-icons {
+  font-size: 24px;
+  margin-right: 10px;
+}
