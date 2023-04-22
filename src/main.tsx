@@ -4,11 +4,21 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //import Root from './routes/root'
 import Home from './pages/Home'
+import SignIn from './pages/SignInPage/SignIn'
+import SignUp from './pages/auth/SignUp'
 
 const router = createBrowserRouter([
   {
     path: '/home',
     element: <Home />,
+  },
+  // {
+  //   path: '/signin',
+  //   element: <SignIn />,
+  // },
+  {
+    path: '/auth',
+    element: <SignUp />,
   },
   /*{
     path: "contacts/:contactId",
