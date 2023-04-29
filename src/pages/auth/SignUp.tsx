@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import './styles.css'
+
 const SignUp: React.FC = () => {
   let [authMode, setAuthMode] = useState('signin')
 
@@ -7,24 +9,105 @@ const SignUp: React.FC = () => {
     setAuthMode(authMode === 'signin' ? 'signup' : 'signin')
   }
 
-  if (authMode === 'signin') {
+  const SignUpForm: React.FC = () => {
+    const [values, setValues] = useState({
+      name: '',
+      email: '',
+      password: '',
+    })
+
+    const handleChange = (e: any) => {
+      setValues({ ...values, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = async (event: any) => {
+      event.preventDefault()
+      const formData = new FormData(event.target)
+      const name = formData.get('name')
+      const email = formData.get('email')
+      const password = formData.get('password')
+      console.log(name, email, password)
+      try {
+        const response = await axios.post('http://localhost:3000/user/signup', {
+          name,
+          email,
+          password,
+        })
+        console.log(response.data.token)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    if (authMode === 'signin') {
+      return (
+        <div className="Auth-form-container">
+          <form className="Auth-form">
+            <div className="Auth-form-content">
+              <h3 className="Auth-form-title">Sign In</h3>
+              <div className="text-center">
+                Not registered yet?{' '}
+                <span className="link-primary" onClick={changeAuthMode}>
+                  Sign Up
+                </span>
+              </div>
+              <div className="form-group mt-3">
+                <label>Email address</label>
+                <input
+                  type="email"
+                  className="form-control mt-1"
+                  placeholder="Enter email"
+                />
+              </div>
+              <div className="form-group mt-3">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control mt-1"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div className="d-grid gap-2 mt-3">
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+              <p className="text-center mt-2">
+                Forgot <a href="#">password?</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      )
+    }
+
     return (
       <div className="Auth-form-container">
-        <form className="Auth-form">
+        <form className="Auth-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
+            <h3 className="Auth-form-title">Sign Up</h3>
             <div className="text-center">
-              Not registered yet?{' '}
+              Already registered?{' '}
               <span className="link-primary" onClick={changeAuthMode}>
-                Sign Up
+                Sign In
               </span>
+            </div>
+            <div className="form-group mt-3">
+              <label>Full Name</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="e.g Jane Doe"
+                name="name"
+              />
             </div>
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
                 type="email"
                 className="form-control mt-1"
-                placeholder="Enter email"
+                placeholder="Email Address"
+                name="email"
               />
             </div>
             <div className="form-group mt-3">
@@ -32,7 +115,8 @@ const SignUp: React.FC = () => {
               <input
                 type="password"
                 className="form-control mt-1"
-                placeholder="Enter password"
+                placeholder="Password"
+                name="password"
               />
             </div>
             <div className="d-grid gap-2 mt-3">
@@ -40,62 +124,13 @@ const SignUp: React.FC = () => {
                 Submit
               </button>
             </div>
-            <p className="text-center mt-2">
-              Forgot <a href="#">password?</a>
-            </p>
           </div>
         </form>
       </div>
     )
   }
 
-  return (
-    <div className="Auth-form-container">
-      <form className="Auth-form">
-        <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign Up</h3>
-          <div className="text-center">
-            Already registered?{' '}
-            <span className="link-primary" onClick={changeAuthMode}>
-              Sign In
-            </span>
-          </div>
-          <div className="form-group mt-3">
-            <label>Full Name</label>
-            <input
-              type="email"
-              className="form-control mt-1"
-              placeholder="e.g Jane Doe"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Email address</label>
-            <input
-              type="email"
-              className="form-control mt-1"
-              placeholder="Email Address"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control mt-1"
-              placeholder="Password"
-            />
-          </div>
-          <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </div>
-          <p className="text-center mt-2">
-            Forgot <a href="#">password?</a>
-          </p>
-        </div>
-      </form>
-    </div>
-  )
+  return <SignUpForm />
 }
 
 export default SignUp
