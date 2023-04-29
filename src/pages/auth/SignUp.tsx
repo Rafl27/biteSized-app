@@ -39,10 +39,28 @@ const SignUp: React.FC = () => {
       }
     }
 
+    const handleLogin = async (event: any) => {
+      event.preventDefault()
+      const formData = new FormData(event.target)
+      const email = formData.get('email')
+      const password = formData.get('password')
+      console.log(email, password)
+      try {
+        const response = await axios.post('http://localhost:3000/user/login', {
+          name,
+          email,
+          password,
+        })
+        console.log(response.data.token)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
     if (authMode === 'signin') {
       return (
         <div className="Auth-form-container">
-          <form className="Auth-form">
+          <form className="Auth-form" onSubmit={handleLogin}>
             <div className="Auth-form-content">
               <h3 className="Auth-form-title">Sign In</h3>
               <div className="text-center">
@@ -57,6 +75,7 @@ const SignUp: React.FC = () => {
                   type="email"
                   className="form-control mt-1"
                   placeholder="Enter email"
+                  name="email"
                 />
               </div>
               <div className="form-group mt-3">
@@ -65,6 +84,7 @@ const SignUp: React.FC = () => {
                   type="password"
                   className="form-control mt-1"
                   placeholder="Enter password"
+                  name="password"
                 />
               </div>
               <div className="d-grid gap-2 mt-3">
