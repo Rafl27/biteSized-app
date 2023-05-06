@@ -9,7 +9,7 @@ interface Story {
   img?: string
   user: {
     _id: string
-    username: string
+    name: string
   }
   date: string
   comments: Comment[]
@@ -33,7 +33,7 @@ const SingleStory = () => {
     img: '',
     user: {
       _id: '',
-      username: '',
+      name: '',
     },
     date: '',
     comments: [],
@@ -44,7 +44,7 @@ const SingleStory = () => {
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const response = await axios.get(`/api/stories/${_id}`)
+        const response = await axios.get(`http://localhost:3000/story/${_id}`)
         setStory(response.data)
       } catch (error) {
         console.log(error)
@@ -55,10 +55,10 @@ const SingleStory = () => {
 
   return (
     <div>
+      {story.img && <img src={story.img} alt={story.name} />}
       <h1>{story.name}</h1>
       <p>{story.text}</p>
-      {story.img && <img src={story.img} alt={story.name} />}
-      <p>Written by: {story.user && story.user.username}</p>
+      <p>Written by: {story.user.name}</p>
       <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
       <h2>Comments:</h2>
       {story.comments &&

@@ -46,12 +46,18 @@ const SignUp: React.FC = () => {
       const email = formData.get('email')
       const password = formData.get('password')
       try {
-        const response = await axios.post('http://localhost:3000/user/login', {
-          name,
-          email,
-          password,
-        })
+        const response: any = await axios.post(
+          'http://localhost:3000/user/login',
+          {
+            // name,
+            email,
+            password,
+          }
+        )
+        const { name } = response.data
+        localStorage.setItem('name', name)
         console.log(response.data.token)
+        console.log(response.data.name)
         navigate('/home')
       } catch (err) {
         console.log(err)
