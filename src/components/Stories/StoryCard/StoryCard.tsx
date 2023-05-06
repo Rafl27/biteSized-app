@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import './StoryCard.css'
 
 interface Comment {
@@ -66,8 +67,10 @@ const StoryCard: React.FC = () => {
 
             <button className="btn btn-primary">Edit</button>
             <button className="btn btn-danger">Delete</button>
-            <button className="btn btn-secondary">Continue reading</button>
-            <div>
+            <Link to={`/story/${story._id}`} className="btn btn-secondary">
+              Continue reading
+            </Link>
+            {/* <div>
               {story.comments.map((comment) => (
                 <div key={comment._id} className="card">
                   <div className="card-body">
@@ -80,7 +83,7 @@ const StoryCard: React.FC = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       ))}

@@ -1,5 +1,5 @@
 import React from 'react'
-import StoryCard from '../components/Stories/StoryCard'
+import StoryCard from '../components/Stories/StoryCard/StoryCard'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Sidebar2 from '../components/sideBar2/SideBar2'
 import { MdCookie } from 'react-icons/md'

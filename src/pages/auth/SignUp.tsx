@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './styles.css'
 
 const SignUp: React.FC = () => {
   let [authMode, setAuthMode] = useState('signin')
-
+  const navigate = useNavigate()
   const changeAuthMode = () => {
     setAuthMode(authMode === 'signin' ? 'signup' : 'signin')
   }
@@ -26,7 +27,7 @@ const SignUp: React.FC = () => {
       const name = formData.get('name')
       const email = formData.get('email')
       const password = formData.get('password')
-      console.log(name, email, password)
+      // console.log(name, email, password)
       try {
         const response = await axios.post('http://localhost:3000/user/signup', {
           name,
@@ -44,7 +45,6 @@ const SignUp: React.FC = () => {
       const formData = new FormData(event.target)
       const email = formData.get('email')
       const password = formData.get('password')
-      console.log(email, password)
       try {
         const response = await axios.post('http://localhost:3000/user/login', {
           name,
@@ -52,6 +52,7 @@ const SignUp: React.FC = () => {
           password,
         })
         console.log(response.data.token)
+        navigate('/home')
       } catch (err) {
         console.log(err)
       }

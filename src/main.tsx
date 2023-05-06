@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 // import SignIn from './pages/SignInPage/SignIn'
 import SignUp from './pages/auth/SignUp'
+import SingleStory from './pages/SingleStory/SingleStory'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/auth',
     element: <SignUp />,
+  },
+  {
+    path: '/story/:_id',
+    element: <SingleStory />,
   },
   /*{
     path: "contacts/:contactId",

@@ -1,4 +1,4 @@
-import StoryCard from './components/Stories/StoryCard'
+import StoryCard from './components/Stories/StoryCard/StoryCard'
 
 function App() {
   return (
