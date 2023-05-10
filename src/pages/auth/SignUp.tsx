@@ -17,6 +17,8 @@ const SignUp: React.FC = () => {
       password: '',
     })
 
+    const [passwordVisible, setPasswordVisible] = useState(false)
+
     const handleChange = (e: any) => {
       setValues({ ...values, [e.target.name]: e.target.value })
     }
@@ -54,10 +56,10 @@ const SignUp: React.FC = () => {
             password,
           }
         )
-        const { name } = response.data
-        localStorage.setItem('name', name)
-        console.log(response.data.token)
-        console.log(response.data.name)
+        const { token } = response.data
+        localStorage.setItem('token', token)
+        // console.log(response.data.token)
+        // console.log(response.data.name)
         navigate('/home')
       } catch (err) {
         console.log(err)
@@ -87,12 +89,21 @@ const SignUp: React.FC = () => {
               </div>
               <div className="form-group mt-3">
                 <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control mt-1"
-                  placeholder="Enter password"
-                  name="password"
-                />
+                <div className="password-input-container">
+                  <input
+                    type={passwordVisible ? 'text' : 'password'}
+                    className="form-control mt-1"
+                    placeholder="Password"
+                    name="password"
+                  />
+                  <button
+                    type="button"
+                    className="show-password-button"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  >
+                    {passwordVisible ? 'Hide' : 'Show'}
+                  </button>
+                </div>
               </div>
               <div className="d-grid gap-2 mt-3">
                 <button type="submit" className="btn btn-primary">
@@ -139,12 +150,21 @@ const SignUp: React.FC = () => {
             </div>
             <div className="form-group mt-3">
               <label>Password</label>
-              <input
-                type="password"
-                className="form-control mt-1"
-                placeholder="Password"
-                name="password"
-              />
+              <div className="password-input-container">
+                <input
+                  type={passwordVisible ? 'text' : 'password'}
+                  className="form-control mt-1"
+                  placeholder="Password"
+                  name="password"
+                />
+                <button
+                  type="button"
+                  className="show-password-button"
+                  onClick={() => setPasswordVisible(!passwordVisible)}
+                >
+                  {passwordVisible ? 'Hide' : 'Show'}
+                </button>
+              </div>
             </div>
             <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">
