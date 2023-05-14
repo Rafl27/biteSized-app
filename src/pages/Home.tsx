@@ -6,33 +6,39 @@ import { MdCookie } from 'react-icons/md'
 import { GiPlagueDoctorProfile } from 'react-icons/gi'
 import { BiTrendingUp } from 'react-icons/bi'
 import { IoIosCreate } from 'react-icons/io'
+import { RiLogoutBoxRLine } from 'react-icons/ri'
 import axios from 'axios'
 
 // background: 'linear-gradient(to right, #f8b195, #f67280)',
-
+//TODO: o user no local storage nao atualiza depois de fazer outro login
 const Home: React.FC = () => {
   const [user, setUser] = useState(null as { name: string } | null)
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    const userData = localStorage.getItem('user')
+  const token = localStorage.getItem('token')
+  const userData = localStorage.getItem('user')
 
-    if (token && userData) {
-      setUser(JSON.parse(userData))
-    } else if (token) {
-      // Make a request to the server to get the user's details
-      axios
-        .get('http://localhost:3000/user/getuserinfo', {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((response) => {
-          setUser(response.data)
-          localStorage.setItem('user', JSON.stringify(response.data))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (token && userData) {
+  //     setUser(JSON.parse(userData))
+  //   } else if (token) {
+  //     // Make a request to the server to get the user's details
+  //     axios
+  //       .get('http://localhost:3000/user/getuserinfo', {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       })
+  //       .then((response) => {
+  //         setUser(response.data)
+  //         localStorage.setItem('user', JSON.stringify(response.data))
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   }
+  // }, [token, userData])
+
+  const handleLogout = () => {
+    setUser(null)
+    localStorage.removeItem('user')
+  }
 
   const items = [
     { name: 'BiteSized', icon: MdCookie, link: '/home' },
@@ -43,6 +49,7 @@ const Home: React.FC = () => {
     },
     { name: 'Trending', icon: BiTrendingUp, link: '/trending' },
     { name: 'Create', icon: IoIosCreate, link: '/create' },
+    { name: 'Logout', icon: RiLogoutBoxRLine, onClick: handleLogout },
   ]
   return (
     <>

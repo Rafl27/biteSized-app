@@ -51,15 +51,16 @@ const SignUp: React.FC = () => {
         const response: any = await axios.post(
           'http://localhost:3000/user/login',
           {
-            // name,
             email,
             password,
           }
         )
-        const { token } = response.data
-        localStorage.setItem('token', token)
-        // console.log(response.data.token)
-        // console.log(response.data.name)
+        const userToken = response.data.token
+        const userName = response.data.name
+        const userEmail = response.data.email
+        localStorage.setItem('token', userToken)
+        localStorage.setItem('name', userName)
+        localStorage.setItem('email', userEmail)
         navigate('/home')
       } catch (err) {
         console.log(err)
