@@ -80,3 +80,15 @@ textarea:focus {
 
 #paragraph {
 }
+
+#createButton {
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease-in-out;
+  font-size: 16px;
+  color: #333;
+}

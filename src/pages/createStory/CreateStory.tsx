@@ -23,13 +23,22 @@ function App() {
           placeholder="First Paragraph"
           onChange={(e) => setText(e.target.value)}
         />
+        <button id="createButton">Create</button>
       </div>
 
       <div className="output">
         {/* && is used for when a certain variable is available, if not it won't be rendered. */}
         {name && <h1>{name}</h1>}
-        {image && <img id="createImage" src={image} alt="User input" />}
-        {text && <h5 id="paragraph">{text}</h5>}
+        {image && (
+          <div className="image-wrapper">
+            <img id="createImage" src={image} alt="User input" />
+          </div>
+        )}
+        {text && (
+          <div className="paragraph-wrapper">
+            <h5 id="paragraph">{text}</h5>
+          </div>
+        )}
       </div>
     </div>
   )
