@@ -8,10 +8,12 @@ import { BiTrendingUp } from 'react-icons/bi'
 import { IoIosCreate } from 'react-icons/io'
 import { RiLogoutBoxRLine } from 'react-icons/ri'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 // background: 'linear-gradient(to right, #f8b195, #f67280)',
 //TODO: o user no local storage nao atualiza depois de fazer outro login
 const Home: React.FC = () => {
+  const navigate = useNavigate()
   const [user, setUser] = useState(null as { name: string } | null)
   const token = localStorage.getItem('token')
   const userData = localStorage.getItem('user')
@@ -38,6 +40,7 @@ const Home: React.FC = () => {
   const handleLogout = () => {
     setUser(null)
     localStorage.removeItem('user')
+    navigate('/auth')
   }
 
   const items = [
