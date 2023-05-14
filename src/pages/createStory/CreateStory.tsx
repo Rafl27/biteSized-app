@@ -16,20 +16,20 @@ function App() {
         />
         <input
           type="text"
-          placeholder="First Paragraph"
-          onChange={(e) => setText(e.target.value)}
-        />
-        <input
-          type="text"
           placeholder="Image URL"
           onChange={(e) => setImage(e.target.value)}
+        />
+        <textarea
+          placeholder="First Paragraph"
+          onChange={(e) => setText(e.target.value)}
         />
       </div>
 
       <div className="output">
+        {/* && is used for when a certain variable is available, if not it won't be rendered. */}
         {name && <h1>{name}</h1>}
         {image && <img id="createImage" src={image} alt="User input" />}
-        {text && <h5>{text}</h5>}
+        {text && <h5 id="paragraph">{text}</h5>}
       </div>
     </div>
   )
