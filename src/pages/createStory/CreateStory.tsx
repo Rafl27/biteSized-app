@@ -5,7 +5,17 @@ function App() {
   const [name, setName] = useState('')
   const [text, setText] = useState('')
   const [image, setImage] = useState('')
-
+  //true if any of the inputs are empty
+  const isCreateButtonDisabled = !name || !text || !image
+  const getCreateButtonTooltip = () => {
+    if (!name) {
+      return 'Please enter a story title'
+    } else if (!image) {
+      return 'Please enter an image URL'
+    } else if (!text) {
+      return 'Please enter the first paragraph'
+    }
+  }
   return (
     <div className="container">
       <div className="inputs">
@@ -23,7 +33,13 @@ function App() {
           placeholder="First Paragraph"
           onChange={(e) => setText(e.target.value)}
         />
-        <button id="createButton">Create</button>
+        <button
+          id="createButton"
+          disabled={isCreateButtonDisabled}
+          title={isCreateButtonDisabled ? getCreateButtonTooltip() : ''}
+        >
+          Create
+        </button>
       </div>
 
       <div className="output">
