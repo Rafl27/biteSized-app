@@ -60,7 +60,7 @@ const Home: React.FC = () => {
       <div
         style={{
           display: 'flex',
-          background: '#FF784F',
+          background: 'linear-gradient(135deg, #FF784F, #FFA94D)',
         }}
       >
         <Sidebar2 items={items} />

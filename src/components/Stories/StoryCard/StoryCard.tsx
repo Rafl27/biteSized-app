@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { formatDistanceToNow, format } from 'date-fns'
 import './StoryCard.css'
 
 interface Comment {
@@ -21,6 +22,7 @@ interface Story {
   img: string
   comments: Comment[]
   date: string
+  user: string
 }
 
 const StoryCard: React.FC = () => {
@@ -37,6 +39,30 @@ const StoryCard: React.FC = () => {
     }
     fetchStories()
   }, [])
+
+  const formatDate = (date: string): string => {
+    const currentDate = new Date()
+    const storyDate = new Date(date)
+    const differenceInDays = Math.floor(
+      (currentDate.getTime() - storyDate.getTime()) / (1000 * 60 * 60 * 24)
+    )
+
+    if (differenceInDays >= 365) {
+      return format(storyDate, 'yyyy-MM-dd')
+    } else if (differenceInDays >= 30) {
+      const differenceInMonths = Math.floor(differenceInDays / 30)
+      return `${differenceInMonths} month${
+        differenceInMonths > 1 ? 's' : ''
+      } ago`
+    } else if (differenceInDays >= 7) {
+      const differenceInWeeks = Math.floor(differenceInDays / 7)
+      return `${differenceInWeeks} week${differenceInWeeks > 1 ? 's' : ''} ago`
+    } else if (differenceInDays >= 1) {
+      return `${differenceInDays} day${differenceInDays > 1 ? 's' : ''} ago`
+    } else {
+      return 'Today'
+    }
+  }
 
   return (
     <div
@@ -55,7 +81,9 @@ const StoryCard: React.FC = () => {
           style={{ flex: '0 0 48%', margin: '1%' }}
         >
           <div className="card-body" style={{ flex: '1 1 auto' }}>
-            <p>Created: {story.date}</p>
+            <p>
+              Created: {formatDate(story.date)} by {story.user.name}
+            </p>
             <img
               src={story.img}
               alt={story.name}
@@ -71,19 +99,19 @@ const StoryCard: React.FC = () => {
               Continue reading
             </Link>
             {/* <div>
-              {story.comments.map((comment) => (
-                <div key={comment._id} className="card">
-                  <div className="card-body">
-                    <p className="card-text">{comment.text}</p>
-                    <button className="btn btn-primary">Edit</button>
-                    <button className="btn btn-danger">Delete</button>
-                    <button className="btn btn-secondary">
-                      Continue reading
-                    </button>
+                {story.comments.map((comment) => (
+                  <div key={comment._id} className="card">
+                    <div className="card-body">
+                      <p className="card-text">{comment.text}</p>
+                      <button className="btn btn-primary">Edit</button>
+                      <button className="btn btn-danger">Delete</button>
+                      <button className="btn btn-secondary">
+                        Continue reading
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div> */}
+                ))}
+              </div> */}
           </div>
         </div>
       ))}
