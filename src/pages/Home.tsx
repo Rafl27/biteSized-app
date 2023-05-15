@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState(null as { name: string } | null)
   const token = localStorage.getItem('token')
-  const userData = localStorage.getItem('user')
+  const userName = localStorage.getItem('name')
 
   // useEffect(() => {
   //   if (token && userData) {
@@ -46,7 +46,8 @@ const Home: React.FC = () => {
   const items = [
     { name: 'BiteSized', icon: MdCookie, link: '/home' },
     {
-      name: user ? user.name : 'Profile',
+      name: userName,
+      //TODO: The user avatars should be using that Profile image generator API
       icon: GiPlagueDoctorProfile,
       link: '/profile',
     },

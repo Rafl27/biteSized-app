@@ -4,8 +4,9 @@ import axios from 'axios'
 import { Modal } from 'react-bootstrap'
 
 function App() {
-  //TODO: now the button is always green because useState has values
-  //TODO: add the sidebar
+  //TODO: now the button is always green because useState has values.
+  //TODO: add the sidebar.
+  //TODO: The first paragraph text must have the same width as the image.
   const [name, setName] = useState('My Story Title')
   const [text, setText] = useState(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eget lacus fringilla maximus. Sed lacinia, ipsum vel facilisis viverra, sapien mi placerat quam, vel ultrices urna mauris non augue.'
