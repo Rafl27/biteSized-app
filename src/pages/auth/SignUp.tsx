@@ -29,7 +29,6 @@ const SignUp: React.FC = () => {
       const name = formData.get('name')
       const email = formData.get('email')
       const password = formData.get('password')
-      // console.log(name, email, password)
       try {
         const response = await axios.post('http://localhost:3000/user/signup', {
           name,

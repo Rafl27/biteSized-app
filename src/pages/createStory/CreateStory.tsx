@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './CreateStory.css'
+import axios from 'axios'
 
 function App() {
   const [name, setName] = useState('')
@@ -16,31 +17,56 @@ function App() {
       return 'Please enter the first paragraph'
     }
   }
+  const handleCreateStory = async (event: any) => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    const name = formData.get('name')
+    const img = formData.get('img')
+    const text = formData.get('text')
+    try {
+      const response = await axios.post('http://localhost:3000/story', {
+        name,
+        text,
+        img,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
     <div className="container">
-      <div className="inputs">
-        <input
-          type="text"
-          placeholder="Story Title"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <textarea
-          placeholder="First Paragraph"
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button
-          id="createButton"
-          disabled={isCreateButtonDisabled}
-          title={isCreateButtonDisabled ? getCreateButtonTooltip() : ''}
-        >
-          Create
-        </button>
-      </div>
+      <form className="createStory-form" onSubmit={handleCreateStory}>
+        <div className="inputs">
+          <input
+            type="text"
+            placeholder="Story Title"
+            name="name"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Image URL"
+            name="img"
+            onChange={(e) => setImage(e.target.value)}
+          />
+          <textarea
+            placeholder="First Paragraph"
+            name="text"
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button
+            id="createButton"
+            disabled={isCreateButtonDisabled}
+            type="submit"
+            title={isCreateButtonDisabled ? getCreateButtonTooltip() : ''}
+            className={
+              isCreateButtonDisabled ? 'disabled-button' : 'enabled-button'
+            }
+          >
+            Create
+          </button>
+        </div>
+      </form>
 
       <div className="output">
         {/* && is used for when a certain variable is available, if not it won't be rendered. */}
