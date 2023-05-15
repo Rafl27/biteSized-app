@@ -3,9 +3,14 @@ import './CreateStory.css'
 import axios from 'axios'
 
 function App() {
-  const [name, setName] = useState('')
-  const [text, setText] = useState('')
-  const [image, setImage] = useState('')
+  //TODO: now the button is always green because useState has values
+  const [name, setName] = useState('My Story Title')
+  const [text, setText] = useState(
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eget lacus fringilla maximus. Sed lacinia, ipsum vel facilisis viverra, sapien mi placerat quam, vel ultrices urna mauris non augue.'
+  )
+  const [image, setImage] = useState(
+    'https://via.placeholder.com/400x300.png?text=Image+URL'
+  )
   //true if any of the inputs are empty
   const isCreateButtonDisabled = !name || !text || !image
   const getCreateButtonTooltip = () => {
@@ -23,12 +28,20 @@ function App() {
     const name = formData.get('name')
     const img = formData.get('img')
     const text = formData.get('text')
+    const token = localStorage.getItem('token')
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
     try {
-      const response = await axios.post('http://localhost:3000/story', {
-        name,
-        text,
-        img,
-      })
+      const response = await axios.post(
+        'http://localhost:3000/story',
+        {
+          name,
+          text,
+          img,
+        },
+        config
+      )
     } catch (err) {
       console.log(err)
     }
