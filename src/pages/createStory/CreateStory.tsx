@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import './CreateStory.css'
 import axios from 'axios'
+import { Modal } from 'react-bootstrap'
 
 function App() {
   //TODO: now the button is always green because useState has values
+  //TODO: add the sidebar
   const [name, setName] = useState('My Story Title')
   const [text, setText] = useState(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eget lacus fringilla maximus. Sed lacinia, ipsum vel facilisis viverra, sapien mi placerat quam, vel ultrices urna mauris non augue.'
@@ -11,6 +13,8 @@ function App() {
   const [image, setImage] = useState(
     'https://via.placeholder.com/400x300.png?text=Image+URL'
   )
+  const [showModal, setShowModal] = useState(false)
+  const [createdStoryName, setCreatedStoryName] = useState('')
   //true if any of the inputs are empty
   const isCreateButtonDisabled = !name || !text || !image
   const getCreateButtonTooltip = () => {
@@ -42,6 +46,8 @@ function App() {
         },
         config
       )
+      setCreatedStoryName(name)
+      setShowModal(true)
     } catch (err) {
       console.log(err)
     }
@@ -80,6 +86,31 @@ function App() {
           </button>
         </div>
       </form>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Story Posted!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{createdStoryName} has been posted.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <a
+            href={`http://localhost:3000/story/${createdStoryName}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            View Story
+          </a>
+          <button
+            onClick={() => setShowModal(false)}
+            className="btn btn-secondary"
+          >
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
 
       <div className="output">
         {/* && is used for when a certain variable is available, if not it won't be rendered. */}

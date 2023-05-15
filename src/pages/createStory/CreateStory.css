@@ -78,9 +78,6 @@ textarea:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-#paragraph {
-}
-
 #createButton {
   /* background-color: #f4f4f4; */
   border: none;
@@ -104,3 +101,19 @@ textarea:focus {
   color: black;
   cursor: pointer;
 }
+
+/* .paragraph-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paragraph-wrapper #paragraph {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: #333;
+  margin: 0;
+  padding-top: 10px;
+  text-align: center;
+} */
