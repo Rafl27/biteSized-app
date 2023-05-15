@@ -12,3 +12,33 @@
   cursor: pointer;
   transform: scale(1.02);
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.vote-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.vote-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 10px;
+  color: #555555;
+  transition: color 0.3s;
+}
+
+.vote-button.upvote:hover {
+  color: #33cc33;
+}
+
+.vote-button.downvote:hover {
+  color: #ff0000;
+}

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { formatDistanceToNow, format } from 'date-fns'
 import './StoryCard.css'
+import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 
 interface Comment {
   _id: string
@@ -112,6 +113,14 @@ const StoryCard: React.FC = () => {
                   </div>
                 ))}
               </div> */}
+            <div className="vote-container">
+              <button className="vote-button upvote">
+                <ImArrowUp />
+              </button>
+              <button className="vote-button downvote">
+                <ImArrowDown />
+              </button>
+            </div>
           </div>
         </div>
       ))}
