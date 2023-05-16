@@ -91,7 +91,17 @@ const StoryCard: React.FC = () => {
               className="card-img-top"
               // style={{ maxHeight: '400px', maxWidth: '500px' }}
             />
-            <h3 className="card-title">{story.name}</h3>
+            <div className="card-title-container">
+              <h3 className="card-title">{story.name}</h3>
+              <div className="vote-container">
+                <button className="vote-button upvote">
+                  <ImArrowUp />
+                </button>
+                <button className="vote-button downvote">
+                  <ImArrowDown />
+                </button>
+              </div>
+            </div>
             <p className="card-text">{story.text}</p>
 
             <button className="btn btn-primary">Edit</button>
@@ -113,14 +123,6 @@ const StoryCard: React.FC = () => {
                   </div>
                 ))}
               </div> */}
-            <div className="vote-container">
-              <button className="vote-button upvote">
-                <ImArrowUp />
-              </button>
-              <button className="vote-button downvote">
-                <ImArrowDown />
-              </button>
-            </div>
           </div>
         </div>
       ))}

@@ -42,3 +42,10 @@
 .vote-button.downvote:hover {
   color: #ff0000;
 }
+
+.card-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3% 0 3% 0;
+}
