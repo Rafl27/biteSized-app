@@ -24,6 +24,8 @@ interface Story {
   comments: Comment[]
   date: string
   user: string
+  upvotes: number
+  downvotes: number
 }
 
 const StoryCard: React.FC = () => {
@@ -65,6 +67,39 @@ const StoryCard: React.FC = () => {
     }
   }
 
+  const [upvoteClicked, setUpvoteClicked] = useState<string[]>([])
+  const [downvoteClicked, setDownvoteClicked] = useState<string[]>([])
+
+  const handleUpvote = async (id: string) => {
+    try {
+      const res = await axios.put(`http://localhost:3000/story/${id}/upvote`)
+      const updatedStory = res.data
+      setStories((prevStories) =>
+        prevStories.map((story) =>
+          story._id === updatedStory._id ? updatedStory : story
+        )
+      )
+      setUpvoteClicked((prevClicked) => [...prevClicked, id])
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleDownvote = async (id: string) => {
+    try {
+      const res = await axios.put(`http://localhost:3000/story/${id}/downvote`)
+      const updatedStory = res.data
+      setStories((prevStories) =>
+        prevStories.map((story) =>
+          story._id === updatedStory._id ? updatedStory : story
+        )
+      )
+      setDownvoteClicked((prevClicked) => [...prevClicked, id])
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <div
       style={{
@@ -94,10 +129,28 @@ const StoryCard: React.FC = () => {
             <div className="card-title-container">
               <h3 className="card-title">{story.name}</h3>
               <div className="vote-container">
-                <button className="vote-button upvote">
+                <button
+                  className={`vote-button upvote ${
+                    upvoteClicked.includes(story._id) ? 'clicked' : ''
+                  }`}
+                  onClick={() => handleUpvote(story._id)}
+                  disabled={
+                    upvoteClicked.includes(story._id) ||
+                    downvoteClicked.includes(story._id)
+                  }
+                >
                   <ImArrowUp />
                 </button>
-                <button className="vote-button downvote">
+                <button
+                  className={`vote-button downvote ${
+                    downvoteClicked.includes(story._id) ? 'clicked' : ''
+                  }`}
+                  onClick={() => handleDownvote(story._id)}
+                  disabled={
+                    downvoteClicked.includes(story._id) ||
+                    upvoteClicked.includes(story._id)
+                  }
+                >
                   <ImArrowDown />
                 </button>
               </div>
