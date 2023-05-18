@@ -35,7 +35,15 @@ const SignUp: React.FC = () => {
           email,
           password,
         })
-        console.log(response.data.token)
+        const userToken = response.data.token
+        const userName = response.data.name
+        const userEmail = response.data.email
+        const profilePicture = response.data.profilePicture
+        localStorage.setItem('token', userToken)
+        localStorage.setItem('name', userName)
+        localStorage.setItem('email', userEmail)
+        localStorage.setItem('profilePicture', profilePicture)
+        navigate('/home')
       } catch (err) {
         console.log(err)
       }
@@ -57,9 +65,11 @@ const SignUp: React.FC = () => {
         const userToken = response.data.token
         const userName = response.data.name
         const userEmail = response.data.email
+        const profilePicture = response.data.profilePicture
         localStorage.setItem('token', userToken)
         localStorage.setItem('name', userName)
         localStorage.setItem('email', userEmail)
+        localStorage.setItem('profilePicture', profilePicture)
         navigate('/home')
       } catch (err) {
         console.log(err)
