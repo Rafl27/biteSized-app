@@ -70,6 +70,7 @@ const StoryCard: React.FC = () => {
   const [upvoteClicked, setUpvoteClicked] = useState<string[]>([])
   const [downvoteClicked, setDownvoteClicked] = useState<string[]>([])
 
+  //TODO: Show the upvote and downvote count on the front end.
   const handleUpvote = async (id: string) => {
     try {
       const res = await axios.put(`http://localhost:3000/story/${id}/upvote`)

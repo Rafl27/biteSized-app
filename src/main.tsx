@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import SignUp from './pages/auth/SignUp'
 import SingleStory from './pages/SingleStory/SingleStory'
 import CreateStory from './pages/createStory/CreateStory'
+import ProfilePage from './pages/profile/ProfilePage'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/create',
     element: <CreateStory />,
+  },
+  {
+    path: '/profile',
+    element: <ProfilePage />,
   },
   /*{
     path: "contacts/:contactId",
