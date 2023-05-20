@@ -9,6 +9,7 @@ import { IoIosCreate } from 'react-icons/io'
 import { RiLogoutBoxRLine } from 'react-icons/ri'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import TopBar from '../components/topBar/TopBar'
 
 // background: 'linear-gradient(to right, #f8b195, #f67280)',
 
@@ -57,13 +58,14 @@ const Home: React.FC = () => {
   ]
   return (
     <>
+      <TopBar />
       <div
         style={{
           display: 'flex',
           background: 'linear-gradient(205deg, #FF784F, #FFA94D)',
         }}
       >
-        <Sidebar2 items={items} />
+        {/* <Sidebar2 items={items} /> */}
         <StoryCard />
       </div>
     </>

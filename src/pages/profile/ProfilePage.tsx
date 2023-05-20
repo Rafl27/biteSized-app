@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './ProfilePage.css'
+import TopBar from '../../components/topBar/TopBar'
 
 interface ProfilePageProps {
   name: string
@@ -47,22 +48,25 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   const pictureSrc = userPicture !== null ? userPicture : undefined
 
   return (
-    <div className="profile-page">
-      <div className="profile-picture">
-        <img src={pictureSrc} alt="Profile" />
+    <>
+      <TopBar />
+      <div className="profile-page">
+        <div className="profile-picture">
+          <img src={pictureSrc} alt="Profile" />
+        </div>
+        <h2>{userName}</h2>
+        <div className="story-list">
+          {stories.map((story) => (
+            <div className="story" key={story.name}>
+              <h3>{story.name}</h3>
+              <p>{story.text}</p>
+              <img src={story.img} alt={story.name} />
+              <p>Upvotes: {story.upvotes}</p>
+            </div>
+          ))}
+        </div>
       </div>
-      <h2>{userName}</h2>
-      <div className="story-list">
-        {stories.map((story) => (
-          <div className="story" key={story.name}>
-            <h3>{story.name}</h3>
-            <p>{story.text}</p>
-            <img src={story.img} alt={story.name} />
-            <p>Upvotes: {story.upvotes}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   )
 }
 
