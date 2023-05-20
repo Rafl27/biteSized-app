@@ -25,3 +25,54 @@ h2 {
   color: #333;
   text-align: center;
 }
+
+.story-list {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.story {
+  flex-basis: calc(
+    33.33% - 10px
+  ); /* Adjust the width based on the number of items per row */
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.story h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+  margin: 0;
+}
+
+.story:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.story p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.story img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.story p:last-child {
+  font-size: 12px;
+  color: #999;
+}
