@@ -12,6 +12,7 @@ interface Story {
   text: string
   img: string
   upvotes: number
+  downvotes: number
 }
 
 const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
@@ -62,6 +63,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
               <p>{story.text}</p>
               <img src={story.img} alt={story.name} />
               <p>Upvotes: {story.upvotes}</p>
+              <p>Downvotes: {story.downvotes}</p>
             </div>
           ))}
         </div>

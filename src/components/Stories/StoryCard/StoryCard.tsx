@@ -23,7 +23,10 @@ interface Story {
   img: string
   comments: Comment[]
   date: string
-  user: string
+  user: {
+    name: string
+    profilePicture: string
+  }
   upvotes: number
   downvotes: number
 }
@@ -101,6 +104,8 @@ const StoryCard: React.FC = () => {
     }
   }
 
+  // const userProfilePicture = localStorage.getItem('profilePicture')
+
   return (
     <div
       style={{
@@ -118,15 +123,21 @@ const StoryCard: React.FC = () => {
           style={{ flex: '0 0 48%', margin: '1%' }}
         >
           <div className="card-body" style={{ flex: '1 1 auto' }}>
-            <p>
-              Created: {formatDate(story.date)} by {story.user.name}
-            </p>
             <img
               src={story.img}
               alt={story.name}
               className="card-img-top"
               // style={{ maxHeight: '400px', maxWidth: '500px' }}
             />
+            <p className="created">Created: {formatDate(story.date)}</p>
+            <div className="userInfo">
+              <img
+                className="profilePicture"
+                src={story.user.profilePicture}
+                alt="user profile picture"
+              />
+              <p className="userName">{story.user.name}</p>
+            </div>
             <div className="card-title-container">
               <h3 className="card-title">{story.name}</h3>
               <div className="vote-container">
@@ -158,8 +169,8 @@ const StoryCard: React.FC = () => {
             </div>
             <p className="card-text">{story.text}</p>
 
-            <button className="btn btn-primary">Edit</button>
-            <button className="btn btn-danger">Delete</button>
+            {/* <button className="btn btn-primary">Edit</button> */}
+            {/* <button className="btn btn-danger">Delete</button> */}
             <Link to={`/story/${story._id}`} className="btn btn-secondary">
               Continue reading
             </Link>
