@@ -60,8 +60,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           {stories.map((story) => (
             <div className="story" key={story.name}>
               <h3>{story.name}</h3>
-              <p>{story.text}</p>
               <img src={story.img} alt={story.name} />
+              <p className="story-text">{story.text}</p>
+
               <p>Upvotes: {story.upvotes}</p>
               <p>Downvotes: {story.downvotes}</p>
             </div>
