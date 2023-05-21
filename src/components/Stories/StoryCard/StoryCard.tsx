@@ -151,6 +151,7 @@ const StoryCard: React.FC = () => {
                     downvoteClicked.includes(story._id)
                   }
                 >
+                  {story.upvotes}
                   <ImArrowUp />
                 </button>
                 <button
@@ -163,6 +164,7 @@ const StoryCard: React.FC = () => {
                     upvoteClicked.includes(story._id)
                   }
                 >
+                  {story.downvotes}
                   <ImArrowDown />
                 </button>
               </div>
