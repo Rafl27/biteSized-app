@@ -5,8 +5,6 @@ import { Modal } from 'react-bootstrap'
 import TopBar from '../../components/topBar/TopBar'
 
 function App() {
-  //TODO: now the button is always green because useState has values.
-  const [name, setName] = useState('My Story Title')
   const [text, setText] = useState(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eget lacus fringilla maximus. Sed lacinia, ipsum vel facilisis viverra, sapien mi placerat quam, vel ultrices urna mauris non augue.'
   )
@@ -15,18 +13,18 @@ function App() {
   )
   const [showModal, setShowModal] = useState(false)
   const [createdStoryName, setCreatedStoryName] = useState('')
-  //true if any of the inputs are empty
-  const isCreateButtonDisabled = !name || !text || !image
+  const [hasImage, setHasImage] = useState(false) // State for checkbox
+
+  const isCreateButtonDisabled = !text || (hasImage && !image) // Updated condition
   const getCreateButtonTooltip = () => {
-    if (!name) {
-      return 'Please enter a story title'
-    } else if (!image) {
+    if (!image && hasImage) {
       return 'Please enter an image URL'
     } else if (!text) {
       return 'Please enter the first paragraph'
     }
   }
-  const handleCreateStory = async (event: any) => {
+
+  const handleCreateStory = async (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
     const name = formData.get('name')
@@ -58,18 +56,26 @@ function App() {
       <div className="container">
         <form className="createStory-form" onSubmit={handleCreateStory}>
           <div className="inputs">
-            <input
-              type="text"
-              placeholder="Story Title"
-              name="name"
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Image URL"
-              name="img"
-              onChange={(e) => setImage(e.target.value)}
-            />
+            {/* Checkbox for image option */}
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={hasImage}
+                onChange={(e) => setHasImage(e.target.checked)}
+              />
+              <span className="checkbox-custom" />
+              Will this thread have an image?
+            </label>
+            {/* Conditional image URL input */}
+            {hasImage && (
+              <input
+                type="text"
+                placeholder="Image URL"
+                name="img"
+                className={`image-input ${hasImage ? 'fade-in' : ''}`}
+                onChange={(e) => setImage(e.target.value)}
+              />
+            )}
             <textarea
               placeholder="First Paragraph"
               name="text"
@@ -115,8 +121,6 @@ function App() {
         </Modal>
 
         <div className="output">
-          {/* && is used for when a certain variable is available, if not it won't be rendered. */}
-          {name && <h1>{name}</h1>}
           {image && (
             <div className="image-wrapper">
               <img id="createImage" src={image} alt="User input" />

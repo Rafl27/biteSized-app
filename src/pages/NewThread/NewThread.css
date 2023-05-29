@@ -102,22 +102,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-/* .paragraph-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .paragraph-wrapper #paragraph {
-    font-family: Georgia, serif;
-    font-size: 18px;
-    font-weight: normal;
-    color: #333;
-    margin: 0;
-    padding-top: 10px;
-    text-align: center;
-  } */
-
 .userInfo {
   display: flex;
   flex-direction: row;
@@ -137,12 +121,6 @@ textarea:focus {
   margin-bottom: 10px;
 }
 
-/* .userName {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-  } */
-
 #paragraph {
   font-family: Georgia, serif;
   font-size: 18px;
@@ -150,11 +128,73 @@ textarea:focus {
   color: #333;
   margin: 0;
   padding-top: 10px;
-  text-align: justify; /* Justify the text to improve readability */
-  word-wrap: break-word; /* Enable word wrapping */
+  text-align: justify;
+  word-wrap: break-word;
 }
 /* TODO: Too long of a paragraph will go up beyong the limits of the screen */
 .paragraph-wrapper {
   max-width: 600px; /* Adjust the value as per your desired width */
   margin: 0 auto; /* Center the paragraph within its container */
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: 3px;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.checkbox-custom:checked::after {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: #2196f3;
+  border-radius: 2px;
+}
+
+.checkbox-label .checkbox-custom {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: 3px;
+  border: 2px solid #ccc;
+  background-color: white;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.checkbox-label .checkbox-custom:checked::after {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: #2196f3;
+  border-radius: 2px;
+}
+
+.checkbox-label:hover .checkbox-custom {
+  background-color: #f4f4f4;
+}
+
+.image-input {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-input.fade-in {
+  opacity: 1;
 }
