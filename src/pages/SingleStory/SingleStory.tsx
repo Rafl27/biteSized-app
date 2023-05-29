@@ -12,6 +12,7 @@ interface Story {
   user: {
     _id: string
     name: string
+    profilePicture: string
   }
   date: string
   comments: Comment[]
@@ -62,11 +63,18 @@ const SingleStory = () => {
         <div className="header">
           <h1>{story.name}</h1>
           {story.img && <img src={story.img} alt={story.name} />}
+          <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
+          <p>
+            <img
+              className="profilePicture"
+              src={story.user.profilePicture}
+              alt="user profile picture"
+            />
+            {story.user.name}
+          </p>
         </div>
         <div className="content">
           <p>{story.text}</p>
-          <p>Written by: {story.user.name}</p>
-          <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
         </div>
         <div className="comments">
           <h2>Comments:</h2>
@@ -74,7 +82,7 @@ const SingleStory = () => {
             story.comments.map((comment) => (
               <div key={comment._id} className="comment">
                 <p>{comment.text}</p>
-                <p>Commented by: {comment.user}</p>
+                <p>By: {comment.user}</p>
                 {comment.replies &&
                   comment.replies.map((reply) => (
                     <div key={reply._id} className="reply">
