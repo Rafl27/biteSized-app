@@ -133,8 +133,8 @@ textarea:focus {
 }
 /* TODO: Too long of a paragraph will go up beyong the limits of the screen */
 .paragraph-wrapper {
-  max-width: 600px; /* Adjust the value as per your desired width */
-  margin: 0 auto; /* Center the paragraph within its container */
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .checkbox-label {

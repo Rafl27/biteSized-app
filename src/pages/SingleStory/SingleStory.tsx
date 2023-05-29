@@ -82,7 +82,16 @@ const SingleStory = () => {
           <button className="add-comment-button" onClick={toggleModal}>
             New thread
           </button>
-          {showModal && <NewThread />}
+          {showModal && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <button className="modal-close-button" onClick={toggleModal}>
+                  Close
+                </button>
+                <NewThread />
+              </div>
+            </div>
+          )}
         </div>
         <div className="content">
           <p>{story.text}</p>
