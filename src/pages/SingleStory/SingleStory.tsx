@@ -61,6 +61,11 @@ const SingleStory = () => {
   const toggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal)
   }
+  const closeModal = (event) => {
+    if (event.target === event.currentTarget) {
+      toggleModal()
+    }
+  }
   return (
     <>
       <TopBar />
@@ -83,8 +88,11 @@ const SingleStory = () => {
             New thread
           </button>
           {showModal && (
-            <div className="modal-overlay">
-              <div className="modal-content">
+            <div className="modal-overlay" onClick={closeModal}>
+              <div
+                className="modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <button className="modal-close-button" onClick={toggleModal}>
                   Close
                 </button>
