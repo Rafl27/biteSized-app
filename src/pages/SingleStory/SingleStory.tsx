@@ -73,11 +73,14 @@ const SingleStory = () => {
             {story.user.name}
           </p>
         </div>
+        <div className="add-comment">
+          <button className="add-comment-button">New thread</button>
+        </div>
         <div className="content">
           <p>{story.text}</p>
         </div>
         <div className="comments">
-          <h2>Comments:</h2>
+          <h2>Threads:</h2>
           {story.comments &&
             story.comments.map((comment) => (
               <div key={comment._id} className="comment">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './CreateStory.css'
+import './NewThread.css'
 import axios from 'axios'
 import { Modal } from 'react-bootstrap'
 import TopBar from '../../components/topBar/TopBar'

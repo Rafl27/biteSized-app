@@ -9,6 +9,7 @@ import SignUp from './pages/auth/SignUp'
 import SingleStory from './pages/SingleStory/SingleStory'
 import CreateStory from './pages/createStory/CreateStory'
 import ProfilePage from './pages/profile/ProfilePage'
+import NewThread from './pages/NewThread/NewThread'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ProfilePage />,
+  },
+  {
+    path: '/newthread',
+    element: <NewThread />,
   },
   /*{
     path: "contacts/:contactId",

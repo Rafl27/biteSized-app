@@ -131,11 +131,6 @@ const StoryCard: React.FC = () => {
             />
             <p className="created">Created: {formatDate(story.date)}</p>
             <div className="userInfo">
-              <img
-                className="profilePicture"
-                src={story.user.profilePicture}
-                alt="user profile picture"
-              />
               <p className="userName">{story.user.name}</p>
             </div>
             <div className="card-title-container">

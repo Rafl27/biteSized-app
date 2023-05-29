@@ -1,0 +1,160 @@
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+input[type='text'] {
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease-in-out;
+  font-size: 16px;
+  color: #333;
+}
+
+input[type='text']:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+h5 {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+#createImage {
+  max-height: 40vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+}
+
+#createImage:hover {
+  transform: scale(1.1);
+}
+
+textarea {
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease-in-out;
+  font-size: 16px;
+  color: #333;
+  resize: none; /* disable resizing of the textbox */
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#createButton {
+  /* background-color: #f4f4f4; */
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease-in-out;
+  font-size: 16px;
+  color: #333;
+}
+
+.disabled-button {
+  background-color: red;
+  color: white;
+  cursor: not-allowed;
+}
+
+.enabled-button {
+  background-color: green;
+  color: black;
+  cursor: pointer;
+}
+
+/* .paragraph-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .paragraph-wrapper #paragraph {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: #333;
+    margin: 0;
+    padding-top: 10px;
+    text-align: center;
+  } */
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.profilePicture {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.created {
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* .userName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  } */
+
+#paragraph {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: #333;
+  margin: 0;
+  padding-top: 10px;
+  text-align: justify; /* Justify the text to improve readability */
+  word-wrap: break-word; /* Enable word wrapping */
+}
+/* TODO: Too long of a paragraph will go up beyong the limits of the screen */
+.paragraph-wrapper {
+  max-width: 600px; /* Adjust the value as per your desired width */
+  margin: 0 auto; /* Center the paragraph within its container */
+}

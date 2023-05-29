@@ -43,6 +43,31 @@
 }
 
 .header img:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-comment {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.add-comment-button {
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.add-comment-button:hover {
+  background-color: #1976d2;
+}
+
+.add-comment-button:focus {
+  outline: none;
 }
