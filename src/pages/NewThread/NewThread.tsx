@@ -121,7 +121,7 @@ function App() {
         </Modal>
 
         <div className="output">
-          {image && (
+          {hasImage && image && (
             <div className="image-wrapper">
               <img id="createImage" src={image} alt="User input" />
             </div>
