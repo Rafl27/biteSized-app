@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import './SingleStory.css'
 import TopBar from '../../components/topBar/TopBar'
+import NewThread from '../NewThread/NewThread'
 
 interface Story {
   _id: string
@@ -56,6 +57,10 @@ const SingleStory = () => {
     fetchStory()
   }, [_id])
 
+  const [showModal, setShowModal] = useState(false)
+  const toggleModal = () => {
+    setShowModal((prevShowModal) => !prevShowModal)
+  }
   return (
     <>
       <TopBar />
@@ -74,7 +79,10 @@ const SingleStory = () => {
           </p>
         </div>
         <div className="add-comment">
-          <button className="add-comment-button">New thread</button>
+          <button className="add-comment-button" onClick={toggleModal}>
+            New thread
+          </button>
+          {showModal && <NewThread />}
         </div>
         <div className="content">
           <p>{story.text}</p>

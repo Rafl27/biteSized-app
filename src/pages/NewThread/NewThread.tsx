@@ -38,13 +38,13 @@ function App() {
       const response = await axios.post(
         'http://localhost:3000/story',
         {
-          name,
+          // name,
           text,
           img,
         },
         config
       )
-      setCreatedStoryName(name)
+      // setCreatedStoryName(name)
       setShowModal(true)
     } catch (err) {
       console.log(err)
@@ -52,7 +52,7 @@ function App() {
   }
   return (
     <>
-      <TopBar />
+      {/* <TopBar /> */}
       <div className="container">
         <form className="createStory-form" onSubmit={handleCreateStory}>
           <div className="inputs">
@@ -100,7 +100,7 @@ function App() {
             <Modal.Title>Story Posted!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>{createdStoryName} has been posted.</p>
+            <p>The new thread has been posted.</p>
           </Modal.Body>
           <Modal.Footer>
             <a
