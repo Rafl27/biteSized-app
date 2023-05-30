@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Modal } from 'react-bootstrap'
 import TopBar from '../../components/topBar/TopBar'
 
-function App() {
+function App({ storyID }) {
   const [text, setText] = useState(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eget lacus fringilla maximus. Sed lacinia, ipsum vel facilisis viverra, sapien mi placerat quam, vel ultrices urna mauris non augue.'
   )
@@ -36,7 +36,7 @@ function App() {
     }
     try {
       const response = await axios.post(
-        'http://localhost:3000/story',
+        `http://localhost:3000/story/${storyID}/comments`,
         {
           // name,
           text,
