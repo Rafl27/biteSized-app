@@ -1,5 +1,5 @@
 .single-story-container {
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -18,10 +18,13 @@
 
 .comments {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .comment {
-  margin-bottom: 20px;
+  width: calc(50% - 10px); /* Adjust the width as needed */
 }
 
 .reply {
@@ -101,6 +104,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-weight: bolder;
 }
 
 .modal-overlay {

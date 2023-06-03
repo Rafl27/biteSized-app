@@ -27,7 +27,6 @@ function App({ storyID }) {
   const handleCreateStory = async (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    const name = formData.get('name')
     const img = formData.get('img')
     const text = formData.get('text')
     const token = localStorage.getItem('token')
@@ -40,7 +39,7 @@ function App({ storyID }) {
         {
           // name,
           text,
-          img,
+          // img,
         },
         config
       )

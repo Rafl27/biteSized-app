@@ -104,8 +104,8 @@ const SingleStory = () => {
         <div className="content">
           <p>{story.text}</p>
         </div>
+        <h2>Threads:</h2>
         <div className="comments">
-          <h2>Threads:</h2>
           {story.comments &&
             story.comments.map((comment) => (
               <div key={comment._id} className="comment">
