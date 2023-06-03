@@ -14,13 +14,17 @@ function App({ storyID }) {
   const [showModal, setShowModal] = useState(false)
   const [createdStoryName, setCreatedStoryName] = useState('')
   const [hasImage, setHasImage] = useState(false) // State for checkbox
+  const MIN_CHARACTER_LIMIT = 100
 
-  const isCreateButtonDisabled = !text || (hasImage && !image) // Updated condition
+  const isCreateButtonDisabled =
+    !text || text.length < MIN_CHARACTER_LIMIT || (hasImage && !image)
   const getCreateButtonTooltip = () => {
     if (!image && hasImage) {
       return 'Please enter an image URL'
     } else if (!text) {
       return 'Please enter the first paragraph'
+    } else if (text.length < MIN_CHARACTER_LIMIT) {
+      return `Minimum character limit is ${MIN_CHARACTER_LIMIT}`
     }
   }
 

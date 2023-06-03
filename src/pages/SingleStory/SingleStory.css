@@ -21,10 +21,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .comment {
-  width: calc(50% - 10px); /* Adjust the width as needed */
+  flex-basis: calc(50% - 10px); /* half of the screen width minus the gap */
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.comment:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .reply {
@@ -118,4 +132,8 @@
   justify-content: center;
   align-items: center;
   z-index: 9999; /* ensure the modal is displayed on top of other content */
+}
+
+#userName {
+  font-weight: 700;
 }

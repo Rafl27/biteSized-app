@@ -109,8 +109,9 @@ const SingleStory = () => {
           {story.comments &&
             story.comments.map((comment) => (
               <div key={comment._id} className="comment">
+                <p id="userName">By: {comment.user}</p>
                 <p>{comment.text}</p>
-                <p>By: {comment.user}</p>
+
                 {comment.replies &&
                   comment.replies.map((reply) => (
                     <div key={reply._id} className="reply">
