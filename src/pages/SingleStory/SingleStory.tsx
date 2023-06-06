@@ -38,6 +38,7 @@ const SingleStory = () => {
     user: {
       _id: '',
       name: '',
+      profilePicture: ''
     },
     date: '',
     comments: [],
@@ -109,7 +110,7 @@ const SingleStory = () => {
           {story.comments &&
             story.comments.map((comment) => (
               <div key={comment._id} className="comment">
-                <p id="userName">By: {comment.user}</p>
+                <p id="userName">By: {comment.user.name}</p>
                 <p>{comment.text}</p>
 
                 {comment.replies &&
