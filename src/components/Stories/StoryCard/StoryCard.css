@@ -47,7 +47,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3% 0 3% 0;
+  padding: 0 0 3% 0;
 }
 
 /* .vote-button.upvote.clicked,
