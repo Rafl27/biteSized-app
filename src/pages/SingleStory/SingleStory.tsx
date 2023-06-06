@@ -67,13 +67,16 @@ const SingleStory = () => {
       toggleModal()
     }
   }
+
   return (
     <>
       <TopBar />
       <div className="single-story-container">
         <div className="header">
           <h1>{story.name}</h1>
-          {story.img && <img src={story.img} alt={story.name} />}
+          {story.img && (
+            <img className="story-img" src={story.img} alt={story.name} />
+          )}
           <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
           <p>
             <img
@@ -128,4 +131,4 @@ const SingleStory = () => {
   )
 }
 
-export default SingleStory
+export default SingleStory;
