@@ -1,72 +1,72 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
-import './SingleStory.css'
-import TopBar from '../../components/topBar/TopBar'
-import NewThread from '../NewThread/NewThread'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import "./SingleStory.css";
+import TopBar from "../../components/topBar/TopBar";
+import NewThread from "../NewThread/NewThread";
 
 interface Story {
-  _id: string
-  name: string
-  text: string
-  img?: string
+  _id: string;
+  name: string;
+  text: string;
+  img?: string;
   user: {
-    _id: string
-    name: string
-    profilePicture: string
-  }
-  date: string
-  comments: Comment[]
+    _id: string;
+    name: string;
+    profilePicture: string;
+  };
+  date: string;
+  comments: Comment[];
 }
 
 interface Comment {
-  _id: string
+  _id: string;
   user: {
-    _id: string
-    name: string
-  }
-  text: string
-  replies: Comment[]
+    _id: string;
+    name: string;
+  };
+  text: string;
+  replies: Comment[];
 }
 
 const SingleStory = () => {
   const [story, setStory] = useState<Story>({
-    _id: '',
-    name: '',
-    text: '',
-    img: '',
+    _id: "",
+    name: "",
+    text: "",
+    img: "",
     user: {
-      _id: '',
-      name: '',
-      profilePicture: ''
+      _id: "",
+      name: "",
+      profilePicture: "",
     },
-    date: '',
+    date: "",
     comments: [],
-  })
+  });
 
-  const { _id } = useParams()
+  const { _id } = useParams();
 
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/story/${_id}`)
-        setStory(response.data)
+        const response = await axios.get(`http://localhost:3000/story/${_id}`);
+        setStory(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchStory()
-  }, [_id])
+    };
+    fetchStory();
+  }, [_id]);
 
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
-    setShowModal((prevShowModal) => !prevShowModal)
-  }
+    setShowModal((prevShowModal) => !prevShowModal);
+  };
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
-      toggleModal()
+      toggleModal();
     }
-  }
+  };
 
   return (
     <>
@@ -113,14 +113,27 @@ const SingleStory = () => {
           {story.comments &&
             story.comments.map((comment) => (
               <div key={comment._id} className="comment">
-                <p id="userName">By: {comment.user.name}</p>
-                <p>{comment.text}</p>
-
+                <div className="userInfo">
+                  <img
+                    src={comment.user.profilePicture}
+                    alt="user profile picture"
+                  />
+                  <p className="userName">{comment.user.name}</p>
+                </div>
+                <p className="commentText">{comment.text}</p>
                 {comment.replies &&
                   comment.replies.map((reply) => (
                     <div key={reply._id} className="reply">
-                      <p>{reply.text}</p>
-                      <p>Replied by: {reply.user && reply.user.name}</p>
+                      <div className="userInfo">
+                      <img
+                        src={reply.user && reply.user.profilePicture}
+                        alt="user profile picture"
+                      />
+                      <p className="userName">
+                        {reply.user && reply.user.name}
+                      </p>
+                      </div>
+                      <p className="replyText">{reply.text}</p>
                     </div>
                   ))}
               </div>
@@ -128,7 +141,7 @@ const SingleStory = () => {
         </div>
       </div>
     </>
-  )
-}
-
+  );
+};
+// TODO:adicionar load more nos comments apos um determinado numero.
 export default SingleStory;

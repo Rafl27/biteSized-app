@@ -41,6 +41,43 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.commentText {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.replyText{
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.comment .userInfo img {
+  /* width: 50px;  */
+  height: 30px; 
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  object-fit: cover;
+}
+
+.comment .userInfo p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.comment .userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment .userInfo img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .reply {
   margin-left: 20px;
   padding-left: 20px;
@@ -133,6 +170,6 @@
   z-index: 9999; /* ensure the modal is displayed on top of other content */
 }
 
-#userName {
+.userName {
   font-weight: 700;
 }
