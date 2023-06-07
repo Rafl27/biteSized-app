@@ -1,9 +1,12 @@
 .card {
-  background-color: #ffffff;
-  background-image: none;
-  cursor: default;
-  transform: scale(1);
-  transition: background-color 0.3s, background-image 0.3s, transform 0.3s;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  max-width: fit-content; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
@@ -11,6 +14,13 @@
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   cursor: pointer;
   transform: scale(1.02);
+}
+
+.card-body {
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  padding: 20px;
 }
 
 .button-container {
@@ -50,10 +60,10 @@
   padding: 0 0 3% 0;
 }
 
-/* .vote-button.upvote.clicked,
+.vote-button.upvote.clicked,
 .vote-button.downvote.clicked {
   opacity: 0.5;
-} */
+}
 
 .vote-button.upvote.clicked {
   opacity: 0.5;
@@ -80,6 +90,6 @@
 .card-img-top{
   flex-grow: 1;
   object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 60%;
+  max-height: 60%;
 }
