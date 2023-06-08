@@ -1,73 +1,101 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
-import './SingleStory.css'
-import TopBar from '../../components/topBar/TopBar'
-import NewThread from '../NewThread/NewThread'
-import { RiChat3Line } from 'react-icons/ri';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import "./SingleStory.css";
+import TopBar from "../../components/topBar/TopBar";
+import NewThread from "../NewThread/NewThread";
+import { RiChat3Line } from "react-icons/ri";
 
 interface Story {
-  _id: string
-  name: string
-  text: string
-  img?: string
+  _id: string;
+  name: string;
+  text: string;
+  img?: string;
   user: {
-    _id: string
-    name: string
-    profilePicture: string
-  }
-  date: string
-  comments: Comment[]
+    _id: string;
+    name: string;
+    profilePicture: string;
+  };
+  date: string;
+  comments: Comment[];
 }
 
 interface Comment {
-  _id: string
+  _id: string;
   user: {
-    _id: string
-    name: string
-  }
-  text: string
-  replies: Comment[]
+    _id: string;
+    name: string;
+  };
+  text: string;
+  replies: Comment[];
+  nestedReplies: Comment[];
 }
 
 const SingleStory = () => {
   const [story, setStory] = useState<Story>({
-    _id: '',
-    name: '',
-    text: '',
-    img: '',
+    _id: "",
+    name: "",
+    text: "",
+    img: "",
     user: {
-      _id: '',
-      name: '',
-      profilePicture: '',
+      _id: "",
+      name: "",
+      profilePicture: "",
     },
-    date: '',
+    date: "",
     comments: [],
-  })
+  });
 
-  const { _id } = useParams()
+  const { _id } = useParams();
 
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/story/${_id}`)
-        setStory(response.data)
+        const response = await axios.get(`http://localhost:3000/story/${_id}`);
+        setStory(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchStory()
-  }, [_id])
+    };
+    fetchStory();
+  }, [_id]);
 
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
-    setShowModal((prevShowModal) => !prevShowModal)
-  }
+    setShowModal((prevShowModal) => !prevShowModal);
+  };
+
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
-      toggleModal()
+      toggleModal();
     }
-  }
+  };
+
+  const handleCommentReply = (commentId: string) => {
+    axios
+      .post(
+        `http://localhost:3000/story/${story._id}/comments/${commentId}/replies`
+      )
+      .then((response) => {
+        // Handle the response if needed
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleNestedReply = (commentId: string, replyId: string) => {
+    axios
+      .post(
+        `http://localhost:3000/story/${_id}/comments/${commentId}/replies/${replyId}/response`
+      )
+      .then((response) => {
+        // Handle the response if needed
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -124,8 +152,9 @@ const SingleStory = () => {
 
                 <p className="commentText">{comment.text}</p>
                 <button className="replyButton">
-                <RiChat3Line className="chatIcon" />
-                  Reply</button>
+                  <RiChat3Line className="chatIcon" />
+                  Reply
+                </button>
                 {comment.replies &&
                   comment.replies.map((reply) => (
                     <div key={reply._id} className="reply">
@@ -140,8 +169,31 @@ const SingleStory = () => {
                       </div>
                       <p className="replyText">{reply.text}</p>
                       <button className="replyButton">
-                <RiChat3Line className="chatIcon" />
-                  Reply</button>
+                        <RiChat3Line className="chatIcon" />
+                        Reply
+                      </button>
+                      {reply.nestedReplies &&
+                        reply.nestedReplies.map((nestedReply) => (
+                          <div key={nestedReply._id} className="nested-reply">
+                            <div className="userInfo">
+                              <img
+                                src={
+                                  nestedReply.user &&
+                                  nestedReply.user.profilePicture
+                                }
+                                alt="user profile picture"
+                              />
+                              <p className="userName">
+                                {nestedReply.user && nestedReply.user.name}
+                              </p>
+                            </div>
+                            <p className="replyText">{nestedReply.text}</p>
+                            <button className="replyButton">
+                              <RiChat3Line className="chatIcon" />
+                              Reply
+                            </button>
+                          </div>
+                        ))}
                     </div>
                   ))}
               </div>
@@ -149,7 +201,7 @@ const SingleStory = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 // TODO:adicionar load more nos comments apos um determinado numero.
-export default SingleStory
+export default SingleStory;

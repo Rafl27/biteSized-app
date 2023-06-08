@@ -193,3 +193,9 @@
 .replyButton:hover {
   text-decoration: underline;
 }
+
+.nested-reply {
+  margin-left: 40px; /* Increase the margin for nested replies */
+  padding-left: 20px; /* Maintain the same padding as the replies */
+  border-left: 1.5px solid #ccc; /* Add a darker left border */
+}
