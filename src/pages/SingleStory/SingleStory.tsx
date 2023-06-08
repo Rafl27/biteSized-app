@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import './SingleStory.css'
 import TopBar from '../../components/topBar/TopBar'
 import NewThread from '../NewThread/NewThread'
+import { RiChat3Line } from 'react-icons/ri';
 
 interface Story {
   _id: string
@@ -122,7 +123,9 @@ const SingleStory = () => {
                 </div>
 
                 <p className="commentText">{comment.text}</p>
-                <button className="replyButton">Reply</button>
+                <button className="replyButton">
+                <RiChat3Line className="chatIcon" />
+                  Reply</button>
                 {comment.replies &&
                   comment.replies.map((reply) => (
                     <div key={reply._id} className="reply">
@@ -136,6 +139,9 @@ const SingleStory = () => {
                         </p>
                       </div>
                       <p className="replyText">{reply.text}</p>
+                      <button className="replyButton">
+                <RiChat3Line className="chatIcon" />
+                  Reply</button>
                     </div>
                   ))}
               </div>
