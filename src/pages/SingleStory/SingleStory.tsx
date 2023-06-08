@@ -6,6 +6,8 @@ import TopBar from "../../components/topBar/TopBar";
 import NewThread from "../NewThread/NewThread";
 import { RiChat3Line } from "react-icons/ri";
 
+const API_ENDPOINT = "http://localhost:3000";
+
 interface Story {
   _id: string;
   name: string;
@@ -51,10 +53,11 @@ const SingleStory = () => {
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/story/${_id}`);
+        const response = await axios.get(`${API_ENDPOINT}/story/${_id}`);
         setStory(response.data);
       } catch (error) {
         console.log(error);
+        // TODO: Handle the error and display a message to the user
       }
     };
     fetchStory();
@@ -73,29 +76,84 @@ const SingleStory = () => {
 
   const handleCommentReply = (commentId: string) => {
     axios
-      .post(
-        `http://localhost:3000/story/${story._id}/comments/${commentId}/replies`
-      )
+      .post(`${API_ENDPOINT}/story/${story._id}/comments/${commentId}/replies`)
       .then((response) => {
         // Handle the response if needed
       })
       .catch((error) => {
         console.log(error);
+        // TODO: Handle the error and display a message to the user
       });
   };
 
   const handleNestedReply = (commentId: string, replyId: string) => {
     axios
       .post(
-        `http://localhost:3000/story/${_id}/comments/${commentId}/replies/${replyId}/response`
+        `${API_ENDPOINT}/story/${_id}/comments/${commentId}/replies/${replyId}/response`
       )
       .then((response) => {
-        // Handle the response if needed
+        // Handle
       })
       .catch((error) => {
         console.log(error);
+        // TODO: Handle the error
       });
   };
+
+  const CommentComponent = ({ comment }: { comment: Comment }) => (
+    <div key={comment._id} className="comment">
+      <div className="userInfo">
+        <img
+          src={comment.user?.profilePicture || ""}
+          alt="user profile picture"
+        />
+        <p className="userName">{comment.user?.name}</p>
+      </div>
+      <p className="commentText">{comment.text}</p>
+      <button className="replyButton">
+        <RiChat3Line className="chatIcon" />
+        Reply
+      </button>
+      {comment.replies &&
+        comment.replies.map((reply) => (
+          <ReplyComponent key={reply._id} reply={reply} />
+        ))}
+    </div>
+  );
+
+  const ReplyComponent = ({ reply }: { reply: Comment }) => (
+    <div key={reply._id} className="reply">
+      <div className="userInfo">
+        <img
+          src={reply.user?.profilePicture || ""}
+          alt="user profile picture"
+        />
+        <p className="userName">{reply.user?.name}</p>
+      </div>
+      <p className="replyText">{reply.text}</p>
+      <button className="replyButton">
+        <RiChat3Line className="chatIcon" />
+        Reply
+      </button>
+      {reply.nestedReplies &&
+        reply.nestedReplies.map((nestedReply) => (
+          <div key={nestedReply._id} className="nested-reply">
+            <div className="userInfo">
+              <img
+                src={nestedReply.user?.profilePicture || ""}
+                alt="user profile picture"
+              />
+              <p className="userName">{nestedReply.user?.name}</p>
+            </div>
+            <p className="replyText">{nestedReply.text}</p>
+            <button className="replyButton">
+              <RiChat3Line className="chatIcon" />
+              Reply
+            </button>
+          </div>
+        ))}
+    </div>
+  );
 
   return (
     <>
@@ -110,10 +168,10 @@ const SingleStory = () => {
           <p>
             <img
               className="profilePicture"
-              src={story.user.profilePicture}
+              src={story.user?.profilePicture || ""}
               alt="user profile picture"
             />
-            {story.user.name}
+            {story.user?.name}
           </p>
         </div>
         <div className="add-comment">
@@ -141,67 +199,12 @@ const SingleStory = () => {
         <div className="comments">
           {story.comments &&
             story.comments.map((comment) => (
-              <div key={comment._id} className="comment">
-                <div className="userInfo">
-                  <img
-                    src={comment.user.profilePicture}
-                    alt="user profile picture"
-                  />
-                  <p className="userName">{comment.user.name}</p>
-                </div>
-
-                <p className="commentText">{comment.text}</p>
-                <button className="replyButton">
-                  <RiChat3Line className="chatIcon" />
-                  Reply
-                </button>
-                {comment.replies &&
-                  comment.replies.map((reply) => (
-                    <div key={reply._id} className="reply">
-                      <div className="userInfo">
-                        <img
-                          src={reply.user && reply.user.profilePicture}
-                          alt="user profile picture"
-                        />
-                        <p className="userName">
-                          {reply.user && reply.user.name}
-                        </p>
-                      </div>
-                      <p className="replyText">{reply.text}</p>
-                      <button className="replyButton">
-                        <RiChat3Line className="chatIcon" />
-                        Reply
-                      </button>
-                      {reply.nestedReplies &&
-                        reply.nestedReplies.map((nestedReply) => (
-                          <div key={nestedReply._id} className="nested-reply">
-                            <div className="userInfo">
-                              <img
-                                src={
-                                  nestedReply.user &&
-                                  nestedReply.user.profilePicture
-                                }
-                                alt="user profile picture"
-                              />
-                              <p className="userName">
-                                {nestedReply.user && nestedReply.user.name}
-                              </p>
-                            </div>
-                            <p className="replyText">{nestedReply.text}</p>
-                            <button className="replyButton">
-                              <RiChat3Line className="chatIcon" />
-                              Reply
-                            </button>
-                          </div>
-                        ))}
-                    </div>
-                  ))}
-              </div>
+              <CommentComponent key={comment._id} comment={comment} />
             ))}
         </div>
       </div>
     </>
   );
 };
-// TODO:adicionar load more nos comments apos um determinado numero.
+
 export default SingleStory;
