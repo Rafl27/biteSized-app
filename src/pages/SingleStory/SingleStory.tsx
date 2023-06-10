@@ -147,6 +147,7 @@ const SingleStory = () => {
               />
               <p className="userName">{nestedReply.user?.name}</p>
             </div>
+            <img className="story-img-threads" src={nestedReply.img} alt="" />
             <p className="replyText">{nestedReply.text}</p>
             <button className="replyButton">
               <RiChat3Line className="chatIcon" />
