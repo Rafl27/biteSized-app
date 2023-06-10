@@ -1,78 +1,78 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import "./SingleStory.css";
-import TopBar from "../../components/topBar/TopBar";
-import NewThread from "../NewThread/NewThread";
-import { RiChat3Line } from "react-icons/ri";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import './SingleStory.css'
+import TopBar from '../../components/topBar/TopBar'
+import NewThread from '../NewThread/NewThread'
+import { RiChat3Line } from 'react-icons/ri'
 
-const API_ENDPOINT = "http://localhost:3000";
+const API_ENDPOINT = 'http://localhost:3000'
 
 interface Story {
-  _id: string;
-  name: string;
-  text: string;
-  img?: string;
+  _id: string
+  name: string
+  text: string
+  img?: string
   user: {
-    _id: string;
-    name: string;
-    profilePicture: string;
-  };
-  date: string;
-  comments: Comment[];
+    _id: string
+    name: string
+    profilePicture: string
+  }
+  date: string
+  comments: Comment[]
 }
 
 interface Comment {
-  _id: string;
+  _id: string
   user: {
-    _id: string;
-    name: string;
-  };
-  text: string;
-  replies: Comment[];
-  nestedReplies: Comment[];
+    _id: string
+    name: string
+  }
+  text: string
+  replies: Comment[]
+  nestedReplies: Comment[]
 }
 
 const SingleStory = () => {
   const [story, setStory] = useState<Story>({
-    _id: "",
-    name: "",
-    text: "",
-    img: "",
+    _id: '',
+    name: '',
+    text: '',
+    img: '',
     user: {
-      _id: "",
-      name: "",
-      profilePicture: "",
+      _id: '',
+      name: '',
+      profilePicture: '',
     },
-    date: "",
+    date: '',
     comments: [],
-  });
+  })
 
-  const { _id } = useParams();
+  const { _id } = useParams()
 
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const response = await axios.get(`${API_ENDPOINT}/story/${_id}`);
-        setStory(response.data);
+        const response = await axios.get(`${API_ENDPOINT}/story/${_id}`)
+        setStory(response.data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
         // TODO: Handle the error and display a message to the user
       }
-    };
-    fetchStory();
-  }, [_id]);
+    }
+    fetchStory()
+  }, [_id])
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   const toggleModal = () => {
-    setShowModal((prevShowModal) => !prevShowModal);
-  };
+    setShowModal((prevShowModal) => !prevShowModal)
+  }
 
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
-      toggleModal();
+      toggleModal()
     }
-  };
+  }
 
   const handleCommentReply = (commentId: string) => {
     axios
@@ -81,10 +81,10 @@ const SingleStory = () => {
         // Handle the response if needed
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
         // TODO: Handle the error and display a message to the user
-      });
-  };
+      })
+  }
 
   const handleNestedReply = (commentId: string, replyId: string) => {
     axios
@@ -95,20 +95,21 @@ const SingleStory = () => {
         // Handle
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
         // TODO: Handle the error
-      });
-  };
+      })
+  }
 
   const CommentComponent = ({ comment }: { comment: Comment }) => (
     <div key={comment._id} className="comment">
       <div className="userInfo">
         <img
-          src={comment.user?.profilePicture || ""}
+          src={comment.user?.profilePicture || ''}
           alt="user profile picture"
         />
         <p className="userName">{comment.user?.name}</p>
       </div>
+      <img className="story-img-threads" src={comment.img} alt="" />
       <p className="commentText">{comment.text}</p>
       <button className="replyButton">
         <RiChat3Line className="chatIcon" />
@@ -119,13 +120,13 @@ const SingleStory = () => {
           <ReplyComponent key={reply._id} reply={reply} />
         ))}
     </div>
-  );
+  )
 
   const ReplyComponent = ({ reply }: { reply: Comment }) => (
     <div key={reply._id} className="reply">
       <div className="userInfo">
         <img
-          src={reply.user?.profilePicture || ""}
+          src={reply.user?.profilePicture || ''}
           alt="user profile picture"
         />
         <p className="userName">{reply.user?.name}</p>
@@ -140,7 +141,7 @@ const SingleStory = () => {
           <div key={nestedReply._id} className="nested-reply">
             <div className="userInfo">
               <img
-                src={nestedReply.user?.profilePicture || ""}
+                src={nestedReply.user?.profilePicture || ''}
                 alt="user profile picture"
               />
               <p className="userName">{nestedReply.user?.name}</p>
@@ -153,7 +154,7 @@ const SingleStory = () => {
           </div>
         ))}
     </div>
-  );
+  )
 
   return (
     <>
@@ -168,7 +169,7 @@ const SingleStory = () => {
           <p>
             <img
               className="profilePicture"
-              src={story.user?.profilePicture || ""}
+              src={story.user?.profilePicture || ''}
               alt="user profile picture"
             />
             {story.user?.name}
@@ -204,7 +205,7 @@ const SingleStory = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SingleStory;
+export default SingleStory

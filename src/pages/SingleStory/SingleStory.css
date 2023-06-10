@@ -199,3 +199,9 @@
   padding-left: 20px; /* Maintain the same padding as the replies */
   border-left: 1.5px solid #ccc; /* Add a darker left border */
 }
+
+.story-img-threads {
+  width: 100%; /* Set the width to 100% */
+  height: auto; /* Let the height adjust proportionally */
+  object-fit: cover; /* Scale the image to cover the container */
+}
