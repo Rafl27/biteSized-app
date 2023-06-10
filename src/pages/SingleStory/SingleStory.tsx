@@ -131,6 +131,7 @@ const SingleStory = () => {
         />
         <p className="userName">{reply.user?.name}</p>
       </div>
+      <img className="story-img-threads" src={reply.img} alt="" />
       <p className="replyText">{reply.text}</p>
       <button className="replyButton">
         <RiChat3Line className="chatIcon" />
