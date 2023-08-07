@@ -26,12 +26,12 @@ const SignUp: React.FC = () => {
     const handleSubmit = async (event: any) => {
       event.preventDefault()
       const formData = new FormData(event.target)
-      const name = formData.get('name')
+      const username = formData.get('name')
       const email = formData.get('email')
       const password = formData.get('password')
       try {
-        const response = await axios.post('http://localhost:3000/user/signup', {
-          name,
+        const response = await axios.post('http://localhost:8080/user/signup', {
+          username,
           email,
           password,
         })
@@ -56,7 +56,7 @@ const SignUp: React.FC = () => {
       const password = formData.get('password')
       try {
         const response: any = await axios.post(
-          'http://localhost:3000/user/login',
+          'http://localhost:8080/user/login',
           {
             email,
             password,
