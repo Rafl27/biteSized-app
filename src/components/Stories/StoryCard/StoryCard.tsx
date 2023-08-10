@@ -5,6 +5,8 @@ import { formatDistanceToNow, format } from 'date-fns'
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 
+//TODO: Getting the story's data is ok, but i need to fix the upvotes and redirect.
+
 interface Comment {
   _id: string
   text: string
@@ -17,27 +19,25 @@ interface Reply {
 }
 
 interface Story {
-  _id: string
-  name: string
-  text: string
-  img: string
-  comments: Comment[]
+  profile_picture: string
+  username: string
+  art: string
   date: string
-  user: {
-    name: string
-    profilePicture: string
-  }
-  upvotes: number
   downvotes: number
+  upvotes: number
+  title: string
+  content: string
+  storyId: number
 }
 
 const StoryCard: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([])
+  console.log(stories)
 
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const res = await axios.get<Story[]>('http://localhost:3000/story')
+        const res = await axios.get<Story[]>('http://localhost:8080/story/all')
         setStories(res.data)
       } catch (err) {
         console.error(err)
@@ -117,14 +117,14 @@ const StoryCard: React.FC = () => {
     >
       {stories.map((story) => (
         <div
-          key={story._id}
+          key={story.storyId}
           className="card "
           style={{ flex: '0 0 48%', margin: '1%' }}
         >
           <div className="card-body" style={{ flex: '1 1 auto' }}>
             <img
-              src={story.img}
-              alt={story.name}
+              src={story.art}
+              alt={story.title}
               className="card-img-top"
               // style={{ maxHeight: '400px', maxWidth: '500px' }}
             />
@@ -132,13 +132,13 @@ const StoryCard: React.FC = () => {
             <div className="userInfo">
             <img
                 className="profilePicture"
-                src={story.user.profilePicture}
+                src={story.profile_picture}
                 alt="user profile picture"
               />
-              <p className="userName">{story.user.name}</p>
+              <p className="userName">{story.username}</p>
             </div>
             <div className="card-title-container">
-              <h3 className="card-title">{story.name}</h3>
+              <h3 className="card-title">{story.title}</h3>
               <div className="vote-container">
                 <button
                   className={`vote-button upvote ${
@@ -168,7 +168,7 @@ const StoryCard: React.FC = () => {
                 </button>
               </div>
             </div>
-            <p className="card-text">{story.text}</p>
+            <p className="card-text">{story.content}</p>
 
             {/* <button className="btn btn-primary">Edit</button> */}
             {/* <button className="btn btn-danger">Delete</button> */}
