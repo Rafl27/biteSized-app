@@ -62,7 +62,7 @@ const SignUp: React.FC = () => {
             password,
           }
         )
-        const userToken = response.data.token
+        const userToken = response.data
         const userName = response.data.name
         const userEmail = response.data.email
         const profilePicture = response.data.profilePicture
