@@ -29,24 +29,24 @@ function App() {
   const handleCreateStory = async (event: any) => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    const name = formData.get('name')
-    const img = formData.get('img')
-    const text = formData.get('text')
+    const title = formData.get('name')
+    const art = formData.get('img')
+    const content = formData.get('text')
     const token = localStorage.getItem('token')
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
     try {
       const response = await axios.post(
-        'http://localhost:3000/story',
+        'http://localhost:8080/story',
         {
-          name,
-          text,
-          img,
+          title,
+          content,
+          art,
         },
         config
       )
-      setCreatedStoryName(name)
+      setCreatedStoryName(title)
       setShowModal(true)
     } catch (err) {
       console.log(err)
