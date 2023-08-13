@@ -10,7 +10,7 @@ import axios from "axios";
 
 const TopBar: React.FC = () => {
   const userPicture = localStorage.getItem('profilePicture')
-  const userName = localStorage.getItem('name')
+  // const userName = localStorage.getItem('name')
   const navigate = useNavigate()
   const token = localStorage.getItem('token');
 
@@ -36,7 +36,6 @@ const TopBar: React.FC = () => {
         }
       };
 
-      // Fetch user data from the API with the token
       axios.get('http://localhost:8080/user/info', config)
           .then(response => {
             setUserData(response.data);
@@ -47,8 +46,6 @@ const TopBar: React.FC = () => {
           });
     }
   }, [token]);
-
-  console.log(userData)
 
   return (
     <div className="top-bar">
