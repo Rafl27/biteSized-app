@@ -172,7 +172,7 @@ const StoryCard: React.FC = () => {
 
             {/* <button className="btn btn-primary">Edit</button> */}
             {/* <button className="btn btn-danger">Delete</button> */}
-            <Link to={`/story/${story._id}`} className="btn btn-secondary">
+            <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
               Continue reading
             </Link>
             {/* <div>
