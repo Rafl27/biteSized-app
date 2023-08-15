@@ -6,42 +6,18 @@ import TopBar from '../../components/topBar/TopBar'
 import NewThread from '../NewThread/NewThread'
 import { RiChat3Line } from 'react-icons/ri'
 import { UserData } from '../../interfaces'
+import { Story } from "../../interfaces";
+import { Comment} from "../../interfaces";
 
 const API_ENDPOINT = 'http://localhost:8080'
-
-interface Story {
-  _id: number;
-  title: string;
-  content: string;
-  date: string;
-  upvotes: number;
-  downvotes: number;
-  art: string;
-}
-interface Comment {
-  idComment: number;
-  contentComment: string;
-  artComment: string;
-  dateComment: string;
-  upvotesComment: number;
-  downvotesComment: number;
-  useridComment: number;
-  parentCommentId: number | null;
-}
-
 const SingleStory = () => {
   const [story, setStory] = useState<Story>({
     _id: '',
     name: '',
     text: '',
     img: '',
-    user: {
-      _id: '',
-      name: '',
-      profilePicture: '',
-    },
     date: '',
-    comments: [],
+    content: ''
   })
   const { _id } = useParams()
 
@@ -52,11 +28,33 @@ const SingleStory = () => {
         setStory(response.data)
       } catch (error) {
         console.log(error)
-        // TODO: Handle the error and display a message to the user
       }
     }
     fetchStory()
   }, [_id])
+
+  const [comments, setComments] = useState<Comment>({
+    idComment: 0,
+    contentComment: '',
+    artComment: '',
+    dateComment: '',
+    upvotesComment: 0,
+    downvotesComment: 0,
+    useridComment: 0,
+    parentCommentId: 0
+  })
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try{
+        const response = await axios.get(`${API_ENDPOINT}/comment/${_id}/allcomments`)
+        setComments(response.data)
+      }catch (error){
+        console.log(error)
+      }
+    }
+    fetchComments()
+  }, [_id]);
 
   const [userData, setUserData] = useState<UserData>({
     username: '',
@@ -75,14 +73,11 @@ const SingleStory = () => {
     }
     fetchUserData()
   }, [_id]);
-  console.log('abaixo é o user data em')
-  console.log(userData)
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal)
   }
-  console.log(story)
 
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
@@ -90,31 +85,31 @@ const SingleStory = () => {
     }
   }
 
-  const handleCommentReply = (commentId: string) => {
-    axios
-      .post(`${API_ENDPOINT}/story/${story._id}/comments/${commentId}/replies`)
-      .then((response) => {
-        // Handle the response if needed
-      })
-      .catch((error) => {
-        console.log(error)
-        // TODO: Handle the error and display a message to the user
-      })
-  }
+  // const handleCommentReply = (commentId: string) => {
+  //   axios
+  //     .post(`${API_ENDPOINT}/story/${story._id}/comments/${commentId}/replies`)
+  //     .then((response) => {
+  //       // Handle the response if needed
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //       // TODO: Handle the error and display a message to the user
+  //     })
+  // }
 
-  const handleNestedReply = (commentId: string, replyId: string) => {
-    axios
-      .post(
-        `${API_ENDPOINT}/story/${_id}/comments/${commentId}/replies/${replyId}/response`
-      )
-      .then((response) => {
-        // Handle
-      })
-      .catch((error) => {
-        console.log(error)
-        // TODO: Handle the error
-      })
-  }
+  // const handleNestedReply = (commentId: string, replyId: string) => {
+  //   axios
+  //     .post(
+  //       `${API_ENDPOINT}/story/${_id}/comments/${commentId}/replies/${replyId}/response`
+  //     )
+  //     .then((response) => {
+  //       // Handle
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //       // TODO: Handle the error
+  //     })
+  // }
 
   const CommentComponent = ({ comment }: { comment: Comment }) => (
     <div key={comment._id} className="comment">
@@ -212,7 +207,7 @@ const SingleStory = () => {
           )}
         </div>
         <div className="content">
-          <p>{story.text}</p>
+          <p>{story.content}</p>
         </div>
         <h2>Threads:</h2>
         <div className="comments">
