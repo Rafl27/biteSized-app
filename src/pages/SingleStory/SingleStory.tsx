@@ -33,16 +33,7 @@ const SingleStory = () => {
     fetchStory()
   }, [_id])
 
-  const [comments, setComments] = useState<Comment>({
-    idComment: 0,
-    contentComment: '',
-    artComment: '',
-    dateComment: '',
-    upvotesComment: 0,
-    downvotesComment: 0,
-    useridComment: 0,
-    parentCommentId: 0
-  })
+  const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -112,7 +103,7 @@ const SingleStory = () => {
   // }
 
   const CommentComponent = ({ comment }: { comment: Comment }) => (
-    <div key={comment._id} className="comment">
+    <div key={comment.idComment} className="comment">
       <div className="userInfo">
         <img
           src={comment.user?.profilePicture || ''}
@@ -120,8 +111,8 @@ const SingleStory = () => {
         />
         <p className="userName">{comment.user?.name}</p>
       </div>
-      <img className="story-img-threads" src={comment.img} alt="" />
-      <p className="commentText">{comment.text}</p>
+      <img className="story-img-threads" src={comment.artComment} alt="" />
+      <p className="commentText">{comment.contentComment}</p>
       <button className="replyButton">
         <RiChat3Line className="chatIcon" />
         Reply
@@ -211,8 +202,8 @@ const SingleStory = () => {
         </div>
         <h2>Threads:</h2>
         <div className="comments">
-          {story.comments &&
-            story.comments.map((comment) => (
+          {comments &&
+            comments.map((comment) => (
               <CommentComponent key={comment._id} comment={comment} />
             ))}
         </div>
