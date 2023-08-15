@@ -5,32 +5,28 @@ import './SingleStory.css'
 import TopBar from '../../components/topBar/TopBar'
 import NewThread from '../NewThread/NewThread'
 import { RiChat3Line } from 'react-icons/ri'
+import { UserData } from '../../interfaces'
 
-const API_ENDPOINT = 'http://localhost:3000'
+const API_ENDPOINT = 'http://localhost:8080'
 
 interface Story {
-  _id: string
-  name: string
-  text: string
-  img?: string
-  user: {
-    _id: string
-    name: string
-    profilePicture: string
-  }
-  date: string
-  comments: Comment[]
+  _id: number;
+  title: string;
+  content: string;
+  date: string;
+  upvotes: number;
+  downvotes: number;
+  art: string;
 }
-
 interface Comment {
-  _id: string
-  user: {
-    _id: string
-    name: string
-  }
-  text: string
-  replies: Comment[]
-  nestedReplies: Comment[]
+  idComment: number;
+  contentComment: string;
+  artComment: string;
+  dateComment: string;
+  upvotesComment: number;
+  downvotesComment: number;
+  useridComment: number;
+  parentCommentId: number | null;
 }
 
 const SingleStory = () => {
@@ -47,7 +43,6 @@ const SingleStory = () => {
     date: '',
     comments: [],
   })
-
   const { _id } = useParams()
 
   useEffect(() => {
@@ -63,10 +58,31 @@ const SingleStory = () => {
     fetchStory()
   }, [_id])
 
+  const [userData, setUserData] = useState<UserData>({
+    username: '',
+    email:'',
+    profilePicture:''
+  })
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try{
+        const response = await axios.get(`${API_ENDPOINT}/user/info/story/${_id}`)
+        setUserData(response.data)
+      }catch (error){
+        console.log(error)
+      }
+    }
+    fetchUserData()
+  }, [_id]);
+  console.log('abaixo é o user data em')
+  console.log(userData)
+
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal)
   }
+  console.log(story)
 
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
@@ -163,18 +179,18 @@ const SingleStory = () => {
       <TopBar />
       <div className="single-story-container">
         <div className="header">
-          <h1>{story.name}</h1>
-          {story.img && (
-            <img className="story-img" src={story.img} alt={story.name} />
+          <h1>{story.title}</h1>
+          {story.art && (
+            <img className="story-img" src={story.art} alt={story.title} />
           )}
           <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
           <p>
             <img
               className="profilePicture"
-              src={story.user?.profilePicture || ''}
+              src={userData.profilePicture || ''}
               alt="user profile picture"
             />
-            {story.user?.name}
+            {userData.username}
           </p>
         </div>
         <div className="add-comment">
