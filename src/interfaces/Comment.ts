@@ -7,4 +7,7 @@ export interface Comment {
     downvotesComment: number;
     useridComment: number;
     parentCommentId: number | null;
+    userProfilePic: string,
+    userUsername: string,
+    userEmail: string
 }

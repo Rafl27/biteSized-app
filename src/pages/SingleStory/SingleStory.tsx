@@ -65,6 +65,26 @@ const SingleStory = () => {
     fetchUserData()
   }, [_id]);
 
+  //TODO fix the size of comment art =D
+
+  const [commentUserData, setCommentUserData] = useState<UserData>({
+    username: '',
+    email:'',
+    profilePicture:''
+  })
+
+  useEffect(() => {
+    const fetchCommentUserData = async () => {
+      try{
+        const response = await axios.get(`${API_ENDPOINT}/user/info/comment/${commentId}`)
+        setCommentUserData(response.data)
+      }catch (error){
+        console.log(error)
+      }
+    }
+    fetchCommentUserData()
+  }, []);
+
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal)
@@ -106,10 +126,10 @@ const SingleStory = () => {
     <div key={comment.idComment} className="comment">
       <div className="userInfo">
         <img
-          src={comment.user?.profilePicture || ''}
+          src={comment.userProfilePic || ''}
           alt="user profile picture"
         />
-        <p className="userName">{comment.user?.name}</p>
+        <p className="userName">{comment.userUsername}</p>
       </div>
       <img className="story-img-threads" src={comment.artComment} alt="" />
       <p className="commentText">{comment.contentComment}</p>
