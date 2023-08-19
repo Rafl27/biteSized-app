@@ -78,32 +78,6 @@ const SingleStory = () => {
     }
   }
 
-  // const handleCommentReply = (commentId: string) => {
-  //   axios
-  //     .post(`${API_ENDPOINT}/story/${story._id}/comments/${commentId}/replies`)
-  //     .then((response) => {
-  //       // Handle the response if needed
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //       // TODO: Handle the error and display a message to the user
-  //     })
-  // }
-
-  // const handleNestedReply = (commentId: string, replyId: string) => {
-  //   axios
-  //     .post(
-  //       `${API_ENDPOINT}/story/${_id}/comments/${commentId}/replies/${replyId}/response`
-  //     )
-  //     .then((response) => {
-  //       // Handle
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //       // TODO: Handle the error
-  //     })
-  // }
-
   const CommentComponent = ({ comment }: { comment: Comment }) => (
     <div key={comment.idComment} className="comment">
       <div className="userInfo">
