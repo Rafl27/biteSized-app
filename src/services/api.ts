@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import {StoryCard as Story} from "../interfaces/StoryCard";
 
 const API_BASE_URL = 'http://localhost:8080';
 
@@ -30,5 +31,14 @@ export const fetchStory = async (storyId : number) => {
     }catch (error){
         console.error('Error fetching stories', error)
         return []
+    }
+}
+
+export const fetchStories = async () => {
+    try {
+        const response = await axios.get<Story[]>(`${API_BASE_URL}/story/all`)
+        return response.data
+    } catch (err) {
+        console.error(err)
     }
 }

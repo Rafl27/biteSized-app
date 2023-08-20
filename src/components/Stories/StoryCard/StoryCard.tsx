@@ -5,21 +5,15 @@ import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
+import {fetchStories} from "../../../services/api";
 
 const StoryCard: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([])
-  console.log(stories)
 
   useEffect(() => {
-    const fetchStories = async () => {
-      try {
-        const res = await axios.get<Story[]>('http://localhost:8080/story/all')
-        setStories(res.data)
-      } catch (err) {
-        console.error(err)
-      }
-    }
     fetchStories()
+        .then(data => setStories(data))
+        .catch(error => console.log('Error', error))
   }, [])
 
   const [upvoteClicked, setUpvoteClicked] = useState<string[]>([])
