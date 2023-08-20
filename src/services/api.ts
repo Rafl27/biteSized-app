@@ -3,7 +3,7 @@ import React from "react";
 
 const API_BASE_URL = 'http://localhost:8080';
 
-export const fetchCommentsByStoryId = async (storyId) => {
+export const fetchCommentsByStoryId = async (storyId : number) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/comment/${storyId}/allcomments`);
         return response.data;
@@ -13,7 +13,7 @@ export const fetchCommentsByStoryId = async (storyId) => {
     }
 };
 
-export const fetchUserData = async (storyId) => {
+export const fetchUserData = async (storyId : number) => {
     try{
         const response = await axios.get(`${API_BASE_URL}/user/info/story/${storyId}`)
         return response.data
@@ -23,7 +23,7 @@ export const fetchUserData = async (storyId) => {
     }
 }
 
-export const fetchStory = async (storyId) => {
+export const fetchStory = async (storyId : number) => {
     try{
         const response = await axios.get(`${API_BASE_URL}/story/${storyId}`)
         return response.data
