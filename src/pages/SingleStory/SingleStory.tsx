@@ -4,8 +4,7 @@ import {RiChat3Line} from 'react-icons/ri';
 
 import './SingleStory.css';
 
-import CommentThread from "../../components/CommentThread/CommentThread";
-import CommentsList from "../../components/CommentsList/CommentsList";
+import ThreadedComments from "../../components/ThreadedComments/ThreadedComments";
 import TopBar from '../../components/topBar/TopBar';
 import NewThread from '../NewThread/NewThread';
 
@@ -30,6 +29,7 @@ const initialUserDataState = {
 const SingleStory = () => {
     const [story, setStory] = useState<Story>(initialStoryState)
 
+    //TODO fix the size of comment art =D
     //TODO change this variable to storyID
     const {_id} = useParams()
 
@@ -54,8 +54,6 @@ const SingleStory = () => {
             .then(data => setUserData(data))
             .catch(error => console.log('Error: ', error))
     }, [_id]);
-
-    //TODO fix the size of comment art =D
 
     const [showModal, setShowModal] = useState(false)
     const toggleModal = () => {
@@ -125,29 +123,6 @@ const SingleStory = () => {
     //       ))}
     //   </div>
     // )
-
-    const ThreadedComments = ({ comments }) => {
-        const generateCommentTree = (comments, parentCommentId = null) => {
-            const commentTree = [];
-            for (const comment of comments) {
-                if (comment.parentCommentId === parentCommentId) {
-                    const replies = generateCommentTree(comments, comment.idComment);
-                    commentTree.push({
-                        ...comment,
-                        replies,
-                    });
-                }
-            }
-            return commentTree;
-        };
-        const commentTree = generateCommentTree(comments);
-
-        return (
-            <div className="threaded-comments">
-                <CommentsList comments={commentTree} />
-            </div>
-        );
-    }
 
     return (
         <>
