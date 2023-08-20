@@ -66,64 +66,6 @@ const SingleStory = () => {
         }
     }
 
-    // const CommentComponent = ({ comment }: { comment: Comment }) => (
-    //   <div key={comment.idComment} className="comment">
-    //     <div className="userInfo">
-    //       <img
-    //         src={comment.userProfilePic || ''}
-    //         alt="user profile picture"
-    //       />
-    //       <p className="userName">{comment.userUsername}</p>
-    //     </div>
-    //     <img className="story-img-threads" src={comment.artComment} alt="" />
-    //     <p className="commentText">{comment.contentComment}</p>
-    //     <button className="replyButton">
-    //       <RiChat3Line className="chatIcon" />
-    //       Reply
-    //     </button>
-    //     {comment.replies &&
-    //       comment.replies.map((reply) => (
-    //         <ReplyComponent key={reply._id} reply={reply} />
-    //       ))}
-    //   </div>
-    // )
-
-    // const ReplyComponent = ({ reply }: { reply: Comment }) => (
-    //   <div key={reply._id} className="reply">
-    //     <div className="userInfo">
-    //       <img
-    //         src={reply.user?.profilePicture || ''}
-    //         alt="user profile picture"
-    //       />
-    //       <p className="userName">{reply.user?.name}</p>
-    //     </div>
-    //     <img className="story-img-threads" src={reply.img} alt="" />
-    //     <p className="replyText">{reply.text}</p>
-    //     <button className="replyButton">
-    //       <RiChat3Line className="chatIcon" />
-    //       Reply
-    //     </button>
-    //     {reply.nestedReplies &&
-    //       reply.nestedReplies.map((nestedReply) => (
-    //         <div key={nestedReply._id} className="nested-reply">
-    //           <div className="userInfo">
-    //             <img
-    //               src={nestedReply.user?.profilePicture || ''}
-    //               alt="user profile picture"
-    //             />
-    //             <p className="userName">{nestedReply.user?.name}</p>
-    //           </div>
-    //           <img className="story-img-threads" src={nestedReply.img} alt="" />
-    //           <p className="replyText">{nestedReply.text}</p>
-    //           <button className="replyButton">
-    //             <RiChat3Line className="chatIcon" />
-    //             Reply
-    //           </button>
-    //         </div>
-    //       ))}
-    //   </div>
-    // )
-
     return (
         <>
             <TopBar/>
@@ -165,27 +107,8 @@ const SingleStory = () => {
                     <p>{story.content}</p>
                 </div>
                 <h2>Threads:</h2>
-
-                <ThreadedComments comments={comments} />
-
-                {/*working with new comment component*/}
-                {/*<div className="comments">*/}
-                {/*    {comments &&*/}
-                {/*        comments.map((comment : Comment) => (*/}
-                {/*            <Comment key={comment.idComment} comment={comment}/>*/}
-                {/*        ))}*/}
-                {/*</div>*/}
-
-                {/*original*/}
-                {/*<div className="comments">*/}
-                {/*  {comments &&*/}
-                {/*    comments.map((comment) => (*/}
-                {/*      <CommentComponent key={comment._id} comment={comment} />*/}
-                {/*    ))}*/}
-                {/*</div>*/}
-
-                {/*<Comment comment={comments} />*/}
             </div>
+            <ThreadedComments comments={comments} />
         </>
     )
 }
