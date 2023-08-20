@@ -11,3 +11,13 @@ export const fetchCommentsByStoryId = async (storyId) => {
         return [];
     }
 };
+
+export const fetchUserData = async (storyId) => {
+    try{
+        const response = await axios.get(`${API_BASE_URL}/user/info/story/${storyId}`)
+        return response.data
+    }catch (error){
+        console.error('Error fetching comments:', error);
+        return [];
+    }
+}
