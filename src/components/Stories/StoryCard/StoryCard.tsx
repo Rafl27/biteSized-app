@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-// import { formatDistanceToNow, format } from 'date-fns'
 import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 
 //TODO: Getting the story's data is ok, but i need to fix the upvotes and redirect.
-
-interface Comment {
-  _id: string
-  text: string
-  replies: Reply[]
-}
-
-interface Reply {
-  _id: string
-  text: string
-}
-
 interface Story {
   profile_picture: string
   username: string
@@ -80,8 +67,6 @@ const StoryCard: React.FC = () => {
     }
   }
 
-  // const userProfilePicture = localStorage.getItem('profilePicture')
-
   return (
     <div
       style={{
@@ -103,7 +88,6 @@ const StoryCard: React.FC = () => {
               src={story.art}
               alt={story.title}
               className="card-img-top"
-              // style={{ maxHeight: '400px', maxWidth: '500px' }}
             />
             <p className="created">Created: {formatDate(story.date)}</p>
             <div className="userInfo">
@@ -146,26 +130,9 @@ const StoryCard: React.FC = () => {
               </div>
             </div>
             <p className="card-text">{story.content}</p>
-
-            {/* <button className="btn btn-primary">Edit</button> */}
-            {/* <button className="btn btn-danger">Delete</button> */}
             <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
               Continue reading
             </Link>
-            {/* <div>
-                {story.comments.map((comment) => (
-                  <div key={comment._id} className="card">
-                    <div className="card-body">
-                      <p className="card-text">{comment.text}</p>
-                      <button className="btn btn-primary">Edit</button>
-                      <button className="btn btn-danger">Delete</button>
-                      <button className="btn btn-secondary">
-                        Continue reading
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div> */}
           </div>
         </div>
       ))}
