@@ -8,6 +8,7 @@ import { RiChat3Line } from 'react-icons/ri'
 import { UserData } from '../../interfaces'
 import { Story } from "../../interfaces";
 import { Comment} from "../../interfaces";
+import { fetchCommentsByStoryId } from '../../services/api'
 
 const API_ENDPOINT = 'http://localhost:8080'
 const SingleStory = () => {
@@ -36,16 +37,10 @@ const SingleStory = () => {
   const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
-    const fetchComments = async () => {
-      try{
-        const response = await axios.get(`${API_ENDPOINT}/comment/${_id}/allcomments`)
-        setComments(response.data)
-      }catch (error){
-        console.log(error)
-      }
-    }
-    fetchComments()
-  }, [_id]);
+    fetchCommentsByStoryId(_id)
+        .then(data => setComments(data))
+        .catch(error => console.error('Error:', error));
+  }, []);
 
   const [userData, setUserData] = useState<UserData>({
     username: '',
