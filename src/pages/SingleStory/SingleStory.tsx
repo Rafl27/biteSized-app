@@ -5,6 +5,7 @@ import {RiChat3Line} from 'react-icons/ri';
 import './SingleStory.css';
 
 import CommentThread from "../../components/CommentThread/CommentThread";
+import CommentsList from "../../components/CommentsList/CommentsList";
 import TopBar from '../../components/topBar/TopBar';
 import NewThread from '../NewThread/NewThread';
 
@@ -124,16 +125,6 @@ const SingleStory = () => {
     //       ))}
     //   </div>
     // )
-
-    const CommentsList = ({ comments }) => {
-        return (
-            <div className="comments-list">
-                {comments.map(comment => (
-                    <CommentThread key={comment.idComment} comment={comment} />
-                ))}
-            </div>
-        );
-    };
 
     const ThreadedComments = ({ comments }) => {
         const generateCommentTree = (comments, parentCommentId = null) => {
