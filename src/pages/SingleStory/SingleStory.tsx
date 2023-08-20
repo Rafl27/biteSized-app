@@ -4,6 +4,7 @@ import {RiChat3Line} from 'react-icons/ri';
 
 import './SingleStory.css';
 
+import CommentThread from "../../components/CommentThread/CommentThread";
 import TopBar from '../../components/topBar/TopBar';
 import NewThread from '../NewThread/NewThread';
 
@@ -124,32 +125,11 @@ const SingleStory = () => {
     //   </div>
     // )
 
-    const Comment = ({ comment }) => {
-        return (
-            <div className="comment">
-                <div className="userInfo">
-                    <img src={comment.userProfilePic} alt="User Profile" />
-                    <span>{comment.userUsername}</span>
-                </div>
-                <img src={comment.artComment} alt="Comment Art" />
-                <div className="comment-content">{comment.contentComment}</div>
-                {/* Render replies */}
-                {comment.replies && comment.replies.length > 0 && (
-                    <div className="replies">
-                        {comment.replies.map(reply => (
-                            <Comment key={reply.idComment} comment={reply} />
-                        ))}
-                    </div>
-                )}
-            </div>
-        );
-    };
-
     const CommentsList = ({ comments }) => {
         return (
             <div className="comments-list">
                 {comments.map(comment => (
-                    <Comment key={comment.idComment} comment={comment} />
+                    <CommentThread key={comment.idComment} comment={comment} />
                 ))}
             </div>
         );
