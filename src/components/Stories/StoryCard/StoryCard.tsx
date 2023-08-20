@@ -4,19 +4,7 @@ import { Link } from 'react-router-dom'
 import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
-
-//TODO: Getting the story's data is ok, but i need to fix the upvotes and redirect.
-interface Story {
-  profile_picture: string
-  username: string
-  art: string
-  date: string
-  downvotes: number
-  upvotes: number
-  title: string
-  content: string
-  storyId: number
-}
+import {StoryCard as Story} from "../../../interfaces/StoryCard";
 
 const StoryCard: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([])
