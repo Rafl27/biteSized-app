@@ -1,0 +1,82 @@
+.commentArt{
+    width: 100%; /* Set the width to 100% */
+    height: auto; /* Let the height adjust proportionally */
+    object-fit: cover; /* Scale the image to cover the container */
+}
+
+.comment-content{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.comment-thread {
+
+}
+
+.userInfo img{
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    object-fit: cover;
+}
+
+.userInfo img:hover {
+    transform: scale(1.0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.userInfo span {
+    margin: 0;
+    font-weight: 700;
+}
+
+.userInfo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.replies{
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+}
+
+.replyButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.replyButton:hover {
+    text-decoration: underline;
+}
+
+.chatIcon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.comment {
+    flex-basis: calc(50% - 10px); /* half of the screen width minus the gap */
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    flex: 1;
+    /* position: relative; */
+}
+
+
+
+.comment:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
