@@ -17,7 +17,17 @@ export const fetchUserData = async (storyId) => {
         const response = await axios.get(`${API_BASE_URL}/user/info/story/${storyId}`)
         return response.data
     }catch (error){
-        console.error('Error fetching comments:', error);
+        console.error('Error fetching user data:', error);
         return [];
+    }
+}
+
+export const fetchStory = async (storyId) => {
+    try{
+        const response = await axios.get(`${API_BASE_URL}/story/${storyId}`)
+        return response.data
+    }catch (error){
+        console.error('Erro fetching stories', error)
+        return []
     }
 }
