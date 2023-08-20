@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import './SingleStory.css'
-import TopBar from '../../components/topBar/TopBar'
-import NewThread from '../NewThread/NewThread'
-import { RiChat3Line } from 'react-icons/ri'
-import { UserData } from '../../interfaces'
-import { Story } from "../../interfaces";
-import { Comment} from "../../interfaces";
-import { fetchCommentsByStoryId, fetchUserData, fetchStory } from '../../services/api'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { RiChat3Line } from 'react-icons/ri';
+
+import './SingleStory.css';
+
+import TopBar from '../../components/topBar/TopBar';
+import NewThread from '../NewThread/NewThread';
+
+import { UserData, Story, Comment } from '../../interfaces';
+import { fetchCommentsByStoryId, fetchUserData, fetchStory } from '../../services/api';
 
 const initialStoryState = {
   _id: '',
