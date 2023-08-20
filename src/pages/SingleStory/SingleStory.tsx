@@ -8,11 +8,8 @@ import { RiChat3Line } from 'react-icons/ri'
 import { UserData } from '../../interfaces'
 import { Story } from "../../interfaces";
 import { Comment} from "../../interfaces";
-import { fetchCommentsByStoryId, fetchUserData } from '../../services/api'
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import { fetchCommentsByStoryId, fetchUserData, fetchStory } from '../../services/api'
 
-const API_ENDPOINT = 'http://localhost:8080'
 const SingleStory = () => {
   const [story, setStory] = useState<Story>({
     _id: '',
@@ -22,19 +19,15 @@ const SingleStory = () => {
     date: '',
     content: ''
   })
+
+  //TODO change this variable to storyID
   const { _id } = useParams()
 
   useEffect(() => {
-    const fetchStory = async () => {
-      try {
-        const response = await axios.get(`${API_ENDPOINT}/story/${_id}`)
-        setStory(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchStory()
-  }, [_id])
+    fetchStory(_id)
+        .then(data => setStory(data))
+        .catch(error => console.error('Error:', error))
+  }, [_id]);
 
   const [comments, setComments] = useState<Comment[]>([]);
 
