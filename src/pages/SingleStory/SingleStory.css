@@ -16,73 +16,10 @@
   margin-top: 20px;
 }
 
-.comments {
-  margin-top: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-
-.comment {
-  flex-basis: calc(50% - 10px); /* half of the screen width minus the gap */
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-  /* position: relative; */
-}
-
-.comment:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.commentText {
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  padding: 10px;
-}
-
 .replyText {
   background-color: #e0e0e0;
   border-radius: 10px;
   padding: 10px;
-}
-
-.comment .userInfo img {
-  /* width: 50px;  */
-  height: 30px;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  object-fit: cover;
-}
-
-.comment .userInfo p {
-  margin: 0;
-  font-weight: 700;
-}
-
-.comment .userInfo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.comment .userInfo img:hover {
-  transform: scale(1.01);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.reply {
-  margin-left: 20px;
-  padding-left: 20px;
-  border-left: 2px solid #ccc;
 }
 
 .header img {
@@ -175,33 +112,8 @@
   font-weight: 700;
 }
 
-.replyButton {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding-bottom: 20px;
-}
-
-.chatIcon {
-  margin-right: 8px;
-  font-size: 16px;
-}
-
-.replyButton:hover {
-  text-decoration: underline;
-}
-
 .nested-reply {
   margin-left: 40px; /* Increase the margin for nested replies */
   padding-left: 20px; /* Maintain the same padding as the replies */
   border-left: 1.5px solid #ccc; /* Add a darker left border */
-}
-
-.story-img-threads {
-  width: 100%; /* Set the width to 100% */
-  height: auto; /* Let the height adjust proportionally */
-  object-fit: cover; /* Scale the image to cover the container */
 }
