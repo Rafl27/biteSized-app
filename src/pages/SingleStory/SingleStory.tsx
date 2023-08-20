@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import './SingleStory.css'
 import TopBar from '../../components/topBar/TopBar'
@@ -10,15 +9,23 @@ import { Story } from "../../interfaces";
 import { Comment} from "../../interfaces";
 import { fetchCommentsByStoryId, fetchUserData, fetchStory } from '../../services/api'
 
+const initialStoryState = {
+  _id: '',
+  name: '',
+  text: '',
+  img: '',
+  date: '',
+  content: ''
+};
+
+const initialUserDataState = {
+  username: '',
+  email:'',
+  profilePicture:''
+}
+
 const SingleStory = () => {
-  const [story, setStory] = useState<Story>({
-    _id: '',
-    name: '',
-    text: '',
-    img: '',
-    date: '',
-    content: ''
-  })
+  const [story, setStory] = useState<Story>(initialStoryState)
 
   //TODO change this variable to storyID
   const { _id } = useParams()
@@ -37,11 +44,7 @@ const SingleStory = () => {
         .catch(error => console.error('Error:', error));
   }, []);
 
-  const [userData, setUserData] = useState<UserData>({
-    username: '',
-    email:'',
-    profilePicture:''
-  })
+  const [userData, setUserData] = useState<UserData>(initialUserDataState)
 
   useEffect(() => {
     fetchUserData(_id)
