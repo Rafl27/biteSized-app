@@ -1,4 +1,5 @@
 import axios from "axios";
+import React from "react";
 
 const API_BASE_URL = 'http://localhost:8080';
 
@@ -27,7 +28,7 @@ export const fetchStory = async (storyId) => {
         const response = await axios.get(`${API_BASE_URL}/story/${storyId}`)
         return response.data
     }catch (error){
-        console.error('Erro fetching stories', error)
+        console.error('Error fetching stories', error)
         return []
     }
 }
