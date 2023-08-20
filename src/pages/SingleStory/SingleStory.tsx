@@ -8,7 +8,9 @@ import { RiChat3Line } from 'react-icons/ri'
 import { UserData } from '../../interfaces'
 import { Story } from "../../interfaces";
 import { Comment} from "../../interfaces";
-import { fetchCommentsByStoryId } from '../../services/api'
+import { fetchCommentsByStoryId, fetchUserData } from '../../services/api'
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 const API_ENDPOINT = 'http://localhost:8080'
 const SingleStory = () => {
@@ -49,15 +51,9 @@ const SingleStory = () => {
   })
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try{
-        const response = await axios.get(`${API_ENDPOINT}/user/info/story/${_id}`)
-        setUserData(response.data)
-      }catch (error){
-        console.log(error)
-      }
-    }
-    fetchUserData()
+    fetchUserData(_id)
+        .then(data => setUserData(data))
+        .catch(error => console.log('Error: ', error))
   }, [_id]);
 
   //TODO fix the size of comment art =D
