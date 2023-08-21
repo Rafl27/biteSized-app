@@ -50,7 +50,24 @@ export const upvoteStory = async (storyId: number, authToken: string) => {
             {},
             {
                 headers: {
-                    Authorization: `Bearer ${authToken}`, // Include the token in the headers
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+export const downvoteStory = async (storyId: number, authToken: string) => {
+    try {
+        const response = await axios.put(
+            `${API_BASE_URL}/story/${storyId}/downvote`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
                 },
             }
         );
