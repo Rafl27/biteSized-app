@@ -5,7 +5,7 @@ import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
-import {fetchStories} from "../../../services/api";
+import {fetchStories, upvoteStory} from "../../../services/api";
 
 const StoryCard: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([])
@@ -16,38 +16,36 @@ const StoryCard: React.FC = () => {
         .catch(error => console.log('Error', error))
   }, [])
 
-  const [upvoteClicked, setUpvoteClicked] = useState<string[]>([])
-  const [downvoteClicked, setDownvoteClicked] = useState<string[]>([])
+  const token : string = localStorage.getItem('token');
+  const [upvoteClicked, setUpvoteClicked] = useState<number[]>([]);
+  const [downvoteClicked, setDownvoteClicked] = useState<number[]>([]);
 
-  const handleUpvote = async (id: string) => {
+  const handleUpvote = async (storyId: number) => {
     try {
-      const res = await axios.put(`http://localhost:3000/story/${id}/upvote`)
-      const updatedStory = res.data
+      const updatedStory = await upvoteStory(storyId, token);
+      console.log(updatedStory)
       setStories((prevStories) =>
-        prevStories.map((story) =>
-          story._id === updatedStory._id ? updatedStory : story
-        )
-      )
-      setUpvoteClicked((prevClicked) => [...prevClicked, id])
+          prevStories.map((story) =>
+              story.storyId === updatedStory.id
+                  ? { ...story, upvotes: updatedStory.upvote } // Update upvotes count
+                  : story
+          )
+      );
+      setUpvoteClicked((prevClicked) => [...prevClicked, storyId]);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
-  const handleDownvote = async (id: string) => {
-    try {
-      const res = await axios.put(`http://localhost:3000/story/${id}/downvote`)
-      const updatedStory = res.data
-      setStories((prevStories) =>
-        prevStories.map((story) =>
-          story._id === updatedStory._id ? updatedStory : story
-        )
-      )
-      setDownvoteClicked((prevClicked) => [...prevClicked, id])
-    } catch (err) {
-      console.error(err)
-    }
-  }
+  // const handleDownvote = async (id: string) => {
+  //     const updatedStory = upvoteStory(id)
+  //     setStories((prevStories) =>
+  //       prevStories.map((story) =>
+  //         story._id === updatedStory._id ? updatedStory : story
+  //       )
+  //     )
+  //     setDownvoteClicked((prevClicked) => [...prevClicked, id])
+  // }
 
   return (
     <div
@@ -87,7 +85,7 @@ const StoryCard: React.FC = () => {
                   className={`vote-button upvote ${
                     upvoteClicked.includes(story._id) ? 'clicked' : ''
                   }`}
-                  onClick={() => handleUpvote(story._id)}
+                  onClick={() => handleUpvote(story.storyId)}
                   disabled={
                     upvoteClicked.includes(story._id) ||
                     downvoteClicked.includes(story._id)

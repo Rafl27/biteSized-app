@@ -42,3 +42,20 @@ export const fetchStories = async () => {
         console.error(err)
     }
 }
+
+export const upvoteStory = async (storyId: number, authToken: string) => {
+    try {
+        const response = await axios.put(
+            `${API_BASE_URL}/story/${storyId}/upvote`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`, // Include the token in the headers
+                },
+            }
+        );
+        return response.data;
+    } catch (e) {
+        console.log(e);
+    }
+};
