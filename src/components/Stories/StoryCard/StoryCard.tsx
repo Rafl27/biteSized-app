@@ -5,7 +5,7 @@ import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
-import {fetchStories, upvoteStory} from "../../../services/api";
+import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 
 const StoryCard: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([])
@@ -23,11 +23,10 @@ const StoryCard: React.FC = () => {
   const handleUpvote = async (storyId: number) => {
     try {
       const updatedStory = await upvoteStory(storyId, token);
-      console.log(updatedStory)
       setStories((prevStories) =>
           prevStories.map((story) =>
               story.storyId === updatedStory.id
-                  ? { ...story, upvotes: updatedStory.upvote } // Update upvotes count
+                  ? { ...story, upvotes: updatedStory.upvote }
                   : story
           )
       );
@@ -35,17 +34,23 @@ const StoryCard: React.FC = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  }
 
-  // const handleDownvote = async (id: string) => {
-  //     const updatedStory = upvoteStory(id)
-  //     setStories((prevStories) =>
-  //       prevStories.map((story) =>
-  //         story._id === updatedStory._id ? updatedStory : story
-  //       )
-  //     )
-  //     setDownvoteClicked((prevClicked) => [...prevClicked, id])
-  // }
+  const handleDownvote = async (storyId: number) => {
+      try {
+          const updatedStory = await downvoteStory(storyId, token)
+          setStories((prevStories) =>
+              prevStories.map((story) =>
+                  story.storyId === updatedStory.id
+                      ? { ...story, downvotes: updatedStory.downvote }
+                      : story
+              )
+          );
+          setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
+      } catch (err) {
+          console.error(err);
+      }
+  }
 
   return (
     <div
@@ -98,7 +103,7 @@ const StoryCard: React.FC = () => {
                   className={`vote-button downvote ${
                     downvoteClicked.includes(story._id) ? 'clicked' : ''
                   }`}
-                  onClick={() => handleDownvote(story._id)}
+                  onClick={() => handleDownvote(story.storyId)}
                   disabled={
                     downvoteClicked.includes(story._id) ||
                     upvoteClicked.includes(story._id)
