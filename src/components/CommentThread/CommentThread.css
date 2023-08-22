@@ -1,7 +1,7 @@
 .commentArt{
     width: 100%; /* Set the width to 100% */
     height: auto; /* Let the height adjust proportionally */
-    object-fit: cover; /* Scale the image to cover the container */
+    object-fit: contain; /* Scale the image to cover the container */
 }
 
 .comment-content{
@@ -64,19 +64,24 @@
 }
 
 .comment {
-    flex-basis: calc(50% - 10px); /* half of the screen width minus the gap */
+    flex-basis: calc(50% - 10px);
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
-    flex: 1;
-    /* position: relative; */
+    /*flex: 1;*/
+    flex: 0 0 calc(50% - 10px); /* Adjust the width of each column (50% - margin) */
+    margin: 5px; /* Add some margin between the columns */
 }
-
-
 
 .comment:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.comment-box{
+    display: flex;
+    flex-wrap: wrap;
+}
+
