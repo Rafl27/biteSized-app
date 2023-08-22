@@ -1,5 +1,6 @@
 import CommentThread from "../CommentThread/CommentThread";
 import React from "react";
+import './CommentsList.css'
 
 const CommentsList = ({ comments }) => {
     return (
