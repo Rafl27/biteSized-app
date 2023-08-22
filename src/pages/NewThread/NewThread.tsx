@@ -32,17 +32,20 @@ function App({ storyID }) {
     event.preventDefault()
     const formData = new FormData(event.target)
     const img = formData.get('img')
-    const text = formData.get('text')
+    const content = formData.get('text')
     const token = localStorage.getItem('token')
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
+    console.log(content)
+    console.log(token)
+    console.log(storyID)
     try {
       const response = await axios.post(
-        `http://localhost:3000/story/${storyID}/comments`,
+        `http://localhost:8080/comment/${storyID}`,
         {
           // name,
-          text,
+          content,
           // img,
         },
         config

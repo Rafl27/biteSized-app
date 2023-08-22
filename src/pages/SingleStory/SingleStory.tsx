@@ -98,7 +98,7 @@ const SingleStory = () => {
                                 <button className="modal-close-button" onClick={toggleModal}>
                                     Close
                                 </button>
-                                <NewThread storyID={story._id}/>
+                                <NewThread storyID={_id}/>
                             </div>
                         </div>
                     )}
