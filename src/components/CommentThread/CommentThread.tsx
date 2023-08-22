@@ -1,6 +1,7 @@
 import React from "react";
 import './CommentThread.css'
 import {RiChat3Line} from "react-icons/ri";
+import {ImArrowDown, ImArrowUp} from "react-icons/im";
 
 const CommentThread = ({ comment }) => {
     return (
@@ -17,7 +18,10 @@ const CommentThread = ({ comment }) => {
             <RiChat3Line className="chatIcon" />
                Reply
               </button>
-
+            <div className="vote-container">
+               <button className='vote-button upvote'> <ImArrowUp /> </button>
+                <button className='vote-button downvote'> <ImArrowDown /> </button>
+            </div>
             {comment.replies && comment.replies.length > 0 && (
                 <div className="replies">
                     {comment.replies.map(reply => (
