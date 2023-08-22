@@ -88,12 +88,12 @@ const StoryCard: React.FC = () => {
               <div className="vote-container">
                 <button
                   className={`vote-button upvote ${
-                    upvoteClicked.includes(story._id) ? 'clicked' : ''
+                    upvoteClicked.includes(story.storyId) ? 'clicked' : ''
                   }`}
                   onClick={() => handleUpvote(story.storyId)}
                   disabled={
-                    upvoteClicked.includes(story._id) ||
-                    downvoteClicked.includes(story._id)
+                    upvoteClicked.includes(story.storyId) ||
+                    downvoteClicked.includes(story.storyId)
                   }
                 >
                   {story.upvotes}
@@ -101,12 +101,12 @@ const StoryCard: React.FC = () => {
                 </button>
                 <button
                   className={`vote-button downvote ${
-                    downvoteClicked.includes(story._id) ? 'clicked' : ''
+                    downvoteClicked.includes(story.storyId) ? 'clicked' : ''
                   }`}
                   onClick={() => handleDownvote(story.storyId)}
                   disabled={
-                    downvoteClicked.includes(story._id) ||
-                    upvoteClicked.includes(story._id)
+                    downvoteClicked.includes(story.storyId) ||
+                    upvoteClicked.includes(story.storyId)
                   }
                 >
                   {story.downvotes}
