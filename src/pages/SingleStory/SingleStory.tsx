@@ -107,9 +107,9 @@ const SingleStory = () => {
                     <p>{story.content}</p>
                 </div>
                 <h2>Threads:</h2>
-                <ThreadedComments comments={comments} />
-            </div>
 
+            </div>
+            <ThreadedComments comments={comments} />
         </>
     )
 }
