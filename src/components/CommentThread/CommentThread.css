@@ -64,7 +64,7 @@
 }
 
 .comment {
-    flex-basis: calc(50% - 10px);
+    /*flex-basis: calc(50% - 10px);*/
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 8px;
@@ -72,6 +72,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
     /*flex: 1;*/
+    height: fit-content;
     flex: 0 0 calc(50% - 10px); /* Adjust the width of each column (50% - margin) */
     margin: 5px; /* Add some margin between the columns */
 }
