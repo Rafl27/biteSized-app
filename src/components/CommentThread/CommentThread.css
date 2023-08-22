@@ -1,5 +1,5 @@
 .commentArt{
-    width: 100%; /* Set the width to 100% */
+    width: 50%; /* Set the width to 100% */
     height: auto; /* Let the height adjust proportionally */
     object-fit: contain; /* Scale the image to cover the container */
 }
