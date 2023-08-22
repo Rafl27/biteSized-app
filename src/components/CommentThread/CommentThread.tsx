@@ -14,14 +14,15 @@ const CommentThread = ({ comment }) => {
                 <img className="commentArt" src={comment.artComment} alt="Comment Art" />
             )}
             <div className="comment-content">{comment.contentComment}</div>
+            {/*TODO: make the request to upvote and downvote comments, and also do the cool thing with variables to use the same function*/}
             <div className="button-container">
                 <button className="replyButton">
                     <RiChat3Line className="chatIcon" />
                     Reply
                 </button>
                 <div className="vote-container">
-                    <button className='vote-button upvote'> <ImArrowUp /> </button>
-                    <button className='vote-button downvote'> <ImArrowDown /> </button>
+                    <button className='vote-button upvote'> <ImArrowUp /> <p>opa</p> </button>
+                    <button className='vote-button downvote'> <ImArrowDown /> <p>opa</p> </button>
                 </div>
             </div>
             {comment.replies && comment.replies.length > 0 && (
