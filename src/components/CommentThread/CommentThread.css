@@ -85,3 +85,15 @@
     flex-wrap: wrap;
 }
 
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.vote-container {
+    display: flex;
+    align-items: center;
+}
+
