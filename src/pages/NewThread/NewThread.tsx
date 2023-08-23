@@ -31,22 +31,19 @@ function App({ storyID }) {
   const handleCreateStory = async (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    const img = formData.get('img')
+    const art = formData.get('img')
     const content = formData.get('text')
     const token = localStorage.getItem('token')
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    console.log(content)
-    console.log(token)
-    console.log(storyID)
     try {
       const response = await axios.post(
         `http://localhost:8080/comment/${storyID}`,
         {
           // name,
           content,
-          // img,
+          art
         },
         config
       )

@@ -2,6 +2,8 @@
     width: 50%; /* Set the width to 100% */
     height: auto; /* Let the height adjust proportionally */
     object-fit: contain; /* Scale the image to cover the container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .comment-content{
