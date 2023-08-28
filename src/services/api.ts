@@ -70,9 +70,39 @@ export const downvoteStory = async (storyId: number, authToken: string) => {
                     Authorization: `Bearer ${authToken}`,
                 },
             }
-        );
-        return response.data;
+        )
+        return response.data
     } catch (e) {
-        console.log(e);
+        console.log(e)
     }
-};
+}
+
+export const upvoteComment = async (commentId: number, authToken: string) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/comment/${commentId}/upvote`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
+            })
+        return response.data
+    }catch (e){
+        console.log(e)
+    }
+}
+
+export const downvoteComment = async (commentId: number, authToken: string) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/comment/${commentId}/downvote`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
+            })
+        return response.data
+    }catch (e){
+        console.log(e)
+    }
+}
