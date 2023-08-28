@@ -2,14 +2,26 @@ import React, {useState} from "react";
 import './CommentThread.css'
 import {RiChat3Line} from "react-icons/ri";
 import {ImArrowDown, ImArrowUp} from "react-icons/im";
-import {upvoteStory, upvoteComment} from "../../services/api";
+import {upvoteStory, upvoteComment, downvoteComment} from "../../services/api";
 
 const CommentThread = ({ comment }) => {
     const token : string = localStorage.getItem('token')
-    const handleUpvote = async (commentId: number) => {
+    const [upvotes, setUpvotes] = useState(comment.upvotesComment);
+    const [downvotes, setDownvotes] = useState(comment.downvotesComment);
+
+    const handleUpvote = async (commentId) => {
         try {
             const updatedComment = await upvoteComment(commentId, token);
-            comment.upvotes = updatedComment.upvote
+            setUpvotes(updatedComment.upvote);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleDownvote = async (commentId) => {
+        try {
+            const updatedComment = await downvoteComment(commentId, token);
+            setDownvotes(updatedComment.downvote);
         } catch (err) {
             console.error(err);
         }
@@ -30,8 +42,8 @@ const CommentThread = ({ comment }) => {
                     Reply
                 </button>
                 <div className="vote-container">
-                    <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{comment.upvotesComment}</p> </button>
-                    <button className='vote-button downvote'> <ImArrowDown /> <p>{comment.downvotesComment}</p> </button>
+                    <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{upvotes}</p> </button>
+                    <button className='vote-button downvote' onClick={() => handleDownvote(comment.idComment)}> <ImArrowDown /> <p>{downvotes}</p> </button>
                 </div>
             </div>
             {comment.replies && comment.replies.length > 0 && (
