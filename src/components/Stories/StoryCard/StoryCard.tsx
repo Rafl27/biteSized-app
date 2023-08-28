@@ -15,9 +15,9 @@ const StoryCard: React.FC = () => {
         .catch(error => console.log('Error', error))
   }, [])
 
-  const token : string = localStorage.getItem('token');
-  const [upvoteClicked, setUpvoteClicked] = useState<number[]>([]);
-  const [downvoteClicked, setDownvoteClicked] = useState<number[]>([]);
+  const token : string = localStorage.getItem('token')
+  const [upvoteClicked, setUpvoteClicked] = useState<number[]>([])
+  const [downvoteClicked, setDownvoteClicked] = useState<number[]>([])
 
   const handleUpvote = async (storyId: number) => {
     try {
