@@ -34,14 +34,16 @@ export const fetchStory = async (storyId : number) => {
     }
 }
 
-export const fetchStories = async () => {
+export const fetchStories = async (page: number, pageSize: number) => {
     try {
-        const response = await axios.get<Story[]>(`${API_BASE_URL}/story/all?page=0&size=10`)
-        return response.data.content
+        const response = await axios.get<Story[]>(
+            `${API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
+        );
+        return response.data.content;
     } catch (err) {
-        console.error(err)
+        console.error(err);
     }
-}
+};
 
 export const upvoteStory = async (storyId: number, authToken: string) => {
     try {
