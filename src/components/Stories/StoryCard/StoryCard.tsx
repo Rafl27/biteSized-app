@@ -10,7 +10,7 @@ const StoryCard: React.FC = () => {
   const [stories, setStories] = useState<Story[]>([])
 
   useEffect(() => {
-    fetchStories()
+    fetchStories(page, pageSize)
         .then(data => setStories(data))
         .catch(error => console.log('Error', error))
   }, [])
@@ -18,6 +18,9 @@ const StoryCard: React.FC = () => {
   const token : string = localStorage.getItem('token')
   const [upvoteClicked, setUpvoteClicked] = useState<number[]>([])
   const [downvoteClicked, setDownvoteClicked] = useState<number[]>([])
+  const [page, setPage] = useState(0); // Track the current page
+  const [pageSize, setPageSize] = useState(10); // Track the page size
+  const [totalPages, setTotalPages] = useState(0); // Track the total number of pages
 
   const handleUpvote = async (storyId: number) => {
     try {
@@ -51,6 +54,16 @@ const StoryCard: React.FC = () => {
       }
   }
 
+    // Function to handle changing the page
+    const handlePageChange = (newPage: number) => {
+        setPage(newPage);
+    };
+
+    // Function to handle changing the page size
+    const handlePageSizeChange = (newSize: number) => {
+        setPageSize(newSize);
+    };
+
   return (
     <div
       style={{
@@ -61,7 +74,9 @@ const StoryCard: React.FC = () => {
         alignItems: 'center',
       }}
     >
+
       {stories.map((story) => (
+
         <div
           key={story.storyId}
           className="card "
@@ -120,6 +135,22 @@ const StoryCard: React.FC = () => {
           </div>
         </div>
       ))}
+        {/* Pagination controls */}
+        <div className="pagination">
+            <button
+                onClick={() => handlePageChange(page - 1)}
+                disabled={page === 0}
+            >
+                Previous
+            </button>
+            <span>Page {page + 1} of {totalPages}</span>
+            <button
+                onClick={() => handlePageChange(page + 1)}
+                disabled={page === totalPages - 1}
+            >
+                Next
+            </button>
+        </div>
     </div>
   )
 }
