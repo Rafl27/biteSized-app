@@ -7,20 +7,19 @@ import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 
 const StoryCard: React.FC = () => {
-  const [stories, setStories] = useState<Story[]>([])
+    const [stories, setStories] = useState<Story[]>([])
+    const token : string = localStorage.getItem('token')
+    const [upvoteClicked, setUpvoteClicked] = useState<number[]>([])
+    const [downvoteClicked, setDownvoteClicked] = useState<number[]>([])
+    const [page, setPage] = useState(0); // Track the current page
+    const [pageSize, setPageSize] = useState(10); // Track the page size
+    const [totalPages, setTotalPages] = useState(0); // Track the total number of pages
 
   useEffect(() => {
     fetchStories(page, pageSize)
-        .then(data => setStories(data))
+        .then((data) => setStories(data.data))
         .catch(error => console.log('Error', error))
-  }, [])
-
-  const token : string = localStorage.getItem('token')
-  const [upvoteClicked, setUpvoteClicked] = useState<number[]>([])
-  const [downvoteClicked, setDownvoteClicked] = useState<number[]>([])
-  const [page, setPage] = useState(0); // Track the current page
-  const [pageSize, setPageSize] = useState(10); // Track the page size
-  const [totalPages, setTotalPages] = useState(0); // Track the total number of pages
+  }, [page, pageSize])
 
   const handleUpvote = async (storyId: number) => {
     try {
