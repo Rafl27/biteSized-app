@@ -36,8 +36,8 @@ export const fetchStory = async (storyId : number) => {
 
 export const fetchStories = async () => {
     try {
-        const response = await axios.get<Story[]>(`${API_BASE_URL}/story/all`)
-        return response.data
+        const response = await axios.get<Story[]>(`${API_BASE_URL}/story/all?page=0&size=10`)
+        return response.data.content
     } catch (err) {
         console.error(err)
     }
