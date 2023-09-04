@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {RiChat3Line} from 'react-icons/ri';
 
 import './SingleStory.css';
 
@@ -28,8 +27,6 @@ const initialUserDataState = {
 
 const SingleStory = () => {
     const [story, setStory] = useState<Story>(initialStoryState)
-
-    //TODO fix the size of comment art =D
     //TODO change this variable to storyID
     const {_id} = useParams()
 
