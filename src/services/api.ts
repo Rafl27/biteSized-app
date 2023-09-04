@@ -39,7 +39,10 @@ export const fetchStories = async (page: number, pageSize: number) => {
         const response = await axios.get<Story[]>(
             `${API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
         );
-        return response.data.content;
+        return {
+            data: response.data.content,
+            totalPages: response.data.totalPages, // Add this line to get total pages
+        };
     } catch (err) {
         console.error(err);
     }
