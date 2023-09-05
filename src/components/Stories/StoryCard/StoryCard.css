@@ -2,16 +2,17 @@
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
-  max-width: fit-content; 
+  max-width: fit-content;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #5b5757 !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .card:hover {
-  background-color: #fbab7e;
-  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-color: #183D3D;
+  background-image: linear-gradient(62deg, #183D3D 0%, #5C8374 100%);
   cursor: pointer;
   transform: scale(1.02);
 }
@@ -43,6 +44,7 @@
   margin-right: 10px;
   color: #555555;
   transition: color 0.3s;
+  color: white;
 }
 
 .vote-button.upvote:hover {
@@ -97,8 +99,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fcba03; /* Material Design Blue */
-  color: black; /* Text color */
+  background-color: #040D12; /* Material Design Blue */
+  color: white; /* Text color */
   padding: 10px;
   position: fixed;
   bottom: 0;
@@ -109,7 +111,7 @@
 .pagination button {
   background-color: transparent;
   border: none;
-  color: black;
+  color: white;
   cursor: pointer;
   padding: 5px 10px;
   margin: 0 10px;
@@ -118,7 +120,7 @@
 }
 
 .pagination button:hover {
-  background-color: darkorange;
+  background-image: linear-gradient(62deg, #183D3D 0%, #5C8374 100%);
 }
 
 .pagination span {
