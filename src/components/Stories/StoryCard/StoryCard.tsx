@@ -58,6 +58,7 @@ const StoryCard: React.FC = () => {
   }
     const handlePageChange = (newPage: number) => {
         setPage(newPage)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handlePageSizeChange = (newSize: number) => {
@@ -135,6 +136,7 @@ const StoryCard: React.FC = () => {
           </div>
         </div>
       ))}
+        {/*TODO: make this into a new component and also add it to the top of the page.*/}
         <div className="pagination">
             <button
                 onClick={() => handlePageChange(page - 1)}
