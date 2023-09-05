@@ -4,16 +4,20 @@
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #413e3e !important;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*background-color: #5b5757 !important;*/
+  color: white;
 }
 
 .content {
   margin-top: 20px;
+  color: white;
 }
 
 .replyText {
@@ -116,4 +120,8 @@
   margin-left: 40px; /* Increase the margin for nested replies */
   padding-left: 20px; /* Maintain the same padding as the replies */
   border-left: 1.5px solid #ccc; /* Add a darker left border */
+}
+
+#threadsh2{
+  color: white;
 }
