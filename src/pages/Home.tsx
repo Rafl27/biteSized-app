@@ -32,7 +32,7 @@ const Home: React.FC = () => {
       <div
         style={{
           display: 'flex',
-          background: '#f2dcb1',
+          background: '#171616',
         }}
       >
         <StoryCard />
