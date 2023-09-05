@@ -11,15 +11,19 @@ const StoryCard: React.FC = () => {
     const token : string = localStorage.getItem('token')
     const [upvoteClicked, setUpvoteClicked] = useState<number[]>([])
     const [downvoteClicked, setDownvoteClicked] = useState<number[]>([])
-    const [page, setPage] = useState(0); // Track the current page
-    const [pageSize, setPageSize] = useState(10); // Track the page size
-    const [totalPages, setTotalPages] = useState(0); // Track the total number of pages
+    const [page, setPage] = useState(0)
+    const [pageSize, setPageSize] = useState(6)
+    const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
     fetchStories(page, pageSize)
-        .then((data) => setStories(data.data))
+        .then((data) => {
+            setStories(data.data)
+            setTotalPages(data.totalPages)
+        })
         .catch(error => console.log('Error', error))
   }, [page, pageSize])
+    console.log("total aqui" + totalPages)
 
   const handleUpvote = async (storyId: number) => {
     try {
@@ -33,7 +37,7 @@ const StoryCard: React.FC = () => {
       );
       setUpvoteClicked((prevClicked) => [...prevClicked, storyId]);
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
   }
 
@@ -49,18 +53,15 @@ const StoryCard: React.FC = () => {
           );
           setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
       } catch (err) {
-          console.error(err);
+          console.error(err)
       }
   }
-
-    // Function to handle changing the page
     const handlePageChange = (newPage: number) => {
-        setPage(newPage);
+        setPage(newPage)
     };
 
-    // Function to handle changing the page size
     const handlePageSizeChange = (newSize: number) => {
-        setPageSize(newSize);
+        setPageSize(newSize)
     };
 
   return (
@@ -134,7 +135,6 @@ const StoryCard: React.FC = () => {
           </div>
         </div>
       ))}
-        {/* Pagination controls */}
         <div className="pagination">
             <button
                 onClick={() => handlePageChange(page - 1)}
@@ -145,7 +145,7 @@ const StoryCard: React.FC = () => {
             <span>Page {page + 1} of {totalPages}</span>
             <button
                 onClick={() => handlePageChange(page + 1)}
-                disabled={page === totalPages - 1}
+                disabled={page >= totalPages - 1}
             >
                 Next
             </button>
