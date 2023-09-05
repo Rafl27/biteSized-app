@@ -15,6 +15,7 @@ function App() {
   )
   const [showModal, setShowModal] = useState(false)
   const [createdStoryName, setCreatedStoryName] = useState('')
+  const [createdStoryId, setCreatedStoryId] = useState('')
   //true if any of the inputs are empty
   const isCreateButtonDisabled = !name || !text || !image
   const getCreateButtonTooltip = () => {
@@ -47,6 +48,8 @@ function App() {
         config
       )
       setCreatedStoryName(title)
+      setCreatedStoryId(response.data.id)
+      console.log(response)
       setShowModal(true)
     } catch (err) {
       console.log(err)
@@ -98,7 +101,7 @@ function App() {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href={`http://localhost:3000/story/${createdStoryName}`}
+              href={`http://localhost:5173/story/${createdStoryId}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
