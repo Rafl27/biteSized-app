@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+body{
+  background-color: #5b5757 !important;
+}
+
 .inputs {
   display: flex;
   flex-direction: column;
@@ -32,21 +36,24 @@ input[type='text']:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 h1 {
   text-align: center;
   padding-bottom: 1.5rem;
+  color: white;
 }
 
 h5 {
-  font-family: Georgia, serif;
+  /*font-family: Georgia, serif;*/
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
   margin-bottom: 1.5rem;
   padding-top: 1.5rem;
+  color: white !important;
 }
 
 #createImage {
@@ -57,7 +64,7 @@ h5 {
 }
 
 #createImage:hover {
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 
 textarea {
@@ -87,7 +94,8 @@ textarea:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.2s ease-in-out;
   font-size: 16px;
-  color: #333;
+  color: white;
+  transform: scale(1.02);
 }
 
 .disabled-button {
@@ -144,7 +152,7 @@ textarea:focus {
 } */
 
 #paragraph {
-  font-family: Georgia, serif;
+  /*font-family: Georgia, serif;*/
   font-size: 18px;
   font-weight: normal;
   color: #333;
