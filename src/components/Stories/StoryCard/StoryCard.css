@@ -135,7 +135,7 @@
   bottom: 0;
   left: 0;
   border: 1px solid transparent; /* Set the initial border */
-  animation: pulse-border 1s ease-in-out infinite both; /* Add "both" to keep final state */
+  animation: pulse-border 1.5s ease-in-out infinite both; /* Add "both" to keep final state */
   z-index: -1; /* Move the pseudo-element behind the card content */
 }
 
@@ -143,13 +143,16 @@
   0% {
     transform: scale(1);
     border-color: transparent; /* Initial border color */
+
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.01);
     border-color: #d9173a; /* Border color when animated */
+    border-radius: 10px;
   }
   100% {
     transform: scale(1);
     border-color: transparent; /* Back to initial border color */
+    border-radius: 10px;
   }
 }
