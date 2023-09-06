@@ -67,15 +67,16 @@ const StoryCard: React.FC = () => {
 
     const getUpvoteColor = (upvotes : number) => {
         if (upvotes >= 10000) {
-            return '#d9173a'
+            // Add the animation class for >= 10000 upvotes
+            return { borderColor: '#d9173a', className: 'card animateHighUpvotes' };
         } else if (upvotes >= 5000) {
-            return '#00cc00'
+            return { borderColor: '#00cc00', className: 'card' };
         } else if (upvotes >= 1000) {
-            return 'yellow'
+            return { borderColor: 'yellow', className: 'card' };
         } else if (upvotes >= 500) {
-            return '#33cc33'
+            return { borderColor: '#33cc33', className: 'card' };
         } else {
-            return 'white'
+            return { borderColor: 'white', className: 'card' };
         }
     };
 
@@ -94,7 +95,7 @@ const StoryCard: React.FC = () => {
 
         <div
           key={story.storyId}
-          className='card'
+          className={getUpvoteColor(story.upvotes).className}
 
           style={{
               flex: '0 0 48%',
