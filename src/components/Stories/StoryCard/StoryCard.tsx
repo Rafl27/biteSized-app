@@ -65,6 +65,20 @@ const StoryCard: React.FC = () => {
         setPageSize(newSize)
     };
 
+    const getUpvoteColor = (upvotes : number) => {
+        if (upvotes >= 10000) {
+            return '#d9173a'
+        } else if (upvotes >= 5000) {
+            return '#00cc00'
+        } else if (upvotes >= 1000) {
+            return 'yellow'
+        } else if (upvotes >= 500) {
+            return '#33cc33'
+        } else {
+            return 'white'
+        }
+    };
+
   return (
     <div
       style={{
@@ -80,8 +94,13 @@ const StoryCard: React.FC = () => {
 
         <div
           key={story.storyId}
-          className="card "
-          style={{ flex: '0 0 48%', margin: '1%' }}
+          className='card'
+
+          style={{
+              flex: '0 0 48%',
+              margin: '1%',
+              borderColor: getUpvoteColor(story.upvotes), // Set border color based on upvotes
+          }}
         >
           <div className="card-body" style={{ flex: '1 1 auto' }}>
             <img
