@@ -5,15 +5,16 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
-
+,
 .comment-content{
     background-color: #e0e0e0;
     border-radius: 10px;
     padding: 10px;
 }
 
-.comment-thread {
-
+.comment{
+    background-color: #413e3e !important;
+    color: white;
 }
 
 .userInfo img{
@@ -53,6 +54,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    color: white;
     padding-bottom: 20px;
 }
 
