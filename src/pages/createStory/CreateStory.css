@@ -46,7 +46,6 @@ h1 {
 }
 
 h5 {
-  /*font-family: Georgia, serif;*/
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.2;
@@ -77,7 +76,7 @@ textarea {
   transition: box-shadow 0.2s ease-in-out;
   font-size: 16px;
   color: #333;
-  resize: none; /* disable resizing of the textbox */
+  resize: none;
 }
 
 textarea:focus {
@@ -86,7 +85,6 @@ textarea:focus {
 }
 
 #createButton {
-  /* background-color: #f4f4f4; */
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -110,22 +108,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-/* .paragraph-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.paragraph-wrapper #paragraph {
-  font-family: Georgia, serif;
-  font-size: 18px;
-  font-weight: normal;
-  color: #333;
-  margin: 0;
-  padding-top: 10px;
-  text-align: center;
-} */
-
 .userInfo {
   display: flex;
   flex-direction: row;
@@ -145,26 +127,19 @@ textarea:focus {
   margin-bottom: 10px;
 }
 
-/* .userName {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-} */
-
 #paragraph {
-  /*font-family: Georgia, serif;*/
   font-size: 18px;
   font-weight: normal;
   color: #333;
   margin: 0;
   padding-top: 10px;
-  text-align: justify; /* Justify the text to improve readability */
-  word-wrap: break-word; /* Enable word wrapping */
+  text-align: justify;
+  word-wrap: break-word;
 }
 /* TODO: Too long of a paragraph will go up beyong the limits of the screen */
 .paragraph-wrapper {
-  max-width: 600px; /* Adjust the value as per your desired width */
-  margin: 0 auto; /* Center the paragraph within its container */
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .dropzone {
@@ -180,30 +155,8 @@ textarea:focus {
   border-color: #007bff; /* Change border color on hover */
 }
 
-/* Style for the dropzone message */
 .dropzone p {
   margin: 0;
   font-size: 16px;
   color: #333;
-}
-
-/* Style for accepted files section */
-.accepted-files {
-  margin-top: 20px;
-}
-
-.accepted-files p {
-  font-size: 14px;
-  color: #888;
-}
-
-.accepted-files ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.accepted-files li {
-  font-size: 14px;
-  color: #555;
 }
