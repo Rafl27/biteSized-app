@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, {useCallback, useState} from 'react'
 import './CreateStory.css'
 import axios from 'axios'
 import { Modal } from 'react-bootstrap'
 import TopBar from '../../components/topBar/TopBar'
+import { useDropzone } from 'react-dropzone';
 
 function App() {
   //TODO: now the button is always green because useState has values.
@@ -55,6 +56,26 @@ function App() {
       console.log(err)
     }
   }
+
+  const onDrop = useCallback((acceptedFiles) => {
+    if (acceptedFiles.length > 0) {
+      const file = acceptedFiles[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const uploadedImage = e.target.result;
+        setImage(uploadedImage);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: 'image/*',
+    multiple: false,
+  });
   return (
     <>
       <TopBar />
@@ -73,6 +94,13 @@ function App() {
               name="img"
               onChange={(e) => setImage(e.target.value)}
             />
+            <div
+                {...getRootProps()}
+                className="dropzone"
+            >
+              <input {...getInputProps()} />
+              <p>Drag &amp; drop an image here, or click to select an image.</p>
+            </div>
             <textarea
               placeholder="First Paragraph"
               name="text"
