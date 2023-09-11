@@ -23,7 +23,6 @@ const StoryCard: React.FC = () => {
         })
         .catch(error => console.log('Error', error))
   }, [page, pageSize])
-    console.log("total aqui" + totalPages)
 
   const handleUpvote = async (storyId: number) => {
     try {
