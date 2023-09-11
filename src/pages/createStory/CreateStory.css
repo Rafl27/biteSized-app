@@ -166,3 +166,44 @@ textarea:focus {
   max-width: 600px; /* Adjust the value as per your desired width */
   margin: 0 auto; /* Center the paragraph within its container */
 }
+
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.dropzone:hover {
+  border-color: #007bff; /* Change border color on hover */
+}
+
+/* Style for the dropzone message */
+.dropzone p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style for accepted files section */
+.accepted-files {
+  margin-top: 20px;
+}
+
+.accepted-files p {
+  font-size: 14px;
+  color: #888;
+}
+
+.accepted-files ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accepted-files li {
+  font-size: 14px;
+  color: #555;
+}
