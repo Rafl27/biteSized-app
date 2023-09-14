@@ -84,7 +84,7 @@ const StoryCard: React.FC = () => {
     };
 
   return (
-    <>
+    <div className='both-columns'>
         <div className="column">
             {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
                 <div
@@ -95,6 +95,7 @@ const StoryCard: React.FC = () => {
                     }}
                 >
                     <div className="card-body">
+                        <h4 className="card-title">{story.title}</h4>
                         <img
                             src={story.art}
                             alt={story.title}
@@ -110,7 +111,7 @@ const StoryCard: React.FC = () => {
                             <p className="userName">{story.username}</p>
                         </div>
                         <div className="card-title-container">
-                            <h3 className="card-title">{story.title}</h3>
+
                             <div className="vote-container">
                                 <button
                                     className={`vote-button upvote ${
@@ -158,6 +159,7 @@ const StoryCard: React.FC = () => {
                     }}
                 >
                     <div className="card-body">
+                        <h4 className="card-title">{story.title}</h4>
                         <img
                             src={story.art}
                             alt={story.title}
@@ -173,7 +175,7 @@ const StoryCard: React.FC = () => {
                             <p className="userName">{story.username}</p>
                         </div>
                         <div className="card-title-container">
-                            <h3 className="card-title">{story.title}</h3>
+
                             <div className="vote-container">
                                 <button
                                     className={`vote-button upvote ${
@@ -226,7 +228,7 @@ const StoryCard: React.FC = () => {
                 Next
             </button>
         </div>
-    </>
+    </div>
   )
 }
 export default StoryCard
