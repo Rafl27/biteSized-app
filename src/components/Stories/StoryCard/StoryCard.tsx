@@ -91,12 +91,10 @@ const StoryCard: React.FC = () => {
                     key={story.storyId}
                     className={getUpvoteColor(story.upvotes).className}
                     style={{
-                        flex: '0 0 48%',
-                        margin: '1%',
                         borderColor: getUpvoteColor(story.upvotes),
                     }}
                 >
-                    <div className="card-body" style={{ flex: '1 1 auto' }}>
+                    <div className="card-body">
                         <img
                             src={story.art}
                             alt={story.title}
@@ -156,12 +154,10 @@ const StoryCard: React.FC = () => {
                     key={story.storyId}
                     className={getUpvoteColor(story.upvotes).className}
                     style={{
-                        flex: '0 0 48%',
-                        margin: '1%',
                         borderColor: getUpvoteColor(story.upvotes),
                     }}
                 >
-                    <div className="card-body" style={{ flex: '1 1 auto' }}>
+                    <div className="card-body">
                         <img
                             src={story.art}
                             alt={story.title}

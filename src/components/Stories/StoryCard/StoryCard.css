@@ -1,10 +1,5 @@
 .card {
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: center;
-  max-width: fit-content;
-  margin: 0 auto;
-  padding: 20px;
+  margin-top: 20px;
   background-color: #5b5757 !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: white;
@@ -18,10 +13,11 @@
 }
 
 .card-body {
-  display: flex; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  display: flex;
   flex-direction: column;
-  align-items: center; 
-  padding: 20px;
+  align-items: center;
 }
 
 .button-container {
@@ -89,12 +85,6 @@
   pointer-events: auto;
 }
 
-.card-img-top{
-  flex-grow: 1;
-  object-fit: contain;
-  max-width: 60%;
-  max-height: 60%;
-}
 .pagination {
   display: flex;
   justify-content: center;
@@ -134,9 +124,9 @@
   right: 0;
   bottom: 0;
   left: 0;
-  border: 1px solid transparent; /* Set the initial border */
-  animation: pulse-border 1.5s ease-in-out infinite both; /* Add "both" to keep final state */
-  z-index: -1; /* Move the pseudo-element behind the card content */
+  border: 1px solid transparent;
+  animation: pulse-border 1.5s ease-in-out infinite both;
+  z-index: -1;
 }
 
 @keyframes pulse-border {
