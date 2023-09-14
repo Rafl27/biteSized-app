@@ -28,26 +28,36 @@ h2 {
 }
 
 .story-list {
-  width: 100%;
-  max-width: fit-content;
-  margin-top: 20px;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+}
 
+.card-img-top{
+  flex-grow: 1;
+  object-fit: contain;
+  max-width: 60%;
+  max-height: 60%;
 }
 
 .story {
-  flex-basis: calc(
-    33.33% - 10px
-  ); /* Adjust the width based on the number of items per row */
-  /*background-color: #fff;*/
-  background-color: #413e3e !important;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+  margin: 20px;
+  background-color: #4b4848 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.story:hover {
+  background-color: #183D3D;
+  background-image: linear-gradient(62deg, #183D3D 0%, #5C8374 100%);
+  cursor: pointer;
+  transform: scale(1.01);
 }
 
 .story h3 {
@@ -55,26 +65,14 @@ h2 {
   margin-bottom: 5px;
   transition: transform 0.3s ease;
   margin: 0;
-  /*color: white;*/
 }
 
-.story:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
 .story p {
   font-size: 14px;
   color: #666;
   margin: 0;
   margin-top: 5px;
-}
-
-.story img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 5px;
 }
 
 .story p:last-child,
@@ -84,7 +82,7 @@ h2 {
 }
 
 .story-text {
-  max-height: 5em; /* Adjust the height as needed */
+  max-height: 10em; /* Adjust the height as needed */
   overflow: hidden;
   color: white !important;
 }
