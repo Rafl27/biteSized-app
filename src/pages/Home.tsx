@@ -31,7 +31,7 @@ const Home: React.FC = () => {
       <TopBar />
       <div
         style={{
-          display: 'flex',
+          // display: 'flex',
           background: '#171616',
         }}
       >
