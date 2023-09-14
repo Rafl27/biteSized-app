@@ -50,12 +50,31 @@
 .vote-button.downvote:hover {
   color: #ff0000;
 }
+.card-text {
+  max-height: 10em;
+  overflow: hidden;
+  position: relative; /* Required for pseudo-element positioning */
+}
+
+.card-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3em; /* Adjust the height as needed for the gradient fade */
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(63, 60, 60, 0.76)); /* Adjust the colors and transparency as needed */
+}
 
 .card-title-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
   padding: 0 0 3% 0;
+}
+
+.both-columns{
+  display: flex;
 }
 
 .vote-button.upvote.clicked,
