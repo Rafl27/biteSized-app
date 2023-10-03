@@ -86,7 +86,9 @@ const StoryCard: React.FC = () => {
   return (
     <div className='both-columns'>
         <div className="column">
-            {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
+            {stories.slice(0, Math.ceil(stories.length / 2))
+                .sort((a, b) => b.upvotes - a.upvotes)
+                .map((story) => (
                 <div
                     key={story.storyId}
                     className={getUpvoteColor(story.upvotes).className}
@@ -150,7 +152,9 @@ const StoryCard: React.FC = () => {
             ))}
         </div>
         <div className="column">
-            {stories.slice(Math.ceil(stories.length / 2)).map((story) => (
+            {stories.slice(Math.ceil(stories.length / 2))
+                .sort((a, b) => b.upvotes - a.upvotes)
+                .map((story) => (
                 <div
                     key={story.storyId}
                     className={getUpvoteColor(story.upvotes).className}
