@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Modal } from 'react-bootstrap'
 import TopBar from '../../components/topBar/TopBar'
 
-function App({ storyID }) {
+function App({ storyID, useRepliesAPI  }) {
   const [text, setText] = useState(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt urna eget lacus fringilla maximus. Sed lacinia, ipsum vel facilisis viverra, sapien mi placerat quam, vel ultrices urna mauris non augue.'
   )
@@ -37,9 +37,13 @@ function App({ storyID }) {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
+    console.log(storyID)
+    const apiUrl = useRepliesAPI
+        ? `http://localhost:8080/comment/${storyID}/replies`
+        : `http://localhost:8080/comment/${storyID}`;
     try {
       const response = await axios.post(
-        `http://localhost:8080/comment/${storyID}`,
+          apiUrl,
         {
           // name,
           content,
