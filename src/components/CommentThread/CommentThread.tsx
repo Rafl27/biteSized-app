@@ -3,6 +3,7 @@ import './CommentThread.css'
 import {RiChat3Line} from "react-icons/ri";
 import {ImArrowDown, ImArrowUp} from "react-icons/im";
 import {upvoteStory, upvoteComment, downvoteComment} from "../../services/api";
+import NewThread from "../../pages/NewThread/NewThread";
 
 const CommentThread = ({ comment }) => {
     const token : string = localStorage.getItem('token')
@@ -26,6 +27,18 @@ const CommentThread = ({ comment }) => {
             console.error(err);
         }
     }
+
+    const [showModal, setShowModal] = useState(false)
+    const toggleModal = () => {
+        setShowModal((prevShowModal) => !prevShowModal)
+    }
+
+    const closeModal = (event) => {
+        if (event.target === event.currentTarget) {
+            toggleModal()
+        }
+    }
+
     return (
         <div className="comment">
             <div className="userInfo">
@@ -37,10 +50,24 @@ const CommentThread = ({ comment }) => {
             )}
             <div className="comment-content">{comment.contentComment}</div>
             <div className="button-container">
-                <button className="replyButton">
+                <button className="replyButton"
+                onClick={toggleModal}>
                     <RiChat3Line className="chatIcon" />
                     Reply
                 </button>
+                {showModal && (
+                    <div className="modal-overlay" onClick={closeModal}>
+                        <div
+                            className="modal-content"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="modal-close-button" onClick={toggleModal}>
+                                Close
+                            </button>
+                            <NewThread storyID={comment.idComment} useRepliesAPI={true}/>
+                        </div>
+                    </div>
+                )}
                 <div className="vote-container">
                     <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{upvotes}</p> </button>
                     <button className='vote-button downvote' onClick={() => handleDownvote(comment.idComment)}> <ImArrowDown /> <p>{downvotes}</p> </button>
