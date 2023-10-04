@@ -70,7 +70,7 @@ function App({ storyID, useRepliesAPI  }) {
                 checked={hasImage}
                 onChange={(e) => setHasImage(e.target.checked)}
               />
-              <span className="checkbox-custom" />
+              {/*<span className="checkbox-custom" />*/}
               Will this thread have an image?
             </label>
             {/* Conditional image URL input */}
