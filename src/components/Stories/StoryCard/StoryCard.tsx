@@ -4,6 +4,7 @@ import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
 import { ImArrowUp, ImArrowDown } from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
+import {FaComments} from "react-icons/fa"
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 
 const StoryCard: React.FC = () => {
@@ -14,6 +15,7 @@ const StoryCard: React.FC = () => {
     const [page, setPage] = useState(0)
     const [pageSize, setPageSize] = useState(6)
     const [totalPages, setTotalPages] = useState(0)
+    const [totalComments, setTotalComments] = useState({});
 
   useEffect(() => {
     fetchStories(page, pageSize)
@@ -23,6 +25,24 @@ const StoryCard: React.FC = () => {
         })
         .catch(error => console.log('Error', error))
   }, [page, pageSize])
+
+    useEffect(() => {
+        const fetchTotalComments = async () => {
+            const totalCommentsCopy = { ...totalComments };
+            for (const story of stories) {
+                const response = await fetch(`http://localhost:8080/story/${story.storyId}/total-comments`);
+                const data = await response.json();
+                // console.log(data[0].totalComments)
+                console.log(data)
+                totalCommentsCopy[story.storyId] = data.totalComments
+                // console.log(totalCommentsCopy)
+            }
+            setTotalComments(totalCommentsCopy);
+        };
+
+        fetchTotalComments();
+    }, [stories]);
+    
 
   const handleUpvote = async (storyId: number) => {
     try {
@@ -141,6 +161,8 @@ const StoryCard: React.FC = () => {
                                     {story.downvotes}
                                     <ImArrowDown />
                                 </button>
+                                <p id="total-comments">{totalComments[story.storyId]}</p>
+                                <FaComments />
                             </div>
                         </div>
                         <p className="card-text">{story.content}</p>
@@ -207,6 +229,8 @@ const StoryCard: React.FC = () => {
                                     {story.downvotes}
                                     <ImArrowDown />
                                 </button>
+                                <p id="total-comments">{totalComments[story.storyId]}</p>
+                                <FaComments />
                             </div>
                         </div>
                         <p className="card-text">{story.content}</p>
