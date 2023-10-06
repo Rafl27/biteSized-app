@@ -32,10 +32,7 @@ const StoryCard: React.FC = () => {
             for (const story of stories) {
                 const response = await fetch(`http://localhost:8080/story/${story.storyId}/total-comments`);
                 const data = await response.json();
-                // console.log(data[0].totalComments)
-                console.log(data)
-                totalCommentsCopy[story.storyId] = data.totalComments
-                // console.log(totalCommentsCopy)
+                totalCommentsCopy[story.storyId] = data[0].totalComments
             }
             setTotalComments(totalCommentsCopy);
         };
