@@ -142,7 +142,7 @@ const StoryCard: React.FC = () => {
                                         downvoteClicked.includes(story.storyId)
                                     }
                                 >
-                                    {story.upvotes}
+                                    <h2>{story.upvotes}</h2>
                                     <ImArrowUp />
                                 </button>
                                 <button
@@ -155,11 +155,14 @@ const StoryCard: React.FC = () => {
                                         upvoteClicked.includes(story.storyId)
                                     }
                                 >
-                                    {story.downvotes}
+                                    <h2>{story.downvotes}</h2>
                                     <ImArrowDown />
                                 </button>
-                                <p id="total-comments">{totalComments[story.storyId]}</p>
-                                <FaComments />
+                                <div className="comment-container">
+
+                                    <h2 id="total-comments">{totalComments[story.storyId]}</h2>
+                                    <FaComments />
+                                </div>
                             </div>
                         </div>
                         <p className="card-text">{story.content}</p>
@@ -186,6 +189,7 @@ const StoryCard: React.FC = () => {
                         <img
                             src={story.art}
                             alt={story.title}
+
                             className="card-img-top"
                         />
                         <p className="created">Created: {formatDate(story.date)}</p>
@@ -210,7 +214,7 @@ const StoryCard: React.FC = () => {
                                         downvoteClicked.includes(story.storyId)
                                     }
                                 >
-                                    {story.upvotes}
+                                    <h2>{story.upvotes}</h2>
                                     <ImArrowUp />
                                 </button>
                                 <button
@@ -223,11 +227,14 @@ const StoryCard: React.FC = () => {
                                         upvoteClicked.includes(story.storyId)
                                     }
                                 >
-                                    {story.downvotes}
+                                    <h2>{story.downvotes}</h2>
                                     <ImArrowDown />
                                 </button>
-                                <p id="total-comments">{totalComments[story.storyId]}</p>
-                                <FaComments />
+                                <div className="comment-container">
+
+                                <h2 id="total-comments">{totalComments[story.storyId]}</h2>
+                                    <FaComments />
+                                </div>
                             </div>
                         </div>
                         <p className="card-text">{story.content}</p>
