@@ -1,9 +1,17 @@
 .commentArt{
-    width: 50%;
-    height: auto;
-    object-fit: contain;
+    /*width: 50%;*/
+    height: 2%;
+    /*object-fit: contain;*/
     justify-content: center;
     align-items: center;
+    margin-right: 2%;
+    border-radius: 20px;
+}
+
+.art-comment{
+    display: flex;
+    align-items: center;
+    /*margin-right: 10px;*/
 }
 
 .comment-content{

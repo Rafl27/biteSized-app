@@ -45,10 +45,12 @@ const CommentThread = ({ comment }) => {
                 <img src={comment.userProfilePic} alt="User Profile" />
                 <span>{comment.userUsername}</span>
             </div>
-            {comment.artComment !== "" && (
-                <img className="commentArt" src={comment.artComment} alt="Comment Art" />
-            )}
-            <div className="comment-content">{comment.contentComment}</div>
+            <div className="art-comment">
+                {comment.artComment !== "" && (
+                    <img className="commentArt" src={comment.artComment} alt="Comment Art" />
+                )}
+                <div className="comment-content">{comment.contentComment}</div>
+            </div>
             <div className="button-container">
                 <button className="replyButton"
                 onClick={toggleModal}>
