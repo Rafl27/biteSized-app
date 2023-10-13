@@ -28,8 +28,13 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   const [userData, setUserData] = useState({
     username: '',
     email: '',
-    profilePicture: ''
+    profilePicture: '',
+    id: ''
   });
+
+  const [userBio, setUserBio] = useState({
+    bio : ''
+  })
 
   useEffect(() => {
     if (token) {
@@ -48,6 +53,24 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           });
     }
   }, [token]);
+
+  useEffect(() => {
+    if (token){
+      const config = {
+        headers: {
+          Authorization : `Bearer ${token}`
+        }
+      }
+
+      axios.get(`http://localhost:8080/user/bio/${userData.id}`, config)
+          .then(response => {
+            setUserBio(response.data)
+          })
+          .catch(error => {
+            console.error("Error fetching user bio", error)
+          })
+    }
+  }, []);
 
   const fetchStories = async () => {
     try {
@@ -83,6 +106,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           <img src={userData.profilePicture} alt="Profile" />
         </div>
         <h2>{userData.username}</h2>
+        <p>{userBio.bio}</p>
         <div className="story-list">
           <div className="column">
             {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
