@@ -177,3 +177,7 @@ total-comments{
     border-radius: 10px;
   }
 }
+
+.card-img-top{
+  height: 250px;
+}
