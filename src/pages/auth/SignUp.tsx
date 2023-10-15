@@ -30,7 +30,7 @@ const SignUp: React.FC = () => {
       const email = formData.get('email')
       const password = formData.get('password')
       try {
-        const response = await axios.post('http://localhost:8080/user/signup', {
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/signup`, {
           username,
           email,
           password,
@@ -56,7 +56,7 @@ const SignUp: React.FC = () => {
       const password = formData.get('password')
       try {
         const response: any = await axios.post(
-          'http://localhost:8080/user/login',
+          `${import.meta.env.VITE_API_BASE_URL}/user/login`,
           {
             email,
             password,

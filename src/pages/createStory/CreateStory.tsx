@@ -40,7 +40,7 @@ function App() {
     }
     try {
       const response = await axios.post(
-        'http://localhost:8080/story',
+        `${import.meta.env.VITE_API_BASE_URL}/story`,
         {
           title,
           content,
@@ -129,7 +129,7 @@ function App() {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href={`http://localhost:5173/story/${createdStoryId}`}
+              href={`${import.meta.env.VITE_API_BASE_URL}/story/${createdStoryId}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
