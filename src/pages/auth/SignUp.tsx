@@ -30,20 +30,29 @@ const SignUp: React.FC = () => {
       const email = formData.get('email')
       const password = formData.get('password')
       try {
-        const response = await axios.post('http://localhost:8080/user/signup', {
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/signup`, {
           username,
           email,
           password,
         })
-        const userToken = response.data.token
-        const userName = response.data.name
-        const userEmail = response.data.email
-        const profilePicture = response.data.profilePicture
-        localStorage.setItem('token', userToken)
-        localStorage.setItem('name', userName)
-        localStorage.setItem('email', userEmail)
-        localStorage.setItem('profilePicture', profilePicture)
-        navigate('/home')
+        // const userToken = response.data.token
+        // const userName = response.data.name
+        // const userEmail = response.data.email
+        // const profilePicture = response.data.profilePicture
+        // localStorage.setItem('token', userToken)
+        // localStorage.setItem('name', userName)
+        // localStorage.setItem('email', userEmail)
+        // localStorage.setItem('profilePicture', profilePicture)
+        // navigate('/home')
+
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+          successModal.style.display = 'block';
+        }
+
+        setTimeout(() => {
+          changeAuthMode()
+        }, 3000);
       } catch (err) {
         console.log(err)
       }
@@ -56,7 +65,7 @@ const SignUp: React.FC = () => {
       const password = formData.get('password')
       try {
         const response: any = await axios.post(
-          'http://localhost:8080/user/login',
+          `${import.meta.env.VITE_API_BASE_URL}/user/login`,
           {
             email,
             password,
@@ -183,6 +192,11 @@ const SignUp: React.FC = () => {
             </div>
           </div>
         </form>
+        <div id="successModal" className="modal" style={{ display: 'none' }}>
+          <div className="modal-content">
+            <p>User created successfully. Please login now.</p>
+          </div>
+        </div>
       </div>
     )
   }
