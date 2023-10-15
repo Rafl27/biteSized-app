@@ -30,7 +30,7 @@ const StoryCard: React.FC = () => {
         const fetchTotalComments = async () => {
             const totalCommentsCopy = { ...totalComments };
             for (const story of stories) {
-                const response = await fetch(`http://localhost:8080/story/${story.storyId}/total-comments`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/story/${story.storyId}/total-comments`);
                 const data = await response.json();
                 totalCommentsCopy[story.storyId] = data[0].totalComments
             }

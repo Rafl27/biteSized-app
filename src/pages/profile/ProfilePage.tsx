@@ -39,7 +39,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
         }
       };
 
-      axios.get('http://localhost:8080/user/info', config)
+      axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/info`, config)
           .then(response => {
             setUserData(response.data);
           })
@@ -52,7 +52,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   const fetchStories = async () => {
     try {
       const response = await fetch(
-        'http://localhost:8080/story/user',
+        `${import.meta.env.VITE_API_BASE_URL}/story/user`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

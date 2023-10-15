@@ -39,8 +39,8 @@ function App({ storyID, useRepliesAPI  }) {
     }
     console.log(storyID)
     const apiUrl = useRepliesAPI
-        ? `http://localhost:8080/comment/${storyID}/replies`
-        : `http://localhost:8080/comment/${storyID}`;
+        ? `${import.meta.env.VITE_API_BASE_URL}/comment/${storyID}/replies`
+        : `${import.meta.env.VITE_API_BASE_URL}/comment/${storyID}`;
     try {
       const response = await axios.post(
           apiUrl,
@@ -111,7 +111,7 @@ function App({ storyID, useRepliesAPI  }) {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href={`http://localhost:3000/story/${createdStoryName}`}
+              href={`${import.meta.env.VITE_API_BASE_URL}/story/${createdStoryName}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
