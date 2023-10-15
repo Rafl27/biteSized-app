@@ -1,12 +1,9 @@
-import axios from "axios";
-import React from "react";
+import axios from "axios"; import React from "react";
 import {StoryCard as Story} from "../interfaces/StoryCard";
-
-const API_BASE_URL = 'http://localhost:8080';
 
 export const fetchCommentsByStoryId = async (storyId : number) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/comment/${storyId}/allcomments`);
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/comment/${storyId}/allcomments`);
         return response.data;
     } catch (error) {
         console.error('Error fetching comments:', error);
@@ -16,7 +13,7 @@ export const fetchCommentsByStoryId = async (storyId : number) => {
 
 export const fetchUserData = async (storyId : number) => {
     try{
-        const response = await axios.get(`${API_BASE_URL}/user/info/story/${storyId}`)
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/info/story/${storyId}`)
         return response.data
     }catch (error){
         console.error('Error fetching user data:', error);
@@ -26,7 +23,7 @@ export const fetchUserData = async (storyId : number) => {
 
 export const fetchStory = async (storyId : number) => {
     try{
-        const response = await axios.get(`${API_BASE_URL}/story/${storyId}`)
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/story/${storyId}`)
         return response.data
     }catch (error){
         console.error('Error fetching stories', error)
@@ -37,7 +34,7 @@ export const fetchStory = async (storyId : number) => {
 export const fetchStories = async (page: number, pageSize: number) => {
     try {
         const response = await axios.get<Story[]>(
-            `${API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
+            `${import.meta.env.VITE_API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
         );
         return {
             data: response.data.content,
@@ -51,7 +48,7 @@ export const fetchStories = async (page: number, pageSize: number) => {
 export const upvoteStory = async (storyId: number, authToken: string) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/story/${storyId}/upvote`,
+            `${import.meta.env.VITE_API_BASE_URL}/story/${storyId}/upvote`,
             {},
             {
                 headers: {
@@ -68,7 +65,7 @@ export const upvoteStory = async (storyId: number, authToken: string) => {
 export const downvoteStory = async (storyId: number, authToken: string) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/story/${storyId}/downvote`,
+            `${import.meta.env.VITE_API_BASE_URL}/story/${storyId}/downvote`,
             {},
             {
                 headers: {
@@ -84,7 +81,7 @@ export const downvoteStory = async (storyId: number, authToken: string) => {
 
 export const upvoteComment = async (commentId: number, authToken: string) => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/comment/${commentId}/upvote`,
+        const response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/comment/${commentId}/upvote`,
             {},
             {
                 headers: {
@@ -99,7 +96,7 @@ export const upvoteComment = async (commentId: number, authToken: string) => {
 
 export const downvoteComment = async (commentId: number, authToken: string) => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/comment/${commentId}/downvote`,
+        const response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/comment/${commentId}/downvote`,
             {},
             {
                 headers: {
