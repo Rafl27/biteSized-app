@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './styles.css'
+import {AiFillEye} from 'react-icons/ai'
+import {AiFillEyeInvisible} from 'react-icons/ai'
 
 const SignUp: React.FC = () => {
   let [authMode, setAuthMode] = useState('signin')
@@ -99,18 +101,20 @@ const SignUp: React.FC = () => {
               <div className="form-group mt-3">
                 <label>Password</label>
                 <div className="password-input-container">
-                  <input
-                    type={passwordVisible ? 'text' : 'password'}
-                    className="form-control mt-1"
-                    placeholder="Password"
-                    name="password"
-                  />
+                  <div className="input-container">
+                    <input
+                        type={passwordVisible ? 'text' : 'password'}
+                        className="form-control mt-1"
+                        placeholder="Password"
+                        name="password"
+                    />
+                  </div>
                   <button
-                    type="button"
-                    className="show-password-button"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
+                      type="button"
+                      className="show-password-button"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
                   >
-                    {passwordVisible ? 'Hide' : 'Show'}
+                    {passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible/>}
                   </button>
                 </div>
               </div>
@@ -166,18 +170,20 @@ const SignUp: React.FC = () => {
             <div className="form-group mt-3">
               <label>Password</label>
               <div className="password-input-container">
+                <div className="input-container">
                 <input
                   type={passwordVisible ? 'text' : 'password'}
                   className="form-control mt-1"
                   placeholder="Password"
                   name="password"
                 />
+                </div>
                 <button
                   type="button"
                   className="show-password-button"
                   onClick={() => setPasswordVisible(!passwordVisible)}
                 >
-                  {passwordVisible ? 'Hide' : 'Show'}
+                  {passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible/>}
                 </button>
               </div>
             </div>

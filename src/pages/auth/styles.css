@@ -51,3 +51,24 @@ label {
 .modal-content {
   margin: 20px;
 }
+
+.show-password-button {
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.password-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container {
+  flex: 1;
+}
+
+.link-primary{
+  cursor: pointer;
+}
