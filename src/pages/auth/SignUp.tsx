@@ -35,16 +35,6 @@ const SignUp: React.FC = () => {
           email,
           password,
         })
-        // const userToken = response.data.token
-        // const userName = response.data.name
-        // const userEmail = response.data.email
-        // const profilePicture = response.data.profilePicture
-        // localStorage.setItem('token', userToken)
-        // localStorage.setItem('name', userName)
-        // localStorage.setItem('email', userEmail)
-        // localStorage.setItem('profilePicture', profilePicture)
-        // navigate('/home')
-
         const successModal = document.getElementById('successModal');
         if (successModal) {
           successModal.style.display = 'block';
@@ -52,7 +42,7 @@ const SignUp: React.FC = () => {
 
         setTimeout(() => {
           changeAuthMode()
-        }, 3000);
+        }, 2000);
       } catch (err) {
         console.log(err)
       }
@@ -141,6 +131,11 @@ const SignUp: React.FC = () => {
     return (
         <>
       <div className="Auth-form-container">
+        <div id="successModal" className="modalAccount" style={{ display: 'none'}}>
+          <div className="modal-content">
+            <p>Account created successfully. Please login now.</p>
+          </div>
+        </div>
         <form className="Auth-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Sign Up</h3>
@@ -194,11 +189,6 @@ const SignUp: React.FC = () => {
           </div>
         </form>
       </div>
-          <div id="successModal" className="modal" style={{ display: 'none' }}>
-            <div className="modal-content">
-              <p>Account created successfully. Please login now.</p>
-            </div>
-          </div>
         </>
     )
   }

@@ -11,7 +11,7 @@
 }
 
 .Auth-form {
-  width: 420px;
+  width: 380px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
   padding-bottom: 20px;
@@ -38,12 +38,14 @@ label {
   color: rgb(34, 34, 34);
 }
 
-.modal {
+.modalAccount {
   border-radius: 5px;
   text-align: center;
-  top: 50%;
+  position: absolute;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100vh;
 }
 
 .modal-content {
