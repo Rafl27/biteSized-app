@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './styles.css'
+import {AiFillEye} from 'react-icons/ai'
+import {AiFillEyeInvisible} from 'react-icons/ai'
 
 const SignUp: React.FC = () => {
   let [authMode, setAuthMode] = useState('signin')
@@ -35,15 +37,14 @@ const SignUp: React.FC = () => {
           email,
           password,
         })
-        const userToken = response.data.token
-        const userName = response.data.name
-        const userEmail = response.data.email
-        const profilePicture = response.data.profilePicture
-        localStorage.setItem('token', userToken)
-        localStorage.setItem('name', userName)
-        localStorage.setItem('email', userEmail)
-        localStorage.setItem('profilePicture', profilePicture)
-        navigate('/home')
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+          successModal.style.display = 'block';
+        }
+
+        setTimeout(() => {
+          changeAuthMode()
+        }, 2000);
       } catch (err) {
         console.log(err)
       }
@@ -100,18 +101,20 @@ const SignUp: React.FC = () => {
               <div className="form-group mt-3">
                 <label>Password</label>
                 <div className="password-input-container">
-                  <input
-                    type={passwordVisible ? 'text' : 'password'}
-                    className="form-control mt-1"
-                    placeholder="Password"
-                    name="password"
-                  />
+                  <div className="input-container">
+                    <input
+                        type={passwordVisible ? 'text' : 'password'}
+                        className="form-control mt-1"
+                        placeholder="Password"
+                        name="password"
+                    />
+                  </div>
                   <button
-                    type="button"
-                    className="show-password-button"
-                    onClick={() => setPasswordVisible(!passwordVisible)}
+                      type="button"
+                      className="show-password-button"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
                   >
-                    {passwordVisible ? 'Hide' : 'Show'}
+                    {passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible/>}
                   </button>
                 </div>
               </div>
@@ -120,9 +123,9 @@ const SignUp: React.FC = () => {
                   Submit
                 </button>
               </div>
-              <p className="text-center mt-2">
-                Forgot <a href="#">password?</a>
-              </p>
+              {/*<p className="text-center mt-2">*/}
+              {/*  Forgot <a href="#">password?</a>*/}
+              {/*</p>*/}
             </div>
           </form>
         </div>
@@ -130,7 +133,13 @@ const SignUp: React.FC = () => {
     }
 
     return (
+        <>
       <div className="Auth-form-container">
+        <div id="successModal" className="modalAccount" style={{ display: 'none'}}>
+          <div className="modal-content">
+            <p>Account created successfully. Please login now.</p>
+          </div>
+        </div>
         <form className="Auth-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Sign Up</h3>
@@ -161,18 +170,20 @@ const SignUp: React.FC = () => {
             <div className="form-group mt-3">
               <label>Password</label>
               <div className="password-input-container">
+                <div className="input-container">
                 <input
                   type={passwordVisible ? 'text' : 'password'}
                   className="form-control mt-1"
                   placeholder="Password"
                   name="password"
                 />
+                </div>
                 <button
                   type="button"
                   className="show-password-button"
                   onClick={() => setPasswordVisible(!passwordVisible)}
                 >
-                  {passwordVisible ? 'Hide' : 'Show'}
+                  {passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible/>}
                 </button>
               </div>
             </div>
@@ -184,6 +195,7 @@ const SignUp: React.FC = () => {
           </div>
         </form>
       </div>
+        </>
     )
   }
 
