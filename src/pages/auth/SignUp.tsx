@@ -129,9 +129,9 @@ const SignUp: React.FC = () => {
                   Submit
                 </button>
               </div>
-              <p className="text-center mt-2">
-                Forgot <a href="#">password?</a>
-              </p>
+              {/*<p className="text-center mt-2">*/}
+              {/*  Forgot <a href="#">password?</a>*/}
+              {/*</p>*/}
             </div>
           </form>
         </div>
@@ -139,6 +139,7 @@ const SignUp: React.FC = () => {
     }
 
     return (
+        <>
       <div className="Auth-form-container">
         <form className="Auth-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
@@ -192,12 +193,13 @@ const SignUp: React.FC = () => {
             </div>
           </div>
         </form>
-        <div id="successModal" className="modal" style={{ display: 'none' }}>
-          <div className="modal-content">
-            <p>User created successfully. Please login now.</p>
-          </div>
-        </div>
       </div>
+          <div id="successModal" className="modal" style={{ display: 'none' }}>
+            <div className="modal-content">
+              <p>Account created successfully. Please login now.</p>
+            </div>
+          </div>
+        </>
     )
   }
 
