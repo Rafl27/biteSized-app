@@ -5,7 +5,7 @@ import React from "react";
 const NotFoundPage: React.FC = () => {
   return (
     <div className="container">
-        <MdCookie className="cookie-icon" />
+        <MdCookie className="cookie-icon404" />
       <h1 className="heading">404 Not Found</h1>
       <p className="paragraph">Sorry, the page you are looking for does not exist.</p>
     </div>
