@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #525252;
+}
+
+.heading {
+    font-size: 3rem;
+    color: #333;
+}
+
+.paragraph {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.cookie-icon {
+    font-size: 10rem;
+}
