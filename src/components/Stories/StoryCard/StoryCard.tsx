@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {formatDate} from "../../../utils/dateUtils";
 import './StoryCard.css'
-import { ImArrowUp, ImArrowDown } from 'react-icons/im'
+import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {FaComments} from "react-icons/fa"
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 
 const StoryCard: React.FC = () => {
     const [stories, setStories] = useState<Story[]>([])
-    const token : string = localStorage.getItem('token')
+    const token: string = localStorage.getItem('token')
     const [upvoteClicked, setUpvoteClicked] = useState<number[]>([])
     const [downvoteClicked, setDownvoteClicked] = useState<number[]>([])
     const [page, setPage] = useState(0)
@@ -17,18 +17,18 @@ const StoryCard: React.FC = () => {
     const [totalPages, setTotalPages] = useState(0)
     const [totalComments, setTotalComments] = useState({});
 
-  useEffect(() => {
-    fetchStories(page, pageSize)
-        .then((data) => {
-            setStories(data.data)
-            setTotalPages(data.totalPages)
-        })
-        .catch(error => console.log('Error', error))
-  }, [page, pageSize])
+    useEffect(() => {
+        fetchStories(page, pageSize)
+            .then((data) => {
+                setStories(data.data)
+                setTotalPages(data.totalPages)
+            })
+            .catch(error => console.log('Error', error))
+    }, [page, pageSize])
 
     useEffect(() => {
         const fetchTotalComments = async () => {
-            const totalCommentsCopy = { ...totalComments };
+            const totalCommentsCopy = {...totalComments};
             for (const story of stories) {
                 const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/story/${story.storyId}/total-comments`);
                 const data = await response.json();
@@ -39,42 +39,42 @@ const StoryCard: React.FC = () => {
 
         fetchTotalComments();
     }, [stories]);
-    
 
-  const handleUpvote = async (storyId: number) => {
-    try {
-      const updatedStory = await upvoteStory(storyId, token);
-      setStories((prevStories) =>
-          prevStories.map((story) =>
-              story.storyId === updatedStory.id
-                  ? { ...story, upvotes: updatedStory.upvote }
-                  : story
-          )
-      );
-      setUpvoteClicked((prevClicked) => [...prevClicked, storyId]);
-    } catch (err) {
-      console.error(err)
+
+    const handleUpvote = async (storyId: number) => {
+        try {
+            const updatedStory = await upvoteStory(storyId, token);
+            setStories((prevStories) =>
+                prevStories.map((story) =>
+                    story.storyId === updatedStory.id
+                        ? {...story, upvotes: updatedStory.upvote}
+                        : story
+                )
+            );
+            setUpvoteClicked((prevClicked) => [...prevClicked, storyId]);
+        } catch (err) {
+            console.error(err)
+        }
     }
-  }
 
-  const handleDownvote = async (storyId: number) => {
-      try {
-          const updatedStory = await downvoteStory(storyId, token)
-          setStories((prevStories) =>
-              prevStories.map((story) =>
-                  story.storyId === updatedStory.id
-                      ? { ...story, downvotes: updatedStory.downvote }
-                      : story
-              )
-          );
-          setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
-      } catch (err) {
-          console.error(err)
-      }
-  }
+    const handleDownvote = async (storyId: number) => {
+        try {
+            const updatedStory = await downvoteStory(storyId, token)
+            setStories((prevStories) =>
+                prevStories.map((story) =>
+                    story.storyId === updatedStory.id
+                        ? {...story, downvotes: updatedStory.downvote}
+                        : story
+                )
+            );
+            setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
+        } catch (err) {
+            console.error(err)
+        }
+    }
     const handlePageChange = (newPage: number) => {
         setPage(newPage)
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
     const handlePageSizeChange = (newSize: number) => {
@@ -86,181 +86,109 @@ const StoryCard: React.FC = () => {
         className: string;
     };
 
-    const getUpvoteColor = (upvotes : number) : BorderColor | undefined => {
+    const getUpvoteColor = (upvotes: number): BorderColor | undefined => {
         if (upvotes >= 10000) {
-            return { borderColor: '#d9173a', className: 'card animateHighUpvotes' };
+            return {borderColor: '#d9173a', className: 'card animateHighUpvotes'};
         } else if (upvotes >= 5000) {
-            return { borderColor: '#00cc00', className: 'card' };
+            return {borderColor: '#00cc00', className: 'card'};
         } else if (upvotes >= 1000) {
-            return { borderColor: 'yellow', className: 'card' };
+            return {borderColor: 'yellow', className: 'card'};
         } else if (upvotes >= 500) {
-            return { borderColor: '#33cc33', className: 'card' };
+            return {borderColor: '#33cc33', className: 'card'};
         } else {
-            return { borderColor: 'white', className: 'card' };
+            return {borderColor: 'white', className: 'card'};
         }
     };
 
-  return (
-    <div className='both-columns'>
-        <div className="column">
-            {stories.slice(0, Math.ceil(stories.length / 2))
-                .sort((a, b) => b.upvotes - a.upvotes)
-                .map((story) => (
-                <div
-                    key={story.storyId}
-                    className={getUpvoteColor(story.upvotes).className}
-                    style={{
-                        borderColor: getUpvoteColor(story.upvotes),
-                    }}
-                >
-                    <div className="card-body">
-                        <h4 className="card-title">{story.title}</h4>
-                        <img
-                            src={story.art}
-                            alt={story.title}
-                            className="card-img-top"
-                        />
-                        <p className="created">Created: {formatDate(story.date)}</p>
-                        <div className="userInfo">
-                            <img
-                                className="profilePicture"
-                                src={story.profile_picture}
-                                alt="user profile picture"
-                            />
-                            <p className="userName">{story.username}</p>
-                        </div>
-                        <div className="card-title-container">
-
-                            <div className="vote-container">
-                                <button
-                                    className={`vote-button upvote ${
-                                        upvoteClicked.includes(story.storyId) ? 'clicked' : ''
-                                    }`}
-                                    onClick={() => handleUpvote(story.storyId)}
-                                    disabled={
-                                        upvoteClicked.includes(story.storyId) ||
-                                        downvoteClicked.includes(story.storyId)
-                                    }
-                                >
-                                    <h2>{story.upvotes}</h2>
-                                    <ImArrowUp />
-                                </button>
-                                <button
-                                    className={`vote-button downvote ${
-                                        downvoteClicked.includes(story.storyId) ? 'clicked' : ''
-                                    }`}
-                                    onClick={() => handleDownvote(story.storyId)}
-                                    disabled={
-                                        downvoteClicked.includes(story.storyId) ||
-                                        upvoteClicked.includes(story.storyId)
-                                    }
-                                >
-                                    <h2>{story.downvotes}</h2>
-                                    <ImArrowDown />
-                                </button>
-                                <div className="comment-container">
-
-                                    <h2 id="total-comments">{totalComments[story.storyId]}</h2>
-                                    <FaComments />
+    return (
+        <div className='cards'>
+            <div className="card-container">
+                {stories
+                    .sort((a, b) => b.upvotes - a.upvotes)
+                    .map((story) => (
+                        <div
+                            key={story.storyId}
+                            className={getUpvoteColor(story.upvotes).className}
+                            style={{
+                                borderColor: getUpvoteColor(story.upvotes),
+                            }}
+                        >
+                            <div className="card-body">
+                                <h4 className="card-title">{story.title}</h4>
+                                <img
+                                    src={story.art}
+                                    alt={story.title}
+                                    className="card-img-top"
+                                />
+                                <p className="created">Created: {formatDate(story.date)}</p>
+                                <div className="userInfo">
+                                    <img
+                                        className="profilePicture"
+                                        src={story.profile_picture}
+                                        alt="user profile picture"
+                                    />
+                                    <p className="userName">{story.username}</p>
                                 </div>
+                                <div className="card-title-container">
+
+                                    <div className="vote-container">
+                                        <button
+                                            className={`vote-button upvote ${
+                                                upvoteClicked.includes(story.storyId) ? 'clicked' : ''
+                                            }`}
+                                            onClick={() => handleUpvote(story.storyId)}
+                                            disabled={
+                                                upvoteClicked.includes(story.storyId) ||
+                                                downvoteClicked.includes(story.storyId)
+                                            }
+                                        >
+                                            <h2>{story.upvotes}</h2>
+                                            <ImArrowUp/>
+                                        </button>
+                                        <button
+                                            className={`vote-button downvote ${
+                                                downvoteClicked.includes(story.storyId) ? 'clicked' : ''
+                                            }`}
+                                            onClick={() => handleDownvote(story.storyId)}
+                                            disabled={
+                                                downvoteClicked.includes(story.storyId) ||
+                                                upvoteClicked.includes(story.storyId)
+                                            }
+                                        >
+                                            <h2>{story.downvotes}</h2>
+                                            <ImArrowDown/>
+                                        </button>
+                                        <div className="comment-container">
+
+                                            <h2 id="total-comments">{totalComments[story.storyId]}</h2>
+                                            <FaComments/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="card-text">{story.content}</p>
+                                <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
+                                    Continue reading
+                                </Link>
                             </div>
                         </div>
-                        <p className="card-text">{story.content}</p>
-                        <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
-                            Continue reading
-                        </Link>
-                    </div>
-                </div>
-            ))}
-        </div>
-        <div className="column">
-            {stories.slice(Math.ceil(stories.length / 2))
-                .sort((a, b) => b.upvotes - a.upvotes)
-                .map((story) => (
-                <div
-                    key={story.storyId}
-                    className={getUpvoteColor(story.upvotes).className}
-                    style={{
-                        borderColor: getUpvoteColor(story.upvotes),
-                    }}
+                    ))}
+            </div>
+            <div className="pagination">
+                <button
+                    onClick={() => handlePageChange(page - 1)}
+                    disabled={page === 0}
                 >
-                    <div className="card-body">
-                        <h4 className="card-title">{story.title}</h4>
-                        <img
-                            src={story.art}
-                            alt={story.title}
-
-                            className="card-img-top"
-                        />
-                        <p className="created">Created: {formatDate(story.date)}</p>
-                        <div className="userInfo">
-                            <img
-                                className="profilePicture"
-                                src={story.profile_picture}
-                                alt="user profile picture"
-                            />
-                            <p className="userName">{story.username}</p>
-                        </div>
-                        <div className="card-title-container">
-
-                            <div className="vote-container">
-                                <button
-                                    className={`vote-button upvote ${
-                                        upvoteClicked.includes(story.storyId) ? 'clicked' : ''
-                                    }`}
-                                    onClick={() => handleUpvote(story.storyId)}
-                                    disabled={
-                                        upvoteClicked.includes(story.storyId) ||
-                                        downvoteClicked.includes(story.storyId)
-                                    }
-                                >
-                                    <h2>{story.upvotes}</h2>
-                                    <ImArrowUp />
-                                </button>
-                                <button
-                                    className={`vote-button downvote ${
-                                        downvoteClicked.includes(story.storyId) ? 'clicked' : ''
-                                    }`}
-                                    onClick={() => handleDownvote(story.storyId)}
-                                    disabled={
-                                        downvoteClicked.includes(story.storyId) ||
-                                        upvoteClicked.includes(story.storyId)
-                                    }
-                                >
-                                    <h2>{story.downvotes}</h2>
-                                    <ImArrowDown />
-                                </button>
-                                <div className="comment-container">
-
-                                <h2 id="total-comments">{totalComments[story.storyId]}</h2>
-                                    <FaComments />
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">{story.content}</p>
-                        <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
-                            Continue reading
-                        </Link>
-                    </div>
-                </div>
-            ))}
+                    Previous
+                </button>
+                <span>Page {page + 1} of {totalPages}</span>
+                <button
+                    onClick={() => handlePageChange(page + 1)}
+                    disabled={page >= totalPages - 1}
+                >
+                    Next
+                </button>
+            </div>
         </div>
-        <div className="pagination">
-            <button
-                onClick={() => handlePageChange(page - 1)}
-                disabled={page === 0}
-            >
-                Previous
-            </button>
-            <span>Page {page + 1} of {totalPages}</span>
-            <button
-                onClick={() => handlePageChange(page + 1)}
-                disabled={page >= totalPages - 1}
-            >
-                Next
-            </button>
-        </div>
-    </div>
-  )
+    )
 }
 export default StoryCard
