@@ -60,14 +60,20 @@ const TopBar: React.FC = () => {
         </div>
       </Link>
       <div className="options">
-        <Link style={{ textDecoration: 'none', color: 'black' }} to="/profile">
-          {userPicture && (
-            <div className="option">
-              <img className="ppTop" src={userData.profilePicture} alt="Profile" />
-              {userData.username}
-            </div>
-          )}
-        </Link>
+        {token ? (
+            <Link style={{ textDecoration: 'none', color: 'black' }} to="/profile">
+              {userPicture && (
+                  <div className="option">
+                    <img className="ppTop" src={userData.profilePicture} alt="Profile" />
+                    {userData.username}
+                  </div>
+              )}
+            </Link>
+        ) : (
+            <Link to="/auth" style={{ textDecoration: 'none', color: 'black' }}>
+              <button className="get-started-button">Register/Login</button>
+            </Link>
+        )}
         <Link style={{ textDecoration: 'none', color: 'black' }} to="/create">
           <div className="option">
             <BsPlusCircleFill className="BsPlusCircleFill" />
