@@ -93,3 +93,19 @@ h2 {
   overflow: hidden;
   color: white !important;
 }
+
+.create-bio-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+}
