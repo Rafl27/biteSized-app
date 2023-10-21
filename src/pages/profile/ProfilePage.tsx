@@ -49,7 +49,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           .get(`${import.meta.env.VITE_API_BASE_URL}/user/info`, config)
           .then((response) => {
             setUserData(response.data);
-            // Once user data is available, fetch user bio
             axios
                 .get(`http://localhost:8080/user/bio/${response.data.id}`, config)
                 .then((bioResponse) => {
@@ -64,19 +63,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           });
     }
   }, [token]);
-
-  // useEffect(() => {
-  //   if (token){
-  //     const config = {
-  //       headers: {
-  //         Authorization : `Bearer ${token}`
-  //       }
-  //     }
-  //
-  //
-  //   }
-  // }, []);
-
   const fetchStories = async () => {
     try {
       const response = await fetch(
@@ -99,10 +85,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
     }
   }
 
-  // const userName = name || localStorage.getItem('name')
-  // const userPicture = profilePicture || localStorage.getItem('profilePicture')
-  // const pictureSrc = userPicture !== null ? userPicture : undefined
-
   return (
     <>
       <TopBar />
@@ -112,7 +94,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
         </div>
         <h2>{userData.username}</h2>
         {userBio.bio != '' ? (
-            <p>{userBio.bio}</p>
+            <p className="bio">{userBio.bio}</p>
         ) : (
             <button
                 className="create-bio-button"

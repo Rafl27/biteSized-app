@@ -94,6 +94,12 @@ h2 {
   color: white !important;
 }
 
+.bio {
+  font-size: 16px;
+  color: #ababab;=
+  margin: 10px 0;
+}
+
 .create-bio-button {
   background-color: #000;
   color: #fff;
