@@ -71,11 +71,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* ensure the modal is displayed on top of other content */
+  z-index: 9999;
 }
 
 .modal-content {
@@ -105,11 +105,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* ensure the modal is displayed on top of other content */
+  z-index: 1000;
 }
 
 .userName {
@@ -117,9 +117,9 @@
 }
 
 .nested-reply {
-  margin-left: 40px; /* Increase the margin for nested replies */
-  padding-left: 20px; /* Maintain the same padding as the replies */
-  border-left: 1.5px solid #ccc; /* Add a darker left border */
+  margin-left: 40px;
+  padding-left: 20px;
+  border-left: 1.5px solid #ccc;
 }
 
 #threadsh2{
