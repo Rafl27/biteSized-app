@@ -37,41 +37,45 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   })
 
   useEffect(() => {
+    // Fetch user data
     if (token) {
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
 
-      axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/info`, config)
-          .then(response => {
+      axios
+          .get(`${import.meta.env.VITE_API_BASE_URL}/user/info`, config)
+          .then((response) => {
             setUserData(response.data);
+            // Once user data is available, fetch user bio
+            axios
+                .get(`http://localhost:8080/user/bio/${response.data.id}`, config)
+                .then((bioResponse) => {
+                  setUserBio(bioResponse.data);
+                })
+                .catch((error) => {
+                  console.error('Error fetching user bio', error);
+                });
           })
-          .catch(error => {
+          .catch((error) => {
             console.error('Error fetching user data:', error);
           });
     }
   }, [token]);
 
-  useEffect(() => {
-    if (token){
-      const config = {
-        headers: {
-          Authorization : `Bearer ${token}`
-        }
-      }
-
-      axios.get(`http://localhost:8080/user/bio/${userData.id}`, config)
-          .then(response => {
-            setUserBio(response.data)
-            // console.log(response.data)
-          })
-          .catch(error => {
-            console.error("Error fetching user bio", error)
-          })
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (token){
+  //     const config = {
+  //       headers: {
+  //         Authorization : `Bearer ${token}`
+  //       }
+  //     }
+  //
+  //
+  //   }
+  // }, []);
 
   const fetchStories = async () => {
     try {
@@ -107,7 +111,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           <img src={userData.profilePicture} alt="Profile" />
         </div>
         <h2>{userData.username}</h2>
-        {userBio.bio ? (
+        {userBio.bio != '' ? (
             <p>{userBio.bio}</p>
         ) : (
             <button
@@ -115,7 +119,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
                 // onClick={handleCreateBio}
             >Create your bio here!</button>
         )}
-        {/*<p>{userBio.bio}</p>*/}
+
         <div className="story-list">
           <div className="column">
             {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
