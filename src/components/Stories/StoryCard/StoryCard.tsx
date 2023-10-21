@@ -6,6 +6,7 @@ import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {FaComments} from "react-icons/fa"
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
+import {compacNumbers} from "../../../utils/compacNumbers";
 
 const StoryCard: React.FC = () => {
     const [stories, setStories] = useState<Story[]>([])
@@ -142,7 +143,7 @@ const StoryCard: React.FC = () => {
                                                 downvoteClicked.includes(story.storyId)
                                             }
                                         >
-                                            <h2>{story.upvotes}</h2>
+                                            <h2>{compacNumbers(story.upvotes)}</h2>
                                             <ImArrowUp/>
                                         </button>
                                         <button
@@ -155,7 +156,7 @@ const StoryCard: React.FC = () => {
                                                 upvoteClicked.includes(story.storyId)
                                             }
                                         >
-                                            <h2>{story.downvotes}</h2>
+                                            <h2>{compacNumbers(story.downvotes)}</h2>
                                             <ImArrowDown/>
                                         </button>
                                         <div className="comment-container">
