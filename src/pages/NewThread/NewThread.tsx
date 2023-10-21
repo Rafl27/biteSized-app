@@ -111,10 +111,11 @@ function App({ storyID, useRepliesAPI  }) {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href={`${import.meta.env.VITE_API_BASE_URL}/story/${createdStoryName}`}
+              // href={`${import.meta.env.VITE_API_BASE_URL}/story/${createdStoryName}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
+              onClick={() => window.location.reload()}
             >
               View Story
             </a>
