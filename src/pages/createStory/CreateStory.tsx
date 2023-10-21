@@ -129,7 +129,7 @@ function App() {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href={`${import.meta.env.VITE_API_BASE_URL}/story/${createdStoryId}`}
+              href={`${import.meta.env.VITE_APP_BASE_URL}/story/${createdStoryId}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
