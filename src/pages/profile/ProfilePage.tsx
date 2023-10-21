@@ -65,6 +65,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
       axios.get(`http://localhost:8080/user/bio/${userData.id}`, config)
           .then(response => {
             setUserBio(response.data)
+            // console.log(response.data)
           })
           .catch(error => {
             console.error("Error fetching user bio", error)
@@ -106,7 +107,15 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           <img src={userData.profilePicture} alt="Profile" />
         </div>
         <h2>{userData.username}</h2>
-        <p>{userBio.bio}</p>
+        {userBio.bio ? (
+            <p>{userBio.bio}</p>
+        ) : (
+            <button
+                className="create-bio-button"
+                // onClick={handleCreateBio}
+            >Create your bio here!</button>
+        )}
+        {/*<p>{userBio.bio}</p>*/}
         <div className="story-list">
           <div className="column">
             {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
