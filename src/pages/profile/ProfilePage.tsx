@@ -143,7 +143,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
                     </div>
                     ))}
           </div>
-          ))
         </div>
       </div>
     </>
