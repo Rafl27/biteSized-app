@@ -1,7 +1,5 @@
 .commentArt{
-    /*width: 50%;*/
     height: 2%;
-    /*object-fit: contain;*/
     justify-content: center;
     align-items: center;
     margin-right: 2%;
@@ -11,11 +9,19 @@
 .art-comment{
     display: flex;
     align-items: center;
-    /*margin-right: 10px;*/
+}
+
+@media (max-width: 450px) {
+    .art-comment{
+        display: block;
+    }
+    .commentArt{
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .comment-content{
-    /*background-color: #e0e0e0;*/
     border-radius: 10px;
     padding: 10px;
     width: auto;
@@ -25,7 +31,6 @@
 .comment{
     background-color: #413e3e !important;
     color: white;
-    /*max-width: 50%;*/
 }
 
 .userInfo img{
@@ -80,7 +85,6 @@
 }
 
 .comment {
-    /*flex-basis: calc(50% - 10px);*/
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 8px;
@@ -89,8 +93,8 @@
     transition: box-shadow 0.3s ease-in-out;
     /*flex: 1;*/
     height: fit-content;
-    flex: 0 0 calc(50% - 10px); /* Adjust the width of each column (50% - margin) */
-    margin: 5px; /* Add some margin between the columns */
+    flex: 0 0 calc(50% - 10px);
+    margin: 5px;
 }
 
 .comment:hover {
