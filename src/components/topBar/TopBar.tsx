@@ -47,6 +47,9 @@ const TopBar: React.FC = () => {
     }
   }, [token]);
 
+  const nameParts : string[] = userData.username.split(' ')
+  const firstName : string = nameParts[0]
+
   return (
     <div className="top-bar">
       <Link
@@ -56,7 +59,7 @@ const TopBar: React.FC = () => {
       >
         <div className="logo">
           <MdCookie className="cookie-icon" />
-          BiteSized
+          <span className="bitesized-text">BiteSized</span>
         </div>
       </Link>
       <div className="options">
@@ -64,14 +67,16 @@ const TopBar: React.FC = () => {
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/profile">
               {userPicture && (
                   <div className="option">
+                    <div className="centered-content">
                     <img className="ppTop" src={userData.profilePicture} alt="Profile" />
-                    {userData.username}
+                  </div>
+                    <p id="userName">{firstName}</p>
                   </div>
               )}
             </Link>
         ) : (
             <Link to="/auth" style={{ textDecoration: 'none', color: 'black' }}>
-              <button className="get-started-button">Register/Login</button>
+              <button className="get-started-button">Login</button>
             </Link>
         )}
         <Link style={{ textDecoration: 'none', color: 'black' }} to="/create">
