@@ -94,13 +94,14 @@ function App() {
               name="img"
               onChange={(e) => setImage(e.target.value)}
             />
-            <div
-                {...getRootProps()}
-                className="dropzone"
-            >
-              <input {...getInputProps()} />
-              <p>Drag &amp; drop an image here, or click to select an image.</p>
-            </div>
+            {/*TODO: Not implemented yet 👇*/}
+            {/*<div*/}
+            {/*    {...getRootProps()}*/}
+            {/*    className="dropzone"*/}
+            {/*>*/}
+            {/*  <input {...getInputProps()} />*/}
+            {/*  <p>Drag &amp; drop an image here, or click to select an image.</p>*/}
+            {/*</div>*/}
             <textarea
               placeholder="First Paragraph"
               name="text"
