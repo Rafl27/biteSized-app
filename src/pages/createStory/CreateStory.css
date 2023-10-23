@@ -6,7 +6,7 @@
 }
 
 body{
-  background-color: #5b5757 !important;
+  background-color: #171616 !important;
 }
 
 .inputs {
@@ -158,5 +158,5 @@ textarea:focus {
 .dropzone p {
   margin: 0;
   font-size: 16px;
-  color: #333;
+  color: white;
 }
