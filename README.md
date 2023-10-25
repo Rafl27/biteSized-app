@@ -11,7 +11,7 @@ Bite Sized é muito mais do que apenas uma plataforma. É um mundo vibrante onde
 
 🤝 Colaboração sem Fronteiras: O Bite Sized incentiva a colaboração. Convide outros escritores e artistas para se juntar a você na criação de histórias compartilhadas. Veja como suas ideias se entrelaçam com as deles, criando uma trama única e envolvente que só poderia ter nascido na nossa plataforma.
 
-👥 Construa sua Reputação: Faça seu nome no Bite Sized. À medida que suas histórias e colaborações se destacam, você ganha uma reputação na comunidade. Ganhe seguidores, construa sua base de fãs e torne-se um influenciador literário no Bite Sized.
+👥 Construa sua Reputação: Faça seu nome no Bite Sized. À medida que suas histórias e colaborações se destacam, você ganha uma reputação na comunidade. Ganhe seguidores, construa sua base de fãs e torne-se um influenciador literário no Bite Sized. 
 
 🪄 Infinitas Possibilidades em uma História: O Bite Sized não é apenas uma plataforma, é um portal para infinitas possibilidades dentro de uma única história. Junte-se a outros usuários e desbloqueie múltiplos caminhos, finais alternativos e reviravoltas emocionantes que transformarão sua narrativa em uma experiência única e surpreendente.
 
