@@ -33,7 +33,7 @@
   transform: scale(1.01);
 }
 
-/* 
+/*
 .card-body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 20px;
@@ -214,5 +214,7 @@ total-comments {
   justify-content: space-evenly;
   margin: 0 20px 0 20px;
 }
+
+
 
 
