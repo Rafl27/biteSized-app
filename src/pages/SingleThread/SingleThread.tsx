@@ -1,8 +1,9 @@
 import './SingleThread.css'
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Comment} from "../../interfaces";
 import {fetchSingleComment} from "../../services/api";
 import {useParams} from "react-router-dom";
+import TopBar from "../../components/topBar/TopBar";
 
 const initialCommentState = {
     idComment: 0,
@@ -24,7 +25,6 @@ const SingleThread = () => {
     useEffect(() => {
         fetchSingleComment(commentId)
             .then(data => {
-                console.log(data[0].contentComment)
                 setComment(data[0]);
             })
             .catch(error => console.error("Error: ", error));
@@ -33,7 +33,27 @@ const SingleThread = () => {
     // console.log(comment)
     return (
         <>
-        <h1>opa eae meu velhote {commentId} {comment.userEmail} </h1>
+            <TopBar/>
+            <div className="single-story-container">
+                <div className="header">
+                    {comment.artComment && (
+                        <img className="story-img" src={comment.artComment} alt={comment.idComment}/>
+                    )}
+                    <p>Published on: {new Date(comment.dateComment).toLocaleDateString()}</p>
+                    <p>
+                        <img
+                            className="profilePicture"
+                            src={comment.userProfilePic || ''}
+                            alt="user profile picture"
+                        />
+                        {comment.userUsername}
+                    </p>
+                </div>
+                <div className="content">
+                    <p>{comment.contentComment}</p>
+                </div>
+
+            </div>
         </>
     )
 }
