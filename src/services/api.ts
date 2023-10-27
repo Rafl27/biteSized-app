@@ -1,4 +1,4 @@
-import axios from "axios"; import React from "react";
+import axios from "axios";
 import {StoryCard as Story} from "../interfaces/StoryCard";
 
 export const fetchCommentsByStoryId = async (storyId : number) => {
@@ -106,5 +106,16 @@ export const downvoteComment = async (commentId: number, authToken: string) => {
         return response.data
     }catch (e){
         console.log(e)
+    }
+}
+
+export const fetchSingleComment = async (commentId : number) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/comment/${commentId}/single-thread`)
+        console.log("oiiii")
+        console.log(response.data)
+        return response.data
+    }catch(error) {
+        console.error("Erro fetching comment Data: ", error)
     }
 }
