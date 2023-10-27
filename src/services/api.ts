@@ -112,7 +112,6 @@ export const downvoteComment = async (commentId: number, authToken: string) => {
 export const fetchSingleComment = async (commentId : number) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/comment/${commentId}/single-thread`)
-        console.log(response.data)
         return response.data
     }catch(error) {
         console.error("Erro fetching comment Data: ", error)
