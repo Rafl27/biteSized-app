@@ -130,3 +130,10 @@
   height: auto;
   width: 50%;
 }
+
+@media (max-width: 450px) {
+  .story-img{
+    height: auto;
+    width: 100%;
+  }
+}
