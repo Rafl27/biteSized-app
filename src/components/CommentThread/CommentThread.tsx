@@ -41,6 +41,8 @@ const CommentThread = ({ comment }) => {
         }
     }
 
+    const borderColors = ['#ccc', '#8a2c12', '#1b1bad', '#10590f', '#4a1275'];
+
     return (
         <div className="comment">
             <div className="userInfo">
@@ -87,8 +89,10 @@ const CommentThread = ({ comment }) => {
 
             {comment.replies && comment.replies.length > 0 && (
                 <div className="replies">
-                    {comment.replies.map(reply => (
-                        <CommentThread key={reply.idComment} comment={reply} />
+                    {comment.replies.map((reply, index) => (
+                        <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
+                            <CommentThread comment={reply} />
+                        </div>
                     ))}
                 </div>
             )}
