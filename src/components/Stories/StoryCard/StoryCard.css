@@ -79,8 +79,6 @@ total-comments {
   padding-left: 10px;
 }
 
-
-
 .vote-button.upvote:hover {
   color: #33cc33;
 }
@@ -214,6 +212,8 @@ total-comments {
   justify-content: space-evenly;
   margin: 0 20px 0 20px;
 }
+
+
 
 
 
