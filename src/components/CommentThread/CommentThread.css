@@ -21,6 +21,20 @@
         height: 100%;
         width: 100%;
     }
+
+    .button-continue{
+        background-color: transparent;
+        border: none;
+    }
+
+    .reply-continue{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.reply-continue{
+    display: flex;
 }
 
 .comment-content{
@@ -147,5 +161,10 @@
 
 .continue-reading-button:hover {
     background-color: #0056b3;
+}
+
+.button-continue{
+    background-color: transparent;
+    border: none;
 }
 

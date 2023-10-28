@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import './CommentThread.css'
 import {RiChat3Line} from "react-icons/ri";
+import {BsBookHalf} from "react-icons/bs"
 import {ImArrowDown, ImArrowUp} from "react-icons/im";
 import {upvoteComment, downvoteComment} from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
@@ -53,11 +54,15 @@ const CommentThread = ({ comment }) => {
                 <div className="comment-content">{comment.contentComment}</div>
             </div>
             <div className="button-container">
+                <div className="reply-continue">
                 <button className="replyButton"
                 onClick={toggleModal}>
                     <RiChat3Line className="chatIcon" />
                     Reply
                 </button>
+                    <Link to={`/comment/${comment.idComment}/single-thread`} className="btn btn-secondary button-continue">
+                        <BsBookHalf /> Continue reading
+                    </Link>
                 {showModal && (
                     <div className="modal-overlay" onClick={closeModal}>
                         <div
@@ -72,9 +77,8 @@ const CommentThread = ({ comment }) => {
                     </div>
                 )}
                     {/*Continue reading*/}
-                    <Link to={`/comment/${comment.idComment}/single-thread`} className="btn btn-secondary">
-                        Continue reading
-                    </Link>
+
+                </div>
                 <div className="vote-container">
                     <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{upvotes}</p> </button>
                     <button className='vote-button downvote' onClick={() => handleDownvote(comment.idComment)}> <ImArrowDown /> <p>{downvotes}</p> </button>
