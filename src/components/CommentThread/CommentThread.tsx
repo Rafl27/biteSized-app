@@ -70,11 +70,13 @@ const CommentThread = ({ comment }) => {
                         </div>
                     </div>
                 )}
+                <button className="continue-reading-button">Continue reading</button>
                 <div className="vote-container">
                     <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{upvotes}</p> </button>
                     <button className='vote-button downvote' onClick={() => handleDownvote(comment.idComment)}> <ImArrowDown /> <p>{downvotes}</p> </button>
                 </div>
             </div>
+
             {comment.replies && comment.replies.length > 0 && (
                 <div className="replies">
                     {comment.replies.map(reply => (
