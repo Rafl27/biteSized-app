@@ -10,5 +10,5 @@ export interface Comment {
     userProfilePic: string,
     userUsername: string,
     userEmail: string
-    replies: Comment[]
+    replies?: Comment[]
 }

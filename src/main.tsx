@@ -8,6 +8,7 @@ import SingleStory from './pages/SingleStory/SingleStory'
 import CreateStory from './pages/createStory/CreateStory'
 import ProfilePage from './pages/profile/ProfilePage'
 import NewThread from './pages/NewThread/NewThread'
+import SingleThread from './pages/SingleThread/SingleThread'
 import NotFoundPage from "./pages/404/404";
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: '*',
     element: <NotFoundPage />,
+  },
+  {
+    path: '/comment/:commentId/single-thread',
+    element: <SingleThread/>
   }
 ])
 
