@@ -115,3 +115,12 @@ h2 {
     color: #000;
   }
 }
+
+@media (max-width: 450px) {
+  .story-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+}
