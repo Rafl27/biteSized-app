@@ -120,6 +120,7 @@ const StoryCard: React.FC = () => {
                                     src={story.art}
                                     alt={story.title}
                                     className="card-img-top"
+                                    style={{ maxWidth: '100%' }}
                                 />
                                 <p className="created">Created: {formatDate(story.date)}</p>
                                 <div className="userInfo">
