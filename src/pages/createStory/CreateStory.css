@@ -160,3 +160,26 @@ textarea:focus {
   font-size: 16px;
   color: white;
 }
+
+@media (max-width: 450px) {
+  .container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  /*TODO: need to center this bad boy*/
+  .createStory-form{
+    padding-top: 20px;
+  }
+
+  #createImage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease-in-out;
+  }
+}
