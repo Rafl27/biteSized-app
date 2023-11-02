@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './CreateBio.css';
 import Modal from '../Modal/Modal'
+import {ModalProps} from "react-bootstrap";
+import {postBio} from "../../services/api";
 
-const CreateBio = () => {
+const CreateBio: React.FC<ModalProps> = ({userId, token}) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [userBio, setUserBio] = useState('');
 
@@ -17,6 +19,9 @@ const CreateBio = () => {
     const handleSaveBio = (bio: string) => {
         setUserBio(bio);
         setModalOpen(false);
+        postBio(userId, bio, token)
+        window.location.reload()
+        //TODO: a api já retorna a bio, só preciso atualizar no componente profile.
     };
 
     return (
