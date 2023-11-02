@@ -6,9 +6,10 @@ interface ModalProps {
     onClose: () => void;
     onSave: (bio: string) => void;
     modalTitle : string
+    rows : number
 }
 
-const Modal: React.FC<ModalProps> = ({ initialText, onClose, onSave, modalTitle }) => {
+const Modal: React.FC<ModalProps> = ({ initialText, onClose, onSave, modalTitle , rows}) => {
     const [text, setText] = useState(initialText);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,10 +23,12 @@ const Modal: React.FC<ModalProps> = ({ initialText, onClose, onSave, modalTitle 
     return (
         <div className='modalT'>
             <div className='modal-content'>
-            <h2>{modalTitle}</h2>
-            <input type="text" value={text} onChange={handleChange} />
-            <button onClick={handleSave}>Save</button>
-            <button onClick={onClose}>Close</button>
+                <h2 className="modal-title">{modalTitle}</h2>
+                <textarea rows={rows} className="modal-input" value={text} onChange={handleChange} />
+                <div className="button-container">
+                    <button className="modal-button save-button" onClick={handleSave}>Save</button>
+                    <button className="modal-button close-button" onClick={onClose}>Close</button>
+                </div>
             </div>
         </div>
     );
