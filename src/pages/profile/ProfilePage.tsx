@@ -98,7 +98,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
         {userBio.bio != '' ? (
             <p className="bio">{userBio.bio}</p>
         ) : (
-            <CreateBio />
+            <CreateBio userId={userData.id} token={token}  />
         )}
 
         <div className="story-list">
