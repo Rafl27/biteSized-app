@@ -101,20 +101,18 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
             <CreateBio userId={userData.id} token={token}  />
         )}
 
-        <div className="story-list">
-          <div className="column">
-            {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
-                <div className="story" key={story.title}>
-                  <h3>{story.title}</h3>
-                  <img src={story.art} alt={story.title} className="card-img-top" />
-                  <p className="story-text">{story.content}</p>
-                  <p>Upvotes: {story.upvotes}</p>
-                  <p>Downvotes: {story.downvotes}</p>
-                </div>
-                ))}
-          </div>
-          <div className="column">
-            {stories.slice(Math.ceil(stories.length / 2)).map((story) => (
+        {stories.length === 0 ? (
+            <>
+              <div className='no-story-messages'>
+                <h1>You haven't created any stories yet 🫵🏻</h1>
+                <h2>Let's Begin Your Storytelling Journey</h2>
+                <button className='btn btn-secondary'>Create a story clicking here</button>
+              </div>
+            </>
+        ) : (
+            <div className="story-list">
+              <div className="column">
+                {stories.slice(0, Math.ceil(stories.length / 2)).map((story) => (
                     <div className="story" key={story.title}>
                       <h3>{story.title}</h3>
                       <img src={story.art} alt={story.title} className="card-img-top" />
@@ -122,9 +120,21 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
                       <p>Upvotes: {story.upvotes}</p>
                       <p>Downvotes: {story.downvotes}</p>
                     </div>
-                    ))}
-          </div>
-        </div>
+                ))}
+              </div>
+              <div className="column">
+                {stories.slice(Math.ceil(stories.length / 2)).map((story) => (
+                    <div className="story" key={story.title}>
+                      <h3>{story.title}</h3>
+                      <img src={story.art} alt={story.title} className="card-img-top" />
+                      <p className="story-text">{story.content}</p>
+                      <p>Upvotes: {story.upvotes}</p>
+                      <p>Downvotes: {story.downvotes}</p>
+                    </div>
+                ))}
+              </div>
+            </div>
+        )}
       </div>
     </>
   )
