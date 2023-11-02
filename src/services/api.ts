@@ -114,6 +114,25 @@ export const fetchSingleComment = async (commentId : number) => {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/comment/${commentId}/single-thread`)
         return response.data
     }catch(error) {
-        console.error("Erro fetching comment Data: ", error)
+        console.error("Error fetching comment Data: ", error)
+    }
+}
+
+export const postBio = async (userId : number, bio : string, token : string) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/user/bio/${userId}`,
+            {
+                bio
+            },
+            config)
+        console.log(response.data)
+        return response.data
+    }
+    catch (error){
+        console.log("Error creating bio")
     }
 }
