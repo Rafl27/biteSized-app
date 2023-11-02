@@ -28,6 +28,7 @@ const CreateBio = () => {
                     onSave={handleSaveBio}
                     initialText={userBio}
                     modalTitle={'User bio'}
+                    rows={3}
                 />
             )}
         </div>
