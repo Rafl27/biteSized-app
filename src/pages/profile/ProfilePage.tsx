@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './ProfilePage.css'
 import TopBar from '../../components/topBar/TopBar'
 import axios from "axios";
+import CreateBio from "../../components/CreateBio/CreateBio";
 
 interface ProfilePageProps {
   name: string
@@ -93,13 +94,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           <img src={userData.profilePicture} alt="Profile" />
         </div>
         <h2>{userData.username}</h2>
+
         {userBio.bio != '' ? (
             <p className="bio">{userBio.bio}</p>
         ) : (
-            <button
-                className="create-bio-button"
-                // onClick={handleCreateBio}
-            >Create your bio here!</button>
+            <CreateBio userId={userData.id} token={token}  />
         )}
 
         <div className="story-list">
