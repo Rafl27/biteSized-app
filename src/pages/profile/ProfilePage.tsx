@@ -3,6 +3,7 @@ import './ProfilePage.css'
 import TopBar from '../../components/topBar/TopBar'
 import axios from "axios";
 import CreateBio from "../../components/CreateBio/CreateBio";
+import {Link} from "react-router-dom";
 
 interface ProfilePageProps {
   name: string
@@ -106,7 +107,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
               <div className='no-story-messages'>
                 <h1>You haven't created any stories yet 🫵🏻</h1>
                 <h2>Let's Begin Your Storytelling Journey</h2>
-                <button className='btn btn-secondary'>Create a story clicking here</button>
+                <Link to={`/create`} className="btn btn-secondary">
+                  Create a story clicking here
+                </Link>
               </div>
             </>
         ) : (
