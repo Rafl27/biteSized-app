@@ -21,7 +21,7 @@ const CreateBio = () => {
 
     return (
         <div>
-            <button onClick={handleOpenModal}>Create User Bio</button>
+            <button className="create-button" onClick={handleOpenModal}>Create User Bio</button>
             {modalOpen && (
                 <Modal
                     onClose={handleCloseModal}
