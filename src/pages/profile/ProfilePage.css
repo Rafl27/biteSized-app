@@ -124,3 +124,15 @@ h2 {
     flex-direction: column-reverse;
   }
 }
+
+.no-story-messages{
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
