@@ -52,7 +52,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
           .then((response) => {
             setUserData(response.data);
             axios
-                .get(`http://localhost:8080/user/bio/${response.data.id}`, config)
+                .get(`${import.meta.env.VITE_API_BASE_URL}/user/bio/${response.data.id}`, config)
                 .then((bioResponse) => {
                   setUserBio(bioResponse.data);
                 })
