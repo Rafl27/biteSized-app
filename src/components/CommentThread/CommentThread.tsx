@@ -107,7 +107,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
                 <div className="replies">
                     {depth === 2
                         ? (
-                        <Link to={`/story/${comment.idComment}`} className="btn btn-secondary button-continue">
+                        <Link to={`/thread/${comment.idComment}`} className="btn btn-secondary button-continue">
                             <MdUnfoldMore /> Open {remainingThreadsCount} remaining thread(s)
                         </Link>
                         )
