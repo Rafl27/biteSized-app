@@ -6,9 +6,7 @@ import { ImArrowDown, ImArrowUp } from "react-icons/im";
 import {
     upvoteComment,
     downvoteComment,
-    remainingThreadsCount,
     fetchRemainingThreadsCount,
-    fetchSingleComment
 } from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
 import { Link } from "react-router-dom";
@@ -41,14 +39,14 @@ const CommentThread = ({ comment, depth = 0 }) => {
     }
 
     useEffect(() => {
-        fetchRemainingThreadsCount(19)
-            .then(data => {
-                setRemainingThreadsCount(data);
-            })
-            .catch(error => {
-                console.error("Error: ", error);
-            });
-    }, []);
+            fetchRemainingThreadsCount(comment.idComment)
+                .then(data => {
+                    setRemainingThreadsCount(data);
+                })
+                .catch(error => {
+                    console.error("Error: ", error);
+                });
+    }, [comment.id]);
 
     const toggleModal = () => {
         setShowModal((prevShowModal) => !prevShowModal);
@@ -107,10 +105,9 @@ const CommentThread = ({ comment, depth = 0 }) => {
                 <div className="replies">
                     {depth === 2
                         ? (
-                            <button onClick={() => {
+                            <button className='remainingButton' onClick={() => {
                                 setShowRemainingReplies(true)
-                                // handleRemainingThreadsCount(comment.replies[0].id)
-                            }}>Open {remainingThreadsCount} remaining threads</button>
+                            }}>Open {remainingThreadsCount} remaining thread(s)</button>
                         )
                         : comment.replies.map((reply, index) => (
                             <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
