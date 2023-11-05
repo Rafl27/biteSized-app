@@ -140,7 +140,7 @@ export const postBio = async (userId : number, bio : string, token : string) => 
 export const fetchRemainingThreadsCount = async (threadId : number) => {
     try {
         const response = await axios.get(
-            `${import.meta.env.VITE_API_BASE_URL}/comment/19/more-threads-count`
+            `${import.meta.env.VITE_API_BASE_URL}/comment/${threadId}/more-threads-count`
         )
         return response.data
     }
