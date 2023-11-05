@@ -10,6 +10,7 @@ import ProfilePage from './pages/profile/ProfilePage'
 import NewThread from './pages/NewThread/NewThread'
 import SingleThread from './pages/SingleThread/SingleThread'
 import NotFoundPage from "./pages/404/404";
+import RemainingThreads from "./pages/RemainingThreads/RemainingThreads";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: '/comment/:commentId/single-thread',
     element: <SingleThread/>
+  },
+  {
+    path: '/thread/:idComment',
+    element: <RemainingThreads />
   }
 ])
 
