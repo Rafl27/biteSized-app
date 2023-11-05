@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import './CommentThread.css';
 import { RiChat3Line } from "react-icons/ri";
 import { BsBookHalf } from "react-icons/bs";
 import { ImArrowDown, ImArrowUp } from "react-icons/im";
-import { upvoteComment, downvoteComment } from "../../services/api";
+import {
+    upvoteComment,
+    downvoteComment,
+    remainingThreadsCount,
+    fetchRemainingThreadsCount,
+    fetchSingleComment
+} from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
 import { Link } from "react-router-dom";
+
 
 const CommentThread = ({ comment, depth = 0 }) => {
     const token = localStorage.getItem('token');
@@ -13,6 +20,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
     const [downvotes, setDownvotes] = useState(comment.downvotesComment);
     const [showModal, setShowModal] = useState(false);
     const [showRemainingReplies, setShowRemainingReplies] = useState(false);
+    const [remainingThreadsCount, setRemainingThreadsCount] = useState(0)
 
     const handleUpvote = async (commentId) => {
         try {
@@ -31,6 +39,16 @@ const CommentThread = ({ comment, depth = 0 }) => {
             console.error(err);
         }
     }
+
+    useEffect(() => {
+        fetchRemainingThreadsCount(19)
+            .then(data => {
+                setRemainingThreadsCount(data);
+            })
+            .catch(error => {
+                console.error("Error: ", error);
+            });
+    }, []);
 
     const toggleModal = () => {
         setShowModal((prevShowModal) => !prevShowModal);
@@ -89,7 +107,10 @@ const CommentThread = ({ comment, depth = 0 }) => {
                 <div className="replies">
                     {depth === 2
                         ? (
-                            <button onClick={() => setShowRemainingReplies(true)}>Open remaining threads</button>
+                            <button onClick={() => {
+                                setShowRemainingReplies(true)
+                                // handleRemainingThreadsCount(comment.replies[0].id)
+                            }}>Open {remainingThreadsCount} remaining threads</button>
                         )
                         : comment.replies.map((reply, index) => (
                             <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
