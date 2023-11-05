@@ -38,7 +38,7 @@ export const fetchStories = async (page: number, pageSize: number) => {
         );
         return {
             data: response.data.content,
-            totalPages: response.data.totalPages, // Add this line to get total pages
+            totalPages: response.data.totalPages,
         };
     } catch (err) {
         console.error(err);
@@ -141,6 +141,18 @@ export const fetchRemainingThreadsCount = async (threadId : number) => {
     try {
         const response = await axios.get(
             `${import.meta.env.VITE_API_BASE_URL}/comment/${threadId}/more-threads-count`
+        )
+        return response.data
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const fetchRemainingThreads = async (threadId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/comment/${threadId}/more-threads`
         )
         return response.data
     }
