@@ -133,6 +133,18 @@ export const postBio = async (userId : number, bio : string, token : string) => 
         return response.data
     }
     catch (error){
-        console.log("Error creating bio")
+        console.log("Error creating bio", error)
+    }
+}
+
+export const fetchRemainingThreadsCount = async (threadId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/comment/19/more-threads-count`
+        )
+        return response.data
+    }
+    catch (error) {
+        console.log(error)
     }
 }
