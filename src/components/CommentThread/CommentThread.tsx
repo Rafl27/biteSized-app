@@ -107,9 +107,9 @@ const CommentThread = ({ comment, depth = 0 }) => {
                 <div className="replies">
                     {depth === 2
                         ? (
-                            <button className='btn btn-secondary button-continue' onClick={() => {
-                                setShowRemainingReplies(true)
-                            }}><MdUnfoldMore /> Open {remainingThreadsCount} remaining thread(s)</button>
+                        <Link to={`/story/${comment.idComment}`} className="btn btn-secondary button-continue">
+                            <MdUnfoldMore /> Open {remainingThreadsCount} remaining thread(s)
+                        </Link>
                         )
                         : comment.replies.map((reply, index) => (
                             <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
