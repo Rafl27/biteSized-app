@@ -75,13 +75,14 @@ const CommentThread = ({ comment, depth = 0 }) => {
             </div>
             <div className="button-container">
                 <div className="reply-continue">
+                    <Link to={`/comment/${comment.idComment}/single-thread`} className="btn btn-secondary button-continue">
+                        <BsBookHalf /> Continue reading
+                    </Link>
                     <button className="btn btn-secondary button-continue" onClick={toggleModal}>
                         <RiChat3Line className="chatIcon" />
                         Reply
                     </button>
-                    <Link to={`/comment/${comment.idComment}/single-thread`} className="btn btn-secondary button-continue">
-                        <BsBookHalf /> Continue reading
-                    </Link>
+
                     {showModal && (
                         <div className="modal-overlay" onClick={closeModal}>
                             <div
