@@ -1,16 +1,18 @@
-import React, {useState} from "react";
-import './CommentThread.css'
-import {RiChat3Line} from "react-icons/ri";
-import {BsBookHalf} from "react-icons/bs"
-import {ImArrowDown, ImArrowUp} from "react-icons/im";
-import {upvoteComment, downvoteComment} from "../../services/api";
+import React, { useState } from "react";
+import './CommentThread.css';
+import { RiChat3Line } from "react-icons/ri";
+import { BsBookHalf } from "react-icons/bs";
+import { ImArrowDown, ImArrowUp } from "react-icons/im";
+import { upvoteComment, downvoteComment } from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const CommentThread = ({ comment }) => {
-    const token : string = localStorage.getItem('token')
+const CommentThread = ({ comment, depth = 0 }) => {
+    const token = localStorage.getItem('token');
     const [upvotes, setUpvotes] = useState(comment.upvotesComment);
     const [downvotes, setDownvotes] = useState(comment.downvotesComment);
+    const [showModal, setShowModal] = useState(false);
+    const [showRemainingReplies, setShowRemainingReplies] = useState(false);
 
     const handleUpvote = async (commentId) => {
         try {
@@ -30,14 +32,13 @@ const CommentThread = ({ comment }) => {
         }
     }
 
-    const [showModal, setShowModal] = useState(false)
     const toggleModal = () => {
-        setShowModal((prevShowModal) => !prevShowModal)
+        setShowModal((prevShowModal) => !prevShowModal);
     }
 
     const closeModal = (event) => {
         if (event.target === event.currentTarget) {
-            toggleModal()
+            toggleModal();
         }
     }
 
@@ -57,29 +58,26 @@ const CommentThread = ({ comment }) => {
             </div>
             <div className="button-container">
                 <div className="reply-continue">
-                <button className="replyButton"
-                onClick={toggleModal}>
-                    <RiChat3Line className="chatIcon" />
-                    Reply
-                </button>
+                    <button className="replyButton" onClick={toggleModal}>
+                        <RiChat3Line className="chatIcon" />
+                        Reply
+                    </button>
                     <Link to={`/comment/${comment.idComment}/single-thread`} className="btn btn-secondary button-continue">
                         <BsBookHalf /> Continue reading
                     </Link>
-                {showModal && (
-                    <div className="modal-overlay" onClick={closeModal}>
-                        <div
-                            className="modal-content"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button className="modal-close-button" onClick={toggleModal}>
-                                Close
-                            </button>
-                            <NewThread storyID={comment.idComment} useRepliesAPI={true}/>
+                    {showModal && (
+                        <div className="modal-overlay" onClick={closeModal}>
+                            <div
+                                className="modal-content"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <button className="modal-close-button" onClick={toggleModal}>
+                                    Close
+                                </button>
+                                <NewThread storyID={comment.idComment} useRepliesAPI={true} />
+                            </div>
                         </div>
-                    </div>
-                )}
-                    {/*Continue reading*/}
-
+                    )}
                 </div>
                 <div className="vote-container">
                     <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{upvotes}</p> </button>
@@ -89,15 +87,20 @@ const CommentThread = ({ comment }) => {
 
             {comment.replies && comment.replies.length > 0 && (
                 <div className="replies">
-                    {comment.replies.map((reply, index) => (
-                        <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
-                            <CommentThread comment={reply} />
-                        </div>
-                    ))}
+                    {depth === 2
+                        ? (
+                            <button onClick={() => setShowRemainingReplies(true)}>Open remaining threads</button>
+                        )
+                        : comment.replies.map((reply, index) => (
+                            <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
+                                <CommentThread comment={reply} depth={depth + 1} />
+                            </div>
+                        ))
+                    }
                 </div>
             )}
         </div>
     );
 };
 
-export default CommentThread
+export default CommentThread;
