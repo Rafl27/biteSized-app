@@ -3,6 +3,7 @@ import './CommentThread.css';
 import { RiChat3Line } from "react-icons/ri";
 import { BsBookHalf } from "react-icons/bs";
 import { ImArrowDown, ImArrowUp } from "react-icons/im";
+import {MdUnfoldMore} from 'react-icons/md'
 import {
     upvoteComment,
     downvoteComment,
@@ -20,7 +21,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
     const [showRemainingReplies, setShowRemainingReplies] = useState(false);
     const [remainingThreadsCount, setRemainingThreadsCount] = useState(0)
 
-    const handleUpvote = async (commentId) => {
+    const handleUpvote = async (commentId : number) => {
         try {
             const updatedComment = await upvoteComment(commentId, token);
             setUpvotes(updatedComment.upvote);
@@ -29,7 +30,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
         }
     }
 
-    const handleDownvote = async (commentId) => {
+    const handleDownvote = async (commentId : number) => {
         try {
             const updatedComment = await downvoteComment(commentId, token);
             setDownvotes(updatedComment.downvote);
@@ -74,7 +75,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
             </div>
             <div className="button-container">
                 <div className="reply-continue">
-                    <button className="replyButton" onClick={toggleModal}>
+                    <button className="btn btn-secondary button-continue" onClick={toggleModal}>
                         <RiChat3Line className="chatIcon" />
                         Reply
                     </button>
@@ -105,9 +106,9 @@ const CommentThread = ({ comment, depth = 0 }) => {
                 <div className="replies">
                     {depth === 2
                         ? (
-                            <button className='remainingButton' onClick={() => {
+                            <button className='btn btn-secondary button-continue' onClick={() => {
                                 setShowRemainingReplies(true)
-                            }}>Open {remainingThreadsCount} remaining thread(s)</button>
+                            }}><MdUnfoldMore /> Open {remainingThreadsCount} remaining thread(s)</button>
                         )
                         : comment.replies.map((reply, index) => (
                             <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
