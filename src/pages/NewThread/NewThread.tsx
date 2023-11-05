@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './NewThread.css'
 import axios from 'axios'
 import { Modal } from 'react-bootstrap'
-import TopBar from '../../components/topBar/TopBar'
 
 function App({ storyID, useRepliesAPI  }) {
   const [text, setText] = useState(
