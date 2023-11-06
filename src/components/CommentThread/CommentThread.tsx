@@ -1,18 +1,27 @@
-import React, {useState} from "react";
-import './CommentThread.css'
-import {RiChat3Line} from "react-icons/ri";
-import {BsBookHalf} from "react-icons/bs"
-import {ImArrowDown, ImArrowUp} from "react-icons/im";
-import {upvoteComment, downvoteComment} from "../../services/api";
+import React, {useEffect, useState} from "react";
+import './CommentThread.css';
+import { RiChat3Line } from "react-icons/ri";
+import { BsBookHalf } from "react-icons/bs";
+import { ImArrowDown, ImArrowUp } from "react-icons/im";
+import {MdUnfoldMore} from 'react-icons/md'
+import {
+    upvoteComment,
+    downvoteComment,
+    fetchRemainingThreadsCount,
+} from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const CommentThread = ({ comment }) => {
-    const token : string = localStorage.getItem('token')
+
+const CommentThread = ({ comment, depth = 0 }) => {
+    const token = localStorage.getItem('token');
     const [upvotes, setUpvotes] = useState(comment.upvotesComment);
     const [downvotes, setDownvotes] = useState(comment.downvotesComment);
+    const [showModal, setShowModal] = useState(false);
+    const [showRemainingReplies, setShowRemainingReplies] = useState(false);
+    const [remainingThreadsCount, setRemainingThreadsCount] = useState(0)
 
-    const handleUpvote = async (commentId) => {
+    const handleUpvote = async (commentId : number) => {
         try {
             const updatedComment = await upvoteComment(commentId, token);
             setUpvotes(updatedComment.upvote);
@@ -21,7 +30,7 @@ const CommentThread = ({ comment }) => {
         }
     }
 
-    const handleDownvote = async (commentId) => {
+    const handleDownvote = async (commentId : number) => {
         try {
             const updatedComment = await downvoteComment(commentId, token);
             setDownvotes(updatedComment.downvote);
@@ -30,14 +39,23 @@ const CommentThread = ({ comment }) => {
         }
     }
 
-    const [showModal, setShowModal] = useState(false)
+    useEffect(() => {
+            fetchRemainingThreadsCount(comment.idComment)
+                .then(data => {
+                    setRemainingThreadsCount(data);
+                })
+                .catch(error => {
+                    console.error("Error: ", error);
+                });
+    }, [comment.id]);
+
     const toggleModal = () => {
-        setShowModal((prevShowModal) => !prevShowModal)
+        setShowModal((prevShowModal) => !prevShowModal);
     }
 
     const closeModal = (event) => {
         if (event.target === event.currentTarget) {
-            toggleModal()
+            toggleModal();
         }
     }
 
@@ -57,29 +75,27 @@ const CommentThread = ({ comment }) => {
             </div>
             <div className="button-container">
                 <div className="reply-continue">
-                <button className="replyButton"
-                onClick={toggleModal}>
-                    <RiChat3Line className="chatIcon" />
-                    Reply
-                </button>
                     <Link to={`/comment/${comment.idComment}/single-thread`} className="btn btn-secondary button-continue">
                         <BsBookHalf /> Continue reading
                     </Link>
-                {showModal && (
-                    <div className="modal-overlay" onClick={closeModal}>
-                        <div
-                            className="modal-content"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button className="modal-close-button" onClick={toggleModal}>
-                                Close
-                            </button>
-                            <NewThread storyID={comment.idComment} useRepliesAPI={true}/>
-                        </div>
-                    </div>
-                )}
-                    {/*Continue reading*/}
+                    <button className="btn btn-secondary button-continue" onClick={toggleModal}>
+                        <RiChat3Line className="chatIcon" />
+                        Reply
+                    </button>
 
+                    {showModal && (
+                        <div className="modal-overlay" onClick={closeModal}>
+                            <div
+                                className="modal-content"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <button className="modal-close-button" onClick={toggleModal}>
+                                    Close
+                                </button>
+                                <NewThread storyID={comment.idComment} useRepliesAPI={true} />
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="vote-container">
                     <button className='vote-button upvote' onClick={() => handleUpvote(comment.idComment)}> <ImArrowUp /> <p>{upvotes}</p> </button>
@@ -89,15 +105,22 @@ const CommentThread = ({ comment }) => {
 
             {comment.replies && comment.replies.length > 0 && (
                 <div className="replies">
-                    {comment.replies.map((reply, index) => (
-                        <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
-                            <CommentThread comment={reply} />
-                        </div>
-                    ))}
+                    {depth === 2
+                        ? (
+                        <Link to={`/thread/${comment.idComment}`} className="btn btn-secondary button-continue">
+                            <MdUnfoldMore /> Open {remainingThreadsCount} remaining thread(s)
+                        </Link>
+                        )
+                        : comment.replies.map((reply, index) => (
+                            <div key={reply.idComment} className="reply" style={{ borderLeft: `1px solid ${borderColors[index % borderColors.length]}` }}>
+                                <CommentThread comment={reply} depth={depth + 1} />
+                            </div>
+                        ))
+                    }
                 </div>
             )}
         </div>
     );
 };
 
-export default CommentThread
+export default CommentThread;
