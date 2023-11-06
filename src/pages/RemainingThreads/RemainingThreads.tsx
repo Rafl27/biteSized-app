@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import ThreadedComments from "../../components/ThreadedComments/ThreadedComments";
 import {fetchRemainingThreads} from "../../services/api";
 import {RemainingThreadsInterface} from "../../interfaces/RemainingThreadsInterface";
+import {Comment} from "../../interfaces/Comment";
 
 const RemainingThreads = () => {
 
@@ -17,10 +18,22 @@ const RemainingThreads = () => {
             .catch(error => console.error('Error:', error));
     }, [idComment]);
 
-console.log(comments)
-
-
-
+    //The first comment is sliced out of the commment array because it will be shown on top
+    const transformedComments: Comment[] = comments.slice(1).map((comment: RemainingThreadsInterface, index) => ({
+        idComment: comment.commentId,
+        contentComment: comment.content,
+        artComment: comment.art || '',
+        dateComment: comment.date,
+        upvotesComment: comment.upvotes,
+        downvotesComment: comment.downvotes,
+        useridComment: comment.userId,
+        //the first one is set to null because generateCommentTree must have the first commentParentId null to work with first level stories
+        parentCommentId: index === 0 ? null : comment.parentId,
+        userProfilePic: comment.profilePicture,
+        userUsername: comment.username,
+        userEmail: comment.email,
+        replies: []
+    }));
 
     return (
         <>
@@ -71,12 +84,11 @@ console.log(comments)
                          </p>
                      </div>
                      <h2 id='threadsh2'>Threads:</h2>
-                     <ThreadedComments comments={comments} />
+                     <ThreadedComments comments={transformedComments} />
                  </div>
             ) : (
                 <p>Loading...</p>
             )}
-
         </>
     )
 
