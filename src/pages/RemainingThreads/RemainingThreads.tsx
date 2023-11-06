@@ -59,24 +59,6 @@ const RemainingThreads = () => {
                          </p>
                      </div>
                      <div className="add-comment">
-                         {/*<button className="add-comment-button"*/}
-                         {/*        // onClick={toggleModal}*/}
-                         {/*>*/}
-                         {/*    New thread*/}
-                         {/*</button>*/}
-                         {/*{showModal && (*/}
-                         {/*    <div className="modal-overlay" onClick={closeModal}>*/}
-                         {/*        <div*/}
-                         {/*            className="modal-content"*/}
-                         {/*            onClick={(e) => e.stopPropagation()}*/}
-                         {/*        >*/}
-                         {/*            <button className="modal-close-button" onClick={toggleModal}>*/}
-                         {/*                Close*/}
-                         {/*            </button>*/}
-                         {/*            <NewThread storyID={_id}/>*/}
-                         {/*        </div>*/}
-                         {/*    </div>*/}
-                         {/*)}*/}
                      </div>
                      <div className="content">
                          <p>
