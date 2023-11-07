@@ -75,3 +75,9 @@
 .get-started-button:hover {
   background-color: #555;
 }
+
+@media (max-width: 450px) {
+  .bitesized-text{
+    font-size: 50%;
+  }
+}
