@@ -84,9 +84,9 @@ const TopBar: React.FC = () => {
             <BsPlusCircleFill className="BsPlusCircleFill" />
           </div>
         </Link>
-        <div className="option">
-          <BiTrendingUp className="BiTrendingUp" />
-        </div>
+        {/*<div className="option">*/}
+        {/*  <BiTrendingUp className="BiTrendingUp" />*/}
+        {/*</div>*/}
 
         <div className="option">
           <RiLogoutBoxRLine
