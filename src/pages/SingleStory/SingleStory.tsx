@@ -103,10 +103,14 @@ const SingleStory = () => {
                 <div className="content">
                     <p>{story.content}</p>
                 </div>
-                <h2 id='threadsh2'>Threads:</h2>
+
 
             </div>
-            <ThreadedComments comments={comments} />
+
+            <div className='threads-div'>
+                <h2 id='threadsh2'>Threads:</h2>
+                <ThreadedComments comments={comments} />
+            </div>
         </>
     )
 }
