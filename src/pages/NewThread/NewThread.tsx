@@ -88,15 +88,15 @@ function App({ storyID, useRepliesAPI  }) {
               name="text"
               onChange={(e) => setText(e.target.value)}
             />
-            <label htmlFor="languageDropdown">Select Language:</label>
-            <select
-                id="languageDropdown"
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
-            >
-              <option value="english">English</option>
-              <option value="portuguese">Portuguese</option>
-            </select>
+            {/*<label htmlFor="languageDropdown">Select Language:</label>*/}
+            {/*<select*/}
+            {/*    id="languageDropdown"*/}
+            {/*    value={selectedLanguage}*/}
+            {/*    onChange={(e) => setSelectedLanguage(e.target.value)}*/}
+            {/*>*/}
+            {/*  <option value="english">English</option>*/}
+            {/*  <option value="portuguese">Portuguese</option>*/}
+            {/*</select>*/}
             <button
               id="createButton"
               disabled={isCreateButtonDisabled}
