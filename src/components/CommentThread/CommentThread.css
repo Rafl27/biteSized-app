@@ -4,12 +4,13 @@
     align-items: center;
     margin-right: 2%;
     border-radius: 20px;
-    width: 20%;
+    width: 50%;
     height: auto;
 }
 
 .art-comment{
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
