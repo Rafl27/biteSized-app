@@ -19,6 +19,7 @@ function App() {
   const [createdStoryId, setCreatedStoryId] = useState('')
   //true if any of the inputs are empty
   const isCreateButtonDisabled = !name || !text || !image
+  const [selectedLanguage, setSelectedLanguage] = useState('EN');
   const getCreateButtonTooltip = () => {
     if (!name) {
       return 'Please enter a story title'
@@ -34,6 +35,7 @@ function App() {
     const title = formData.get('name')
     const art = formData.get('img')
     const content = formData.get('text')
+    const language = selectedLanguage
     const token = localStorage.getItem('token')
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -45,6 +47,7 @@ function App() {
           title,
           content,
           art,
+          language
         },
         config
       )
@@ -107,6 +110,15 @@ function App() {
               name="text"
               onChange={(e) => setText(e.target.value)}
             />
+            <label htmlFor="languageDropdown">Select Language:</label>
+            <select
+                id="languageDropdown"
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
+              <option value="EN">English</option>
+              <option value="BR">Portuguese</option>
+            </select>
             <button
               id="createButton"
               disabled={isCreateButtonDisabled}

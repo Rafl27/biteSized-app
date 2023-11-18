@@ -14,6 +14,7 @@ function App({ storyID, useRepliesAPI  }) {
   const [createdStoryName, setCreatedStoryName] = useState('')
   const [hasImage, setHasImage] = useState(false) // State for checkbox
   const MIN_CHARACTER_LIMIT = 100
+  const [selectedLanguage, setSelectedLanguage] = useState('english');
 
   const isCreateButtonDisabled =
     !text || text.length < MIN_CHARACTER_LIMIT || (hasImage && !image)
@@ -87,6 +88,15 @@ function App({ storyID, useRepliesAPI  }) {
               name="text"
               onChange={(e) => setText(e.target.value)}
             />
+            {/*<label htmlFor="languageDropdown">Select Language:</label>*/}
+            {/*<select*/}
+            {/*    id="languageDropdown"*/}
+            {/*    value={selectedLanguage}*/}
+            {/*    onChange={(e) => setSelectedLanguage(e.target.value)}*/}
+            {/*>*/}
+            {/*  <option value="english">English</option>*/}
+            {/*  <option value="portuguese">Portuguese</option>*/}
+            {/*</select>*/}
             <button
               id="createButton"
               disabled={isCreateButtonDisabled}

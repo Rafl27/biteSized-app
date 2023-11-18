@@ -165,6 +165,12 @@ const StoryCard: React.FC = () => {
                                             <h2 id="total-comments">{totalComments[story.storyId]}</h2>
                                             <FaComments/>
                                         </div>
+                                        {story.language === "EN" ? (
+                                            <img className='languageIcon' src={'public/usa-flag.png'} alt="EN Icon"/>
+                                        ) : story.language === "BR" ? (
+                                            <img className='languageIcon' src={'public/brazil-flag.png'} alt="BR Icon"/>
+                                        ) : null}
+
                                     </div>
                                 </div>
                                 <p className="card-text">{story.content}</p>
