@@ -166,9 +166,9 @@ const StoryCard: React.FC = () => {
                                             <FaComments/>
                                         </div>
                                         {story.language === "EN" ? (
-                                            <img className='languageIcon' src={'public/usa-flag.png'} alt="EN Icon"/>
+                                            <img className='languageIcon' src={'usa-flag.png'} alt="EN Icon"/>
                                         ) : story.language === "BR" ? (
-                                            <img className='languageIcon' src={'public/brazil-flag.png'} alt="BR Icon"/>
+                                            <img className='languageIcon' src={'brazil-flag.png'} alt="BR Icon"/>
                                         ) : null}
 
                                     </div>
