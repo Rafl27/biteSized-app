@@ -183,3 +183,29 @@ textarea:focus {
     transition: transform 0.2s ease-in-out;
   }
 }
+
+  select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+  }
+
+select:hover {
+  border-color: #555;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff; /* Adjust the color as needed */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+select::-ms-expand {
+  display: none;
+}
