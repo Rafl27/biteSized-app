@@ -19,6 +19,7 @@ function App() {
   const [createdStoryId, setCreatedStoryId] = useState('')
   //true if any of the inputs are empty
   const isCreateButtonDisabled = !name || !text || !image
+  const [selectedLanguage, setSelectedLanguage] = useState('english');
   const getCreateButtonTooltip = () => {
     if (!name) {
       return 'Please enter a story title'
@@ -107,6 +108,15 @@ function App() {
               name="text"
               onChange={(e) => setText(e.target.value)}
             />
+            <label htmlFor="languageDropdown">Select Language:</label>
+            <select
+                id="languageDropdown"
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
+              <option value="english">English</option>
+              <option value="portuguese">Portuguese</option>
+            </select>
             <button
               id="createButton"
               disabled={isCreateButtonDisabled}
