@@ -1,4 +1,5 @@
 export interface StoryCard {
+    language: string;
     profile_picture: string
     username: string
     art: string
