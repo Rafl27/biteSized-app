@@ -18,15 +18,21 @@ const UserVotes : React.FC<UserVotesProps>= ({userId}) => {
             .catch(error => console.log("Error", error))
     }, [userId]);
 
-
     return (
         <>
             {userVotesData.length > 0 ? (
-                <h1>{userVotesData[0].content}</h1>
+
+                <div>
+                    {userVotesData.map((vote, index) => (
+                        <div key={index}>
+                            <h1 className="vote-type">{vote.vote_type}</h1>
+                        </div>
+                    ))}
+                </div>
             ) : (
                 <p>No user votes data available</p>
             )}
-            <p>oi</p>
+            {/*<p>oi</p>*/}
         </>
     );
 };
