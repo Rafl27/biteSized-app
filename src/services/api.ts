@@ -160,3 +160,15 @@ export const fetchRemainingThreads = async (threadId : number) => {
         console.log(error)
     }
 }
+
+export const fetchAllUserVotes = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/comment-vote/${userId}/all`
+        )
+            return response.data
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
