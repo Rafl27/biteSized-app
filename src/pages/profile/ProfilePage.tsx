@@ -124,18 +124,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
                       <p>Downvotes: {story.downvotes}</p>
                     </div>
                 ))}
-              {/*</div>*/}
-              {/*<div className="column">*/}
-              {/*  {stories.slice(Math.ceil(stories.length / 2)).map((story) => (*/}
-              {/*      <div className="story" key={story.title}>*/}
-              {/*        <h3>{story.title}</h3>*/}
-              {/*        <img src={story.art} alt={story.title} className="card-img-top" />*/}
-              {/*        <p className="story-text">{story.content}</p>*/}
-              {/*        <p>Upvotes: {story.upvotes}</p>*/}
-              {/*        <p>Downvotes: {story.downvotes}</p>*/}
-              {/*      </div>*/}
-              {/*  ))}*/}
-              {/*</div>*/}
             </div>
         )}
       </div>
