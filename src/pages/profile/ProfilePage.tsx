@@ -105,31 +105,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
         )}
 
         <ProfileNavBar/>
-        {/*isso pode virar um componente tbm*/}
         <ProfileCreateStories stories={stories}/>
-        {/*{stories.length === 0 ? (*/}
-        {/*    <>*/}
-        {/*      <div className='no-story-messages'>*/}
-        {/*        <h1>You haven't created any stories yet 🫵🏻</h1>*/}
-        {/*        <h2>Let's Begin Your Storytelling Journey</h2>*/}
-        {/*        <Link to={`/create`} className="btn btn-secondary">*/}
-        {/*          Create a story clicking here*/}
-        {/*        </Link>*/}
-        {/*      </div>*/}
-        {/*    </>*/}
-        {/*) : (*/}
-        {/*    <div className="story-list">*/}
-        {/*        {stories.map((story) => (*/}
-        {/*            <div className="story" key={story.title}>*/}
-        {/*              <h3>{story.title}</h3>*/}
-        {/*              <img src={story.art} alt={story.title} className="card-img-top" />*/}
-        {/*              <p className="story-text">{story.content}</p>*/}
-        {/*              <p>Upvotes: {story.upvotes}</p>*/}
-        {/*              <p>Downvotes: {story.downvotes}</p>*/}
-        {/*            </div>*/}
-        {/*        ))}*/}
-        {/*    </div>*/}
-        {/*)}*/}
       </div>
     </>
   )
