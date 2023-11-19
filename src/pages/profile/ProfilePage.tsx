@@ -3,7 +3,6 @@ import './ProfilePage.css'
 import TopBar from '../../components/topBar/TopBar'
 import axios from "axios";
 import CreateBio from "../../components/CreateBio/CreateBio";
-import {Link} from "react-router-dom";
 import ProfileNavBar from "../../components/ProfileNavBar/ProfileNavBar";
 import ProfileCreateStories from "../../components/ProfileCreatedStories/ProfileCreateStories";
 
