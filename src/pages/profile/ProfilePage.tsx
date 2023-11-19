@@ -4,6 +4,7 @@ import TopBar from '../../components/topBar/TopBar'
 import axios from "axios";
 import CreateBio from "../../components/CreateBio/CreateBio";
 import {Link} from "react-router-dom";
+import ProfileNavBar from "../../components/ProfileNavBar/ProfileNavBar";
 
 interface ProfilePageProps {
   name: string
@@ -102,6 +103,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
             <CreateBio userId={userData.id} token={token}  />
         )}
 
+        <ProfileNavBar/>
+        {/*isso pode virar um componente tbm*/}
         {stories.length === 0 ? (
             <>
               <div className='no-story-messages'>
@@ -114,7 +117,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
             </>
         ) : (
             <div className="story-list">
-              {/*<div className="column">*/}
                 {stories.map((story) => (
                     <div className="story" key={story.title}>
                       <h3>{story.title}</h3>
