@@ -5,6 +5,7 @@ import axios from "axios";
 import CreateBio from "../../components/CreateBio/CreateBio";
 import ProfileNavBar from "../../components/ProfileNavBar/ProfileNavBar";
 import ProfileCreateStories from "../../components/ProfileCreatedStories/ProfileCreateStories";
+import UserVotes from "../../components/UserVotes/UserVotes";
 
 interface ProfilePageProps {
   name: string
@@ -105,6 +106,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
 
         <ProfileNavBar/>
         <ProfileCreateStories stories={stories}/>
+        <UserVotes userId={Number(userData.id)}></UserVotes>
       </div>
     </>
   )
