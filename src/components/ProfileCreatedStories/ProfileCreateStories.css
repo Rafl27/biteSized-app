@@ -27,6 +27,7 @@
     align-items: center;
     padding: 30px;
     width: 20%;
+    border-radius: 20px;
 }
 
 .card-img-top{
