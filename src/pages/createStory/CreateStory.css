@@ -184,6 +184,15 @@ textarea:focus {
   }
 }
 
+@media (max-height: 775px) {
+  .output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 150px;
+  }
+}
+
   select {
     padding: 10px;
     font-size: 14px;
