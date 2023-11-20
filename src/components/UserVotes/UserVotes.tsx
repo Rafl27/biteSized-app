@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './UserVotes.css'
 import {UserVotesPar} from "../../interfaces/UserVotesPar";
 import {fetchAllUserVotes} from "../../services/api";
+import {BsBookHalf} from "react-icons/bs";
+import {Link} from "react-router-dom";
 
 interface UserVotesProps{
     userId : number
@@ -32,6 +34,9 @@ const UserVotes : React.FC<UserVotesProps>= ({userId}) => {
                             <div className="vote-content">
                                 <p className="vote-text">{vote.content}</p>
                             </div>
+                            <Link to={`/comment/4/single-thread`} className="btn btn-secondary button-continue">
+                                <BsBookHalf /> Complete Story
+                            </Link>
                         </div>
                     ))}
                 </div>
