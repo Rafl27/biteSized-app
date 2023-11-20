@@ -26,7 +26,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
             const updatedComment = await upvoteComment(commentId, token);
             setUpvotes(updatedComment.upvote);
         } catch (err) {
-            console.error(err);
+            alert("voce ja votou dude")
         }
     }
 
