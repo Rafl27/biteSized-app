@@ -1,7 +1,7 @@
 import './AlertModal.css'
 
 import React from 'react';
-const AlertModal = ({message}) => {
+const AlertModal = ({message} : {message : string}) => {
     return (
         <div className='modalT'>
             <div className='modal-content'>
@@ -11,7 +11,7 @@ const AlertModal = ({message}) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default AlertModal;
