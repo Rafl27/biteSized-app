@@ -1,7 +1,7 @@
 import CommentsList from "../CommentsList/CommentsList";
 import React from "react";
 
-const ThreadedComments = ({ comments }) => {
+const ThreadedComments = ({ comments, noStyle } : {comments : any, noStyle? : boolean}) => {
     const generateCommentTree = (comments, parentCommentId = null) => {
         const commentTree = [];
         for (const comment of comments) {
@@ -19,7 +19,7 @@ const ThreadedComments = ({ comments }) => {
 
     return (
         <div className="threaded-comments">
-            <CommentsList comments={commentTree} />
+            <CommentsList comments={commentTree} noStyle={noStyle} />
         </div>
     );
 }

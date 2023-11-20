@@ -66,7 +66,7 @@ const RemainingThreads = () => {
                          </p>
                      </div>
                      <h2 id='threadsh2'>Threads:</h2>
-                     <ThreadedComments comments={transformedComments} />
+                     <ThreadedComments comments={transformedComments} noStyle={true} />
                  </div>
             ) : (
                 <p>Loading...</p>
