@@ -58,8 +58,23 @@
 
 .vote_type_upvote {
     color: #105410;
+    font-weight: bold;
 }
 
 .vote_type_downvote {
     color: #5d1e1e;
+    font-weight: bold;
+}
+
+@media (max-width: 450px) {
+    .vote-card {
+        background-color: #202226;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 90%;
+        color: white;
+        border: 10px solid transparent;
+        transition: border-color 0.3s ease-in-out;
+    }
 }
