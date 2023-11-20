@@ -90,7 +90,7 @@ export const upvoteComment = async (commentId: number, authToken: string) => {
             })
         return response.data
     }catch (e){
-        console.log(e)
+        throw new Error(e.response.data.message);
     }
 }
 
@@ -105,7 +105,7 @@ export const downvoteComment = async (commentId: number, authToken: string) => {
             })
         return response.data
     }catch (e){
-        console.log(e)
+        throw new Error(e.response.data.message);
     }
 }
 

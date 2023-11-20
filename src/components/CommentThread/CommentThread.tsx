@@ -11,6 +11,7 @@ import {
 } from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
 import { Link } from "react-router-dom";
+import AlertModal from "../AlertModal/AlertModal";
 
 
 const CommentThread = ({ comment, depth = 0 }) => {
@@ -26,7 +27,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
             const updatedComment = await upvoteComment(commentId, token);
             setUpvotes(updatedComment.upvote);
         } catch (err) {
-            console.error(err);
+            setModalOpen(true);
         }
     }
 
@@ -35,7 +36,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
             const updatedComment = await downvoteComment(commentId, token);
             setDownvotes(updatedComment.downvote);
         } catch (err) {
-            console.error(err);
+            setModalOpen(true);
         }
     }
 
@@ -58,11 +59,19 @@ const CommentThread = ({ comment, depth = 0 }) => {
             toggleModal();
         }
     }
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
 
     const borderColors = ['#ccc', '#8a2c12', '#1b1bad', '#10590f', '#4a1275'];
 
     return (
         <div className="comment">
+            {modalOpen && (
+                <AlertModal message={"You've already voted on this thread"} onClose={handleCloseModal} />
+            )}
+
             <div className="userInfo">
                 <img src={comment.userProfilePic} alt="User Profile" />
                 <span>{comment.userUsername}</span>
