@@ -22,10 +22,16 @@ const UserVotes : React.FC<UserVotesProps>= ({userId}) => {
         <>
             {userVotesData.length > 0 ? (
 
-                <div>
+                <div className="vote-list">
                     {userVotesData.map((vote, index) => (
-                        <div key={index}>
-                            <h1 className="vote-type">{vote.vote_type}</h1>
+                        <div className="vote-card" key={index}>
+                            <p className={vote.vote_type === 'UPVOTE' ? 'vote_type_upvote' : 'vote_type_downvote'}>{vote.vote_type}</p>
+                            {vote.art && (
+                                <img className="vote-art" src={vote.art} alt="Vote Art" />
+                            )}
+                            <div className="vote-content">
+                                <p className="vote-text">{vote.content}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
