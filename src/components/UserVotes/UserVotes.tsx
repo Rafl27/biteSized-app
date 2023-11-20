@@ -41,9 +41,14 @@ const UserVotes : React.FC<UserVotesProps>= ({userId}) => {
                     ))}
                 </div>
             ) : (
-                <p>No user votes data available</p>
+                <div className='no-story-messages'>
+                    <h1>You haven't upvoted or downvoted any stories or threads yet 🫵🏻</h1>
+                    <h2>Explore and engage with some stories below 👇</h2>
+                    <Link to={`/home`} className="btn btn-secondary">
+                        Go to Main Page
+                    </Link>
+                </div>
             )}
-            {/*<p>oi</p>*/}
         </>
     );
 };
