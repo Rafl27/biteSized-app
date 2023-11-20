@@ -89,6 +89,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
     }
   }
 
+  const [activeOption, setActiveOption] = useState('stories');
+
   return (
     <>
       <TopBar />
@@ -104,9 +106,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
             <CreateBio userId={userData.id} token={token}  />
         )}
 
-        <ProfileNavBar/>
-        <ProfileCreateStories stories={stories}/>
-        <UserVotes userId={Number(userData.id)}></UserVotes>
+        <ProfileNavBar setActiveOption={setActiveOption} />
+        {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
+        {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
+        {/*<ProfileCreateStories stories={stories}/>*/}
+        {/*<UserVotes userId={Number(userData.id)}></UserVotes>*/}
       </div>
     </>
   )
