@@ -109,8 +109,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
         <ProfileNavBar setActiveOption={setActiveOption} />
         {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
         {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
-        {/*<ProfileCreateStories stories={stories}/>*/}
-        {/*<UserVotes userId={Number(userData.id)}></UserVotes>*/}
       </div>
     </>
   )
