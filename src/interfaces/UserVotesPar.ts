@@ -4,7 +4,7 @@ export interface UserVotesPar {
     date : string,
     downvotes : number,
     upvotes : number,
-    story_Id : number,
+    story_id : number,
     vote_type : string,
     commentId : number
 }
