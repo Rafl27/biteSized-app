@@ -34,7 +34,7 @@ const UserVotes : React.FC<UserVotesProps>= ({userId}) => {
                             <div className="vote-content">
                                 <p className="vote-text">{vote.content}</p>
                             </div>
-                            <Link to={`/comment/4/single-thread`} className="btn btn-secondary button-continue">
+                            <Link to={`/story/${vote.story_id}`} className="btn btn-secondary button-continue">
                                 <BsBookHalf /> Complete Story
                             </Link>
                         </div>
