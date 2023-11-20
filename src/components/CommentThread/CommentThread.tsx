@@ -11,6 +11,7 @@ import {
 } from "../../services/api";
 import NewThread from "../../pages/NewThread/NewThread";
 import { Link } from "react-router-dom";
+import AlertModal from "../AlertModal/AlertModal";
 
 
 const CommentThread = ({ comment, depth = 0 }) => {
@@ -63,6 +64,7 @@ const CommentThread = ({ comment, depth = 0 }) => {
 
     return (
         <div className="comment">
+            <AlertModal message={"You've already voted on this thread"} />
             <div className="userInfo">
                 <img src={comment.userProfilePic} alt="User Profile" />
                 <span>{comment.userUsername}</span>
