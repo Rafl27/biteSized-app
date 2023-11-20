@@ -11,9 +11,10 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.2s ease-in-out;
     width: 400px;
     color: white;
+    border: 10px solid transparent;
+    transition: border-color 0.3s ease-in-out;
 }
 
 .vote-card:hover {
