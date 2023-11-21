@@ -71,7 +71,6 @@ const VIsitProfile = () => {
         <>
             <TopBar />
             <div className="visit-profile-page">
-                {/*<div className="user-info">*/}
                     <div className="profile-picture">
                         <img src={userData.profilePicture} alt="Profile" />
                     </div>
@@ -80,8 +79,6 @@ const VIsitProfile = () => {
                     {userBio.bio &&
                         <p className="bio">{userBio.bio}</p>
                     }
-                {/*</div>*/}
-
 
                 <ProfileNavBar setActiveOption={setActiveOption} />
                 {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
