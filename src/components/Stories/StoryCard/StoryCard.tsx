@@ -67,13 +67,13 @@ const StoryCard: React.FC = () => {
     const handleDownvote = async (storyId: number) => {
         try {
             const updatedStory = await downvoteStory(storyId, token)
-            // setStories((prevStories) =>
-            //     prevStories.map((story) =>
-            //         story.storyId === updatedStory.id
-            //             ? {...story, downvotes: updatedStory.downvote}
-            //             : story
-            //     )
-            // );
+            setStories((prevStories) =>
+                prevStories.map((story) =>
+                    story.storyId === updatedStory.id
+                        ? {...story, downvotes: updatedStory.downvote}
+                        : story
+                )
+            );
             setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
         } catch (err) {
             setModalOpen(true);
