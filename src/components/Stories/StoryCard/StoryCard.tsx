@@ -7,6 +7,7 @@ import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {FaComments} from "react-icons/fa"
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 import {compacNumbers} from "../../../utils/compacNumbers";
+import AlertModal from "../../AlertModal/AlertModal";
 
 const StoryCard: React.FC = () => {
     const [stories, setStories] = useState<Story[]>([])
@@ -54,9 +55,14 @@ const StoryCard: React.FC = () => {
             );
             setUpvoteClicked((prevClicked) => [...prevClicked, storyId]);
         } catch (err) {
-            console.error(err)
+            setModalOpen(true);
         }
     }
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
 
     const handleDownvote = async (storyId: number) => {
         try {
@@ -70,7 +76,7 @@ const StoryCard: React.FC = () => {
             );
             setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
         } catch (err) {
-            console.error(err)
+            setModalOpen(true);
         }
     }
     const handlePageChange = (newPage: number) => {
@@ -103,6 +109,9 @@ const StoryCard: React.FC = () => {
 
     return (
         <div className='cards'>
+            {modalOpen && (
+                <AlertModal message={"You've already voted on this story"} onClose={handleCloseModal} />
+            )}
             <div className="card-container">
                 {stories
                     .sort((a, b) => b.upvotes - a.upvotes)
@@ -131,8 +140,8 @@ const StoryCard: React.FC = () => {
                                     />
                                     <p className="userName">{story.username}</p>
                                 </div>
+                                <p className="card-text">{story.content}</p>
                                 <div className="card-title-container">
-
                                     <div className="vote-container">
                                         <button
                                             className={`vote-button upvote ${
@@ -173,7 +182,7 @@ const StoryCard: React.FC = () => {
 
                                     </div>
                                 </div>
-                                <p className="card-text">{story.content}</p>
+
                                 <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
                                     Continue reading
                                 </Link>
