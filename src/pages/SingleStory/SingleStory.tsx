@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import './SingleStory.css';
 
@@ -73,14 +73,14 @@ const SingleStory = () => {
                         <img className="story-img" src={story.art} alt={story.title}/>
                     )}
                     <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
-                    <p>
+                    <Link to={`/visit-profile/${userData.id}`}>
                         <img
                             className="profilePicture"
                             src={userData.profilePicture || ''}
                             alt="user profile picture"
                         />
                         {userData.username}
-                    </p>
+                    </Link>
                 </div>
                 <div className="add-comment">
                     <button className="add-comment-button" onClick={toggleModal}>

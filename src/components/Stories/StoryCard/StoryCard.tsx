@@ -132,14 +132,17 @@ const StoryCard: React.FC = () => {
                                     style={{ maxWidth: '100%' }}
                                 />
                                 <p className="created">Created: {formatDate(story.date)}</p>
-                                <div className="userInfo">
-                                    <img
-                                        className="profilePicture"
-                                        src={story.profile_picture}
-                                        alt="user profile picture"
-                                    />
-                                    <p className="userName">{story.username}</p>
-                                </div>
+
+                                <Link to={`/visit-profile/${story.userId}`}>
+                                    <div className="userInfo">
+                                        <img
+                                            className="profilePicture"
+                                            src={story.profile_picture}
+                                            alt="user profile picture"
+                                        />
+                                        <p className="userName">{story.username}</p>
+                                    </div>
+                                </Link>
                                 <p className="card-text">{story.content}</p>
                                 <div className="card-title-container">
                                     <div className="vote-container">

@@ -11,6 +11,7 @@ import NewThread from './pages/NewThread/NewThread'
 import SingleThread from './pages/SingleThread/SingleThread'
 import NotFoundPage from "./pages/404/404";
 import RemainingThreads from "./pages/RemainingThreads/RemainingThreads";
+import VIsitProfile from "./pages/VIsitProfile/VIsitProfile";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ProfilePage />,
+  },
+  {
+    path: '/visit-profile/:userId',
+    element: <VIsitProfile />
   },
   {
     path: '/newthread',
