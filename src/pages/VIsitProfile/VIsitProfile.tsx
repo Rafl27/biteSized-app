@@ -7,6 +7,7 @@ import ProfileCreateStories from "../../components/ProfileCreatedStories/Profile
 import UserVotes from "../../components/UserVotes/UserVotes";
 import {Story} from "../../interfaces";
 import CreateBio from "../../components/CreateBio/CreateBio";
+import './VIsitProfile.css'
 
 const VIsitProfile = () => {
 
@@ -70,13 +71,18 @@ const VIsitProfile = () => {
         <>
             <TopBar />
             <div className="visit-profile-page">
-                <div className="profile-picture">
-                    <img src={userData.profilePicture} alt="Profile" />
-                </div>
-                <h2>{userData.username}</h2>
-                {userBio.bio &&
-                    <p className="bio">{userBio.bio}</p>
-                }
+                {/*<div className="user-info">*/}
+                    <div className="profile-picture">
+                        <img src={userData.profilePicture} alt="Profile" />
+                    </div>
+                    <h2>{userData.username}</h2>
+
+                    {userBio.bio &&
+                        <p className="bio">{userBio.bio}</p>
+                    }
+                {/*</div>*/}
+
+
                 <ProfileNavBar setActiveOption={setActiveOption} />
                 {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
                 {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
