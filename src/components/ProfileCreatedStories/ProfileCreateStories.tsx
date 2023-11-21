@@ -3,6 +3,7 @@ import './ProfileCreateStories.css'
 import React from 'react';
 import {Story} from "../../interfaces";
 import {Link} from "react-router-dom";
+import {BsBookHalf} from "react-icons/bs";
 
 interface ProfileCreateStoriesProps {
     stories: Story[];
@@ -30,6 +31,9 @@ const ProfileCreateStories : React.FC<ProfileCreateStoriesProps> = ({stories}) =
                             <p className="story-text">{story.content}</p>
                             <p>Upvotes: {story.upvotes}</p>
                             <p>Downvotes: {story.downvotes}</p>
+                            <Link to={`/story/${story.id}`} className="btn btn-secondary button-continue" >
+                                <BsBookHalf />Continue reading
+                            </Link>
                         </div>
                     ))}
                 </div>
