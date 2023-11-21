@@ -133,7 +133,7 @@ const StoryCard: React.FC = () => {
                                 />
                                 <p className="created">Created: {formatDate(story.date)}</p>
 
-                                <Link to={`/visit-profile/${story.userId}`} className="btn btn-secondary">
+                                <Link to={`/visit-profile/${story.userId}`}>
                                     <div className="userInfo">
                                         <img
                                             className="profilePicture"
