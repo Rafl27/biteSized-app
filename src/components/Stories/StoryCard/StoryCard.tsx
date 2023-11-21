@@ -131,8 +131,8 @@ const StoryCard: React.FC = () => {
                                     />
                                     <p className="userName">{story.username}</p>
                                 </div>
+                                <p className="card-text">{story.content}</p>
                                 <div className="card-title-container">
-
                                     <div className="vote-container">
                                         <button
                                             className={`vote-button upvote ${
@@ -173,7 +173,7 @@ const StoryCard: React.FC = () => {
 
                                     </div>
                                 </div>
-                                <p className="card-text">{story.content}</p>
+
                                 <Link to={`/story/${story.storyId}`} className="btn btn-secondary">
                                     Continue reading
                                 </Link>
