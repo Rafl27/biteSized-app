@@ -7,6 +7,7 @@ import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {FaComments} from "react-icons/fa"
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 import {compacNumbers} from "../../../utils/compacNumbers";
+import AlertModal from "../../AlertModal/AlertModal";
 
 const StoryCard: React.FC = () => {
     const [stories, setStories] = useState<Story[]>([])
@@ -54,23 +55,28 @@ const StoryCard: React.FC = () => {
             );
             setUpvoteClicked((prevClicked) => [...prevClicked, storyId]);
         } catch (err) {
-            console.error(err)
+            setModalOpen(true);
         }
     }
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
 
     const handleDownvote = async (storyId: number) => {
         try {
             const updatedStory = await downvoteStory(storyId, token)
-            setStories((prevStories) =>
-                prevStories.map((story) =>
-                    story.storyId === updatedStory.id
-                        ? {...story, downvotes: updatedStory.downvote}
-                        : story
-                )
-            );
+            // setStories((prevStories) =>
+            //     prevStories.map((story) =>
+            //         story.storyId === updatedStory.id
+            //             ? {...story, downvotes: updatedStory.downvote}
+            //             : story
+            //     )
+            // );
             setDownvoteClicked((prevClicked) => [...prevClicked, storyId]);
         } catch (err) {
-            console.error(err)
+            setModalOpen(true);
         }
     }
     const handlePageChange = (newPage: number) => {
@@ -103,6 +109,9 @@ const StoryCard: React.FC = () => {
 
     return (
         <div className='cards'>
+            {modalOpen && (
+                <AlertModal message={"You've already voted on this story"} onClose={handleCloseModal} />
+            )}
             <div className="card-container">
                 {stories
                     .sort((a, b) => b.upvotes - a.upvotes)
