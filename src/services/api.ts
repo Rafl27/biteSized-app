@@ -58,7 +58,7 @@ export const upvoteStory = async (storyId: number, authToken: string) => {
         );
         return response.data;
     } catch (e) {
-        console.log(e);
+        throw new Error(e.response.data.message);
     }
 }
 
@@ -75,7 +75,7 @@ export const downvoteStory = async (storyId: number, authToken: string) => {
         )
         return response.data
     } catch (e) {
-        console.log(e)
+        throw new Error(e.response.data.message);
     }
 }
 
