@@ -73,8 +73,10 @@ const CommentThread = ({ comment, depth = 0 }) => {
             )}
 
             <div className="userInfo">
+                <Link to={`/visit-profile/${comment.useridComment}`}>
                 <img src={comment.userProfilePic} alt="User Profile" />
                 <span>{comment.userUsername}</span>
+                </Link>
             </div>
             <div className="art-comment">
                 {comment.artComment !== "" && (
