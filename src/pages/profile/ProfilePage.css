@@ -1,24 +1,3 @@
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.profile-picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 h2 {
   font-size: 24px;
   font-weight: bold;
@@ -97,11 +76,6 @@ h2 {
   color: white !important;
 }
 
-.bio {
-  font-size: 16px;
-  color: #ababab;
-  margin: 10px 0;
-}
 
 .create-bio-button {
   background-color: #000;
