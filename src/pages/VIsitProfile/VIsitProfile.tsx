@@ -73,15 +73,6 @@ const VIsitProfile = () => {
             <TopBar />
             <div className="visit-profile-page">
                 <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null}/>
-                    <div className="profile-picture">
-                        <img src={userData.profilePicture} alt="Profile" />
-                    </div>
-                    <h2>{userData.username}</h2>
-
-                    {userBio.bio &&
-                        <p className="bio">{userBio.bio}</p>
-                    }
-
                 <ProfileNavBar setActiveOption={setActiveOption} />
                 {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
                 {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
