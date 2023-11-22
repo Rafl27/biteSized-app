@@ -8,6 +8,7 @@ import UserVotes from "../../components/UserVotes/UserVotes";
 import {Story} from "../../interfaces";
 import CreateBio from "../../components/CreateBio/CreateBio";
 import './VIsitProfile.css'
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 const VIsitProfile = () => {
 
@@ -71,6 +72,7 @@ const VIsitProfile = () => {
         <>
             <TopBar />
             <div className="visit-profile-page">
+                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null}/>
                     <div className="profile-picture">
                         <img src={userData.profilePicture} alt="Profile" />
                     </div>
