@@ -16,7 +16,7 @@
     }
 }
 
-.navbar {
-    align-items: center;
+.navBar-fix{
     justify-content: center;
+    display: flex;
 }

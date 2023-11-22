@@ -71,14 +71,12 @@ const VIsitProfile = () => {
     return (
         <>
             <TopBar />
-            <div className="visit-profile-page">
                 <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null}/>
-                <div className="navbar">
-                    <ProfileNavBar setActiveOption={setActiveOption} />
-                </div>
+            <div className="navBar-fix">
+                <ProfileNavBar setActiveOption={setActiveOption} />
+            </div>
                 {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
                 {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
-            </div>
         </>
     );
 };
