@@ -8,7 +8,6 @@ import {UserInfoData} from "../../interfaces/UserInfoData";
 const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String}) => {
     return (
         <>
-            <p>{userBio.bio}</p>
             <div className="profile-page">
                 <div className="profile-picture">
                     <img src={userInfoData.profilePicture} alt="Profile" />
