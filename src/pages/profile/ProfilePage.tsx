@@ -96,7 +96,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
     <>
       <TopBar />
       <UserInfo personalPage={true} userInfoData={userData} userBio={userBio} token={token}/>
-      <div className="navbar">
+      <div className="navbar-fix">
         <ProfileNavBar setActiveOption={setActiveOption} />
       </div>
         {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
