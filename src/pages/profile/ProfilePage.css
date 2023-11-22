@@ -118,3 +118,15 @@ h2 {
   margin-top: 20px;
 }
 
+ul{
+  background-color: red;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar {
+  align-items: center;
+  justify-content: center;
+}
+
+
