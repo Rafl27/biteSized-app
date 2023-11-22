@@ -73,7 +73,9 @@ const VIsitProfile = () => {
             <TopBar />
             <div className="visit-profile-page">
                 <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null}/>
-                <ProfileNavBar setActiveOption={setActiveOption} />
+                <div className="navbar">
+                    <ProfileNavBar setActiveOption={setActiveOption} />
+                </div>
                 {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
                 {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
             </div>

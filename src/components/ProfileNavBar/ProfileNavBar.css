@@ -1,5 +1,5 @@
 .nav-options {
-    display: flex;
+    display: inline-flex;
     list-style-type: none;
     background-color: #212529;
     padding: 10px 0;

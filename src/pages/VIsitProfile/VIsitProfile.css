@@ -15,3 +15,8 @@
         width: 100%;
     }
 }
+
+.navbar {
+    align-items: center;
+    justify-content: center;
+}
