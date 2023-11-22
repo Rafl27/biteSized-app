@@ -6,6 +6,7 @@ import CreateBio from "../../components/CreateBio/CreateBio";
 import ProfileNavBar from "../../components/ProfileNavBar/ProfileNavBar";
 import ProfileCreateStories from "../../components/ProfileCreatedStories/ProfileCreateStories";
 import UserVotes from "../../components/UserVotes/UserVotes";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 interface ProfilePageProps {
   name: string
@@ -94,6 +95,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   return (
     <>
       <TopBar />
+      <UserInfo personalPage={true} userInfoData={userData} userBio={userBio} token={token}/>
       <div className="profile-page">
         <div className="profile-picture">
           <img src={userData.profilePicture} alt="Profile" />
