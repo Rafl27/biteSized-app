@@ -6,7 +6,7 @@ import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
 import {fetchFollowerCount, fetchFollowingCount, followUser} from "../../services/api";
 
-const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number}) => {
+const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, followingList, visitedUser} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number, followingList? : [], visitedUser : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
     const [followingCount, setFollowingCount] = useState<number>(0)
     const [buttonText, setButtonText] = useState('Follow');
@@ -37,6 +37,12 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {pe
             console.log('Error following user', error);
         }
     };
+
+    const alreadyFollowsUser = () => {
+        if(followingList){
+            return followingList.some(follow => follow.main_user == visitedUser)
+        }
+    }
 
 
     return (
@@ -76,12 +82,15 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {pe
                             {personalPage ? (
                                     <p></p>
                             ) : (
-                                <button className="follow-button" onClick={followUserHandler}>
-                                    {buttonText}
-                                </button>
-                            )}
+                                followingList && (
+                                    <button className="follow-button" onClick={followUserHandler}>
+                                        {buttonText}
+                                    </button>
+                                )
 
+                            )}
                         </div>
+                        <button onClick={alreadyFollowsUser}>cu</button>
 
                         {personalPage ? (
                             userBio.bio != '' ? (
