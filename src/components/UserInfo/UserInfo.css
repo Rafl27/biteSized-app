@@ -24,3 +24,27 @@
     color: #ababab;
     margin: 10px 0;
 }
+
+.infos{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.follows{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.follows p {
+    margin: 20px;
+}
+
+.right-side {
+    margin-left: 40px;
+}
+
+.follow-button{
+
+}
+
