@@ -9,21 +9,34 @@ const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage :
     return (
         <>
             <div className="profile-page">
-                <div className="profile-picture">
-                    <img src={userInfoData.profilePicture} alt="Profile" />
-                </div>
-                <h2>{userInfoData.username}</h2>
-                {personalPage ? (
-                    userBio.bio != '' ? (
-                            <p className="bio">{userBio.bio}</p>
+                <div className="infos">
+                    <div className="left-side">
+                        <div className="profile-picture">
+                            <img src={userInfoData.profilePicture} alt="Profile" />
+                        </div>
+                        <h2>{userInfoData.username}</h2>
+                        {personalPage ? (
+                            userBio.bio != '' ? (
+                                <p className="bio">{userBio.bio}</p>
+                            ) : (
+                                <CreateBio userId={userInfoData.id} token={token}  />
+                            )
                         ) : (
-                            <CreateBio userId={userInfoData.id} token={token}  />
-                        )
-                ) : (
-                    userBio.bio &&
+                            userBio.bio &&
                             <p className="bio">{userBio.bio}</p>
+                        )}
+                    </div>
+                    <div className="right-side">
+                        <div className="follows">
+                            <p><b>4</b> stories</p>
+                            <p><b>54</b> Followers</p>
+                            <p><b>33</b> Following</p>
+                        </div>
+                        <button className="follow-button">Follow</button>
+                    </div>
+                </div>
 
-                )}
+
             </div>
         </>
     );
