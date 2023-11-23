@@ -48,6 +48,7 @@ const VIsitProfile = () => {
 
 
     const [stories, setStories] = useState<Story[]>([])
+    const [storiesCount, setStoriesCount] = useState<number>(0)
 
     const fetchStories = async () => {
         try {
@@ -58,6 +59,7 @@ const VIsitProfile = () => {
                 throw new Error("Failed to fetch stories")
             }
             const storiesData = await response.json()
+            setStoriesCount(storiesData.storyCount)
             setStories(storiesData.stories)
         }catch (error) {
             console.log('Error fetching stories', error)
@@ -71,7 +73,7 @@ const VIsitProfile = () => {
     return (
         <>
             <TopBar />
-                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null}/>
+                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null} storyCount={storiesCount}/>
             <div className="navBar-fix">
                 <ProfileNavBar setActiveOption={setActiveOption} />
             </div>
