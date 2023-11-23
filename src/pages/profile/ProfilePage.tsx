@@ -23,6 +23,7 @@ interface Story {
 
 const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   const [stories, setStories] = useState<Story[]>([])
+  const [storiesCount, setStoriesCount] = useState<number>(0)
 
   useEffect(() => {
     fetchStories()
@@ -85,6 +86,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
 
       const storiesData = await response.json()
       console.log(storiesData.stories)
+      setStoriesCount(storiesData.storyCount)
       setStories(storiesData.stories)
     } catch (error) {
       console.error('Error fetching stories:', error)
@@ -96,7 +98,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   return (
     <>
       <TopBar />
-        <UserInfo personalPage={true} userInfoData={userData} userBio={userBio} token={token}/>
+        <UserInfo personalPage={true} userInfoData={userData} userBio={userBio} token={token} storyCount={storiesCount}/>
         <div className="navbar-fix">
           <ProfileNavBar setActiveOption={setActiveOption} />
         </div>
