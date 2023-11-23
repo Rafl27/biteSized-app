@@ -15,7 +15,8 @@ const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage :
                 setFollowerCount(data.following);
             })
             .catch(error => console.error("Error", error));
-    }, []);
+    }, [userInfoData]);
+
 
     return (
         <>
