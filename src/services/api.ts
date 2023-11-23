@@ -225,4 +225,19 @@ export const checkFollowing = async (userId : number) => {
     }
 }
 
+export const checkFollowingLogged = async (token : string) => {
+    const config = {
+        headers : {Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/check-following-logged`,
+            config
+        )
+        return response.data
+    }catch(error){
+        console.log("Error fetching follow list", error)
+    }
+}
+
 
