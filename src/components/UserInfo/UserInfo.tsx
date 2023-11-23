@@ -1,11 +1,22 @@
 import "./UserInfo.css"
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CreateBio from "../CreateBio/CreateBio";
 import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
+import {fetchFollowerCount} from "../../services/api";
 
 const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String}) => {
+    const [followerCount, setFollowerCount] = useState<number>(0)
+
+    useEffect(() => {
+        fetchFollowerCount(userInfoData.id)
+            .then(data => {
+                setFollowerCount(data.following);
+            })
+            .catch(error => console.error("Error", error));
+    }, []);
+
     return (
         <>
             <div className="profile-page">
@@ -19,7 +30,12 @@ const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage :
                     <div className="right-side">
                         <div className="follows">
                             <p><b>4</b> stories</p>
-                            <p><b>54</b> Followers</p>
+                            {followerCount ? (
+                                <p><b>{followerCount}</b> Followers</p>
+                            ) :
+                                (
+                                    <p><b>0</b> Followers</p>
+                                )}
                             <p><b>33</b> Following</p>
                         </div>
                         <div className="name-follow">
