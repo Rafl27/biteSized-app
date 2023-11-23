@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import CreateBio from "../CreateBio/CreateBio";
 import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
-import {fetchFollowerCount, fetchFollowingCount} from "../../services/api";
+import {fetchFollowerCount, fetchFollowingCount, followUser} from "../../services/api";
 
 const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
@@ -60,7 +60,15 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {pe
                         </div>
                         <div className="name-follow">
                             <h2 className="username">{userInfoData.username}</h2>
-                            <button className="follow-button">Follow</button>
+                            {/*todo tratar o caso do mesmo user visitar o proprio perfil*/}
+                            {personalPage ? (
+                                    <p></p>
+                            ) : (
+                                <button className="follow-button" onClick={() => {followUser(userInfoData.id, token)
+                                console.log(token)
+                                }}>Follow</button>
+                            )}
+
                         </div>
 
                         {personalPage ? (
@@ -76,8 +84,6 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {pe
 
                     </div>
                 </div>
-
-
             </div>
         </>
     );
