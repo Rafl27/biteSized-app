@@ -9,6 +9,7 @@ import {fetchFollowerCount, fetchFollowingCount, followUser} from "../../service
 const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
     const [followingCount, setFollowingCount] = useState<number>(0)
+    const [buttonText, setButtonText] = useState('Follow');
 
     useEffect(() => {
         fetchFollowerCount(userInfoData.id)
@@ -25,6 +26,17 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {pe
             })
             .catch(error => console.error("Error", error))
     }, [userInfoData]);
+
+    const followUserHandler = async () => {
+        try {
+            const response = await followUser(userInfoData.id, token);
+            if (response) {
+                setButtonText('Following');
+            }
+        } catch (error) {
+            console.log('Error following user', error);
+        }
+    };
 
 
     return (
@@ -64,9 +76,9 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {pe
                             {personalPage ? (
                                     <p></p>
                             ) : (
-                                <button className="follow-button" onClick={() => {followUser(userInfoData.id, token)
-                                console.log(token)
-                                }}>Follow</button>
+                                <button className="follow-button" onClick={followUserHandler}>
+                                    {buttonText}
+                                </button>
                             )}
 
                         </div>
