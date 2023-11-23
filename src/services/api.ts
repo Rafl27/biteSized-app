@@ -1,5 +1,6 @@
 import axios from "axios";
 import {StoryCard as Story} from "../interfaces/StoryCard";
+import {ca} from "date-fns/locale";
 
 export const fetchCommentsByStoryId = async (storyId : number) => {
     try {
@@ -194,5 +195,21 @@ export const fetchFollowingCount = async (userId : number) => {
     }
     catch(error){
         console.log(error)
+    }
+}
+
+export const followUser = async (userId : number, token : string) => {
+    const config = {
+        headers : {Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/follow`,
+            {},
+            config
+        )
+        return response.data
+    }catch (error){
+        console.log("Error following user", error)
     }
 }
