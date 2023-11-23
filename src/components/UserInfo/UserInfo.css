@@ -22,7 +22,6 @@
 .bio {
     font-size: 16px;
     color: #ababab;
-    margin: 10px 0;
 }
 
 .infos{
@@ -44,7 +43,29 @@
     margin-left: 40px;
 }
 
-.follow-button{
+.follow-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+.follow-button:hover {
+    background-color: #2980b9;
+}
+
+.username{
+    text-align: left;
+}
+
+.name-follow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 

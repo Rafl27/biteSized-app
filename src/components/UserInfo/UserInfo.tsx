@@ -14,7 +14,19 @@ const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage :
                         <div className="profile-picture">
                             <img src={userInfoData.profilePicture} alt="Profile" />
                         </div>
-                        <h2>{userInfoData.username}</h2>
+
+                    </div>
+                    <div className="right-side">
+                        <div className="follows">
+                            <p><b>4</b> stories</p>
+                            <p><b>54</b> Followers</p>
+                            <p><b>33</b> Following</p>
+                        </div>
+                        <div className="name-follow">
+                            <h2 className="username">{userInfoData.username}</h2>
+                            <button className="follow-button">Follow</button>
+                        </div>
+
                         {personalPage ? (
                             userBio.bio != '' ? (
                                 <p className="bio">{userBio.bio}</p>
@@ -25,14 +37,7 @@ const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage :
                             userBio.bio &&
                             <p className="bio">{userBio.bio}</p>
                         )}
-                    </div>
-                    <div className="right-side">
-                        <div className="follows">
-                            <p><b>4</b> stories</p>
-                            <p><b>54</b> Followers</p>
-                            <p><b>33</b> Following</p>
-                        </div>
-                        <button className="follow-button">Follow</button>
+
                     </div>
                 </div>
 
