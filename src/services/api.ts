@@ -184,3 +184,15 @@ export const fetchFollowerCount = async (userId : number) => {
         console.log(error)
     }
 }
+
+export const fetchFollowingCount = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/following-count`
+        )
+        return response.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
