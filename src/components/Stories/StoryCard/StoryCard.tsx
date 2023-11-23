@@ -142,7 +142,7 @@ const StoryCard: React.FC = () => {
                                         />
                                         <div className="name-followers"></div>
                                         <p className="userName">{story.username}</p>
-                                        <p>5 followers</p>
+                                        {/*<p>5 followers</p>*/}
                                     </div>
                                 </Link>
                                 <p className="card-text">{story.content}</p>
