@@ -52,7 +52,7 @@ const VIsitProfile = () => {
 
     const [stories, setStories] = useState<Story[]>([])
     const [storiesCount, setStoriesCount] = useState<number>(0)
-    const [followedUsers, setFollowedUsers] = useState()
+    const [followedUsers, setFollowedUsers] = useState([])
 
     useEffect(() => {
         checkFollowingLogged(token)
@@ -86,7 +86,7 @@ const VIsitProfile = () => {
     return (
         <>
             <TopBar />
-                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={token} storyCount={storiesCount}/>
+                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={token} storyCount={storiesCount} followingList={followedUsers} visitedUser={userId}/>
             <div className="navBar-fix">
                 <ProfileNavBar setActiveOption={setActiveOption} />
             </div>
