@@ -214,6 +214,23 @@ export const followUser = async (userId : number, token : string) => {
     }
 }
 
+export const unfollowUser = async (userId : number, token : string) => {
+    const config = {
+        headers : {Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/unfollow`,
+            {},
+            config
+        )
+        return response.data
+    }catch (error){
+        console.log("Error unfollowing user", error)
+    }
+}
+
+
 export const checkFollowing = async (userId : number) => {
     try {
         const response = await axios.get(
