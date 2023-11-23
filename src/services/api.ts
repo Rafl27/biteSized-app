@@ -213,3 +213,16 @@ export const followUser = async (userId : number, token : string) => {
         console.log("Error following user", error)
     }
 }
+
+export const checkFollowing = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/check-following`
+        )
+        return response.data
+    }catch (error) {
+        console.log("Error fetching following list", error)
+    }
+}
+
+
