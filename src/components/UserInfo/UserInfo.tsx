@@ -82,15 +82,17 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                             {personalPage ? (
                                     <p></p>
                             ) : (
-                                followingList && (
+                                alreadyFollowsUser() ? (
+                                    <button className="follow-button" onClick={unfollowUserHandler}>
+                                        Following
+                                    </button>
+                                ) : (
                                     <button className="follow-button" onClick={followUserHandler}>
                                         {buttonText}
                                     </button>
                                 )
-
                             )}
                         </div>
-                        <button onClick={alreadyFollowsUser}>cu</button>
 
                         {personalPage ? (
                             userBio.bio != '' ? (
