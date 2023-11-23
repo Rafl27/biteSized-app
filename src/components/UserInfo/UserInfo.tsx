@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import CreateBio from "../CreateBio/CreateBio";
 import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
-import {fetchFollowerCount, fetchFollowingCount, followUser} from "../../services/api";
+import {fetchFollowerCount, fetchFollowingCount, followUser, unfollowUser} from "../../services/api";
 
 const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, followingList, visitedUser} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number, followingList? : [], visitedUser : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
@@ -32,6 +32,17 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
             const response = await followUser(userInfoData.id, token);
             if (response) {
                 setButtonText('Following');
+            }
+        } catch (error) {
+            console.log('Error following user', error);
+        }
+    };
+
+    const unfollowUserHandler = async () => {
+        try {
+            const response = await unfollowUser(userInfoData.id, token);
+            if (response) {
+                setButtonText('Follow');
             }
         } catch (error) {
             console.log('Error following user', error);
