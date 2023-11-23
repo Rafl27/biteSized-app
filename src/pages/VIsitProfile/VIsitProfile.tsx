@@ -9,6 +9,7 @@ import {Story} from "../../interfaces";
 import CreateBio from "../../components/CreateBio/CreateBio";
 import './VIsitProfile.css'
 import UserInfo from "../../components/UserInfo/UserInfo";
+import {checkFollowing, checkFollowingLogged} from "../../services/api";
 
 const VIsitProfile = () => {
 
@@ -51,6 +52,26 @@ const VIsitProfile = () => {
 
     const [stories, setStories] = useState<Story[]>([])
     const [storiesCount, setStoriesCount] = useState<number>(0)
+    const [followedUsers, setFollowedUsers] = useState()
+
+    // const fetchFollowedUsers = async () => {
+    //     try{
+    //         const response = await checkFollowingLogged(token)
+    //             .then(data => {
+    //                 setFollowedUsers(data)
+    //             })
+    //             .catch(error => console.log("Error", error))
+    //     }
+    // }
+
+    useEffect(() => {
+        checkFollowingLogged(token)
+            .then(data => {
+                setFollowedUsers(data)
+                console.log("oiiii")
+                console.log(data)
+            }).catch(error => console.error("Error", error))
+    }, [token]);
 
     const fetchStories = async () => {
         try {
