@@ -95,7 +95,7 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                             ) : (
                                 alreadyFollowsUser() ? (
                                     <button className="follow-button" onClick={unfollowUserHandler}>
-                                        {buttonText}
+                                        Following
                                     </button>
                                 ) : (
                                     <button className="follow-button" onClick={followUserHandler}>
