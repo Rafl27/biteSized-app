@@ -84,7 +84,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
       }
 
       const storiesData = await response.json()
-      setStories(storiesData)
+      console.log(storiesData.stories)
+      setStories(storiesData.stories)
     } catch (error) {
       console.error('Error fetching stories:', error)
     }

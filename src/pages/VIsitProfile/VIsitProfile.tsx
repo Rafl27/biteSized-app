@@ -58,7 +58,7 @@ const VIsitProfile = () => {
                 throw new Error("Failed to fetch stories")
             }
             const storiesData = await response.json()
-            setStories(storiesData)
+            setStories(storiesData.stories)
         }catch (error) {
             console.log('Error fetching stories', error)
         }
