@@ -201,6 +201,23 @@ total-comments {
   width: 8%;
 }
 
+.name-followers{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.name-followers .userName {
+  height: 2px;
+}
+
+.name-followers .followers {
+  text-decoration: none; !important;
+  color: inherit; /* Use the default text color */
+  /* Optionally, you can reset other styles as well */
+  font-weight: inherit;
+}
+
 
 
 
