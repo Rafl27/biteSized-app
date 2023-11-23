@@ -6,6 +6,7 @@ import CreateBio from "../../components/CreateBio/CreateBio";
 import ProfileNavBar from "../../components/ProfileNavBar/ProfileNavBar";
 import ProfileCreateStories from "../../components/ProfileCreatedStories/ProfileCreateStories";
 import UserVotes from "../../components/UserVotes/UserVotes";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 interface ProfilePageProps {
   name: string
@@ -22,6 +23,7 @@ interface Story {
 
 const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   const [stories, setStories] = useState<Story[]>([])
+  const [storiesCount, setStoriesCount] = useState<number>(0)
 
   useEffect(() => {
     fetchStories()
@@ -83,7 +85,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
       }
 
       const storiesData = await response.json()
-      setStories(storiesData)
+      console.log(storiesData.stories)
+      setStoriesCount(storiesData.storyCount)
+      setStories(storiesData.stories)
     } catch (error) {
       console.error('Error fetching stories:', error)
     }
@@ -94,22 +98,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ name, profilePicture }) => {
   return (
     <>
       <TopBar />
-      <div className="profile-page">
-        <div className="profile-picture">
-          <img src={userData.profilePicture} alt="Profile" />
+        <UserInfo personalPage={true} userInfoData={userData} userBio={userBio} token={token} storyCount={storiesCount}/>
+        <div className="navbar-fix">
+          <ProfileNavBar setActiveOption={setActiveOption} />
         </div>
-        <h2>{userData.username}</h2>
-
-        {userBio.bio != '' ? (
-            <p className="bio">{userBio.bio}</p>
-        ) : (
-            <CreateBio userId={userData.id} token={token}  />
-        )}
-
-        <ProfileNavBar setActiveOption={setActiveOption} />
         {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
         {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
-      </div>
     </>
   )
 }

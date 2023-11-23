@@ -140,7 +140,9 @@ const StoryCard: React.FC = () => {
                                             src={story.profile_picture}
                                             alt="user profile picture"
                                         />
+                                        <div className="name-followers"></div>
                                         <p className="userName">{story.username}</p>
+                                        {/*<p>5 followers</p>*/}
                                     </div>
                                 </Link>
                                 <p className="card-text">{story.content}</p>

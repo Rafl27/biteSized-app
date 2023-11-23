@@ -26,22 +26,6 @@
   color: white;
 }
 
-/*.card:hover {*/
-/*  background-color: #183D3D;*/
-/*  background-image: linear-gradient(62deg, #183D3D 0%, #5C8374 100%);*/
-/*  cursor: pointer;*/
-/*  transform: scale(1.01);*/
-/*}*/
-
-/*
-.card-body {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30rem;
-} */
 
 .button-container {
   display: flex;
@@ -215,6 +199,23 @@ total-comments {
 
 .languageIcon{
   width: 8%;
+}
+
+.name-followers{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.name-followers .userName {
+  height: 2px;
+}
+
+.name-followers .followers {
+  text-decoration: none; !important;
+  color: inherit; /* Use the default text color */
+  /* Optionally, you can reset other styles as well */
+  font-weight: inherit;
 }
 
 

@@ -8,10 +8,14 @@ import UserVotes from "../../components/UserVotes/UserVotes";
 import {Story} from "../../interfaces";
 import CreateBio from "../../components/CreateBio/CreateBio";
 import './VIsitProfile.css'
+import UserInfo from "../../components/UserInfo/UserInfo";
+import {checkFollowing, checkFollowingLogged} from "../../services/api";
 
 const VIsitProfile = () => {
 
     const {userId} = useParams()
+
+    const token = localStorage.getItem('token');
 
     const [userData, setUserData] = useState({
         username: '',
@@ -47,6 +51,17 @@ const VIsitProfile = () => {
 
 
     const [stories, setStories] = useState<Story[]>([])
+    const [storiesCount, setStoriesCount] = useState<number>(0)
+    const [followedUsers, setFollowedUsers] = useState([])
+
+    useEffect(() => {
+        checkFollowingLogged(token)
+            .then(data => {
+                setFollowedUsers(data)
+                console.log("oiiii")
+                console.log(data)
+            }).catch(error => console.error("Error", error))
+    }, [token]);
 
     const fetchStories = async () => {
         try {
@@ -57,7 +72,8 @@ const VIsitProfile = () => {
                 throw new Error("Failed to fetch stories")
             }
             const storiesData = await response.json()
-            setStories(storiesData)
+            setStoriesCount(storiesData.storyCount)
+            setStories(storiesData.stories)
         }catch (error) {
             console.log('Error fetching stories', error)
         }
@@ -70,20 +86,12 @@ const VIsitProfile = () => {
     return (
         <>
             <TopBar />
-            <div className="visit-profile-page">
-                    <div className="profile-picture">
-                        <img src={userData.profilePicture} alt="Profile" />
-                    </div>
-                    <h2>{userData.username}</h2>
-
-                    {userBio.bio &&
-                        <p className="bio">{userBio.bio}</p>
-                    }
-
+                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={token} storyCount={storiesCount} followingList={followedUsers} visitedUser={userId}/>
+            <div className="navBar-fix">
                 <ProfileNavBar setActiveOption={setActiveOption} />
+            </div>
                 {activeOption === 'stories' && <ProfileCreateStories stories={stories} />}
                 {activeOption === 'votes' && <UserVotes userId={Number(userData.id)} />}
-            </div>
         </>
     );
 };

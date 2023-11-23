@@ -1,27 +1,10 @@
-.bio {
-    font-size: 16px;
-    color: #ababab;
-    margin: 10px 0;
-}
-
-/*.user-info {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*}*/
-
-.visit-profile-page{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 @media (max-width: 450px) {
     .story-list {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         width: 90%;
+        flex-direction: column;
     }
 
     .story{
@@ -32,4 +15,9 @@
     .vote-list{
         width: 100%;
     }
+}
+
+.navBar-fix{
+    justify-content: center;
+    display: flex;
 }

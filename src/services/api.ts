@@ -1,5 +1,6 @@
 import axios from "axios";
 import {StoryCard as Story} from "../interfaces/StoryCard";
+import {ca} from "date-fns/locale";
 
 export const fetchCommentsByStoryId = async (storyId : number) => {
     try {
@@ -172,3 +173,88 @@ export const fetchAllUserVotes = async (userId : number) => {
         console.log(error)
     }
 }
+
+export const fetchFollowerCount = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/follower-count`
+        )
+        return response.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
+export const fetchFollowingCount = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/following-count`
+        )
+        return response.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
+export const followUser = async (userId : number, token : string) => {
+    const config = {
+        headers : {Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/follow`,
+            {},
+            config
+        )
+        return response.data
+    }catch (error){
+        console.log("Error following user", error)
+    }
+}
+
+export const unfollowUser = async (userId : number, token : string) => {
+    const config = {
+        headers : {Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/unfollow`,
+            {},
+            config
+        )
+        return response.data
+    }catch (error){
+        console.log("Error unfollowing user", error)
+    }
+}
+
+
+export const checkFollowing = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/check-following`
+        )
+        return response.data
+    }catch (error) {
+        console.log("Error fetching following list", error)
+    }
+}
+
+export const checkFollowingLogged = async (token : string) => {
+    const config = {
+        headers : {Authorization: `Bearer ${token}` },
+    }
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/followers/check-following-logged`,
+            config
+        )
+        return response.data
+    }catch(error){
+        console.log("Error fetching follow list", error)
+    }
+}
+
+
