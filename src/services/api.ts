@@ -176,7 +176,7 @@ export const fetchAllUserVotes = async (userId : number) => {
 export const fetchFollowerCount = async (userId : number) => {
     try {
         const response = await axios.get(
-            `${import.meta.env.VITE_API_BASE_URL}/followers/${userId}/follower-count`
+            `${import.meta.env.VITE_API_BASE_URL}/followers/3/follower-count`
         )
         return response.data
     }
