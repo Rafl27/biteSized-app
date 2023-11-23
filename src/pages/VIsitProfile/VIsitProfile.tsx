@@ -14,6 +14,8 @@ const VIsitProfile = () => {
 
     const {userId} = useParams()
 
+    const token = localStorage.getItem('token');
+
     const [userData, setUserData] = useState({
         username: '',
         email: '',
@@ -73,7 +75,7 @@ const VIsitProfile = () => {
     return (
         <>
             <TopBar />
-                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={null} storyCount={storiesCount}/>
+                <UserInfo personalPage={false} userInfoData={userData} userBio={userBio} token={token} storyCount={storiesCount}/>
             <div className="navBar-fix">
                 <ProfileNavBar setActiveOption={setActiveOption} />
             </div>
