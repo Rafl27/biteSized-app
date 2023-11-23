@@ -33,6 +33,7 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
             if (response) {
                 setButtonText('Following');
             }
+            window.location.reload()
         } catch (error) {
             console.log('Error following user', error);
         }
@@ -44,6 +45,7 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
             if (response) {
                 setButtonText('Follow');
             }
+            window.location.reload()
         } catch (error) {
             console.log('Error following user', error);
         }
