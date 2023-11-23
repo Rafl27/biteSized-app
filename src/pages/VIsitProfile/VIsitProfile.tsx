@@ -54,16 +54,6 @@ const VIsitProfile = () => {
     const [storiesCount, setStoriesCount] = useState<number>(0)
     const [followedUsers, setFollowedUsers] = useState()
 
-    // const fetchFollowedUsers = async () => {
-    //     try{
-    //         const response = await checkFollowingLogged(token)
-    //             .then(data => {
-    //                 setFollowedUsers(data)
-    //             })
-    //             .catch(error => console.log("Error", error))
-    //     }
-    // }
-
     useEffect(() => {
         checkFollowingLogged(token)
             .then(data => {
