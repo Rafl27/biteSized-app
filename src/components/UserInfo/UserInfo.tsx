@@ -6,7 +6,7 @@ import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
 import {fetchFollowerCount, fetchFollowingCount} from "../../services/api";
 
-const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String}) => {
+const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
     const [followingCount, setFollowingCount] = useState<number>(0)
 
@@ -39,7 +39,12 @@ const UserInfo = ({personalPage, userInfoData, userBio, token} : {personalPage :
                     </div>
                     <div className="right-side">
                         <div className="follows">
-                            <p><b>4</b> stories</p>
+                            {storyCount ? (
+                                <p><b>{storyCount}</b> stories</p>
+                            ) : (
+                                <p><b>0</b> stories</p>
+                            )}
+
                             {followerCount ? (
                                 <p><b>{followerCount}</b> Followers</p>
                             ) :
