@@ -89,35 +89,36 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                             )
                             }
                         </div>
-                        <div className="name-follow">
-                            <h2 className="username">{userInfoData.username}</h2>
-                            {/*todo tratar o caso do mesmo user visitar o proprio perfil*/}
-                            {personalPage ? (
+                        <div className="name-bio">
+                            <div className="name-follow">
+                                <h2 className="username">{userInfoData.username}</h2>
+                                {/*todo tratar o caso do mesmo user visitar o proprio perfil*/}
+                                {personalPage ? (
                                     <p></p>
-                            ) : (
-                                alreadyFollowsUser() ? (
-                                    <button className="follow-button" onClick={unfollowUserHandler}>
-                                        Following
-                                    </button>
                                 ) : (
-                                    <button className="follow-button" onClick={followUserHandler}>
-                                        {buttonText}
-                                    </button>
+                                    alreadyFollowsUser() ? (
+                                        <button className="follow-button" onClick={unfollowUserHandler}>
+                                            Following
+                                        </button>
+                                    ) : (
+                                        <button className="follow-button" onClick={followUserHandler}>
+                                            {buttonText}
+                                        </button>
+                                    )
+                                )}
+                            </div>
+
+                            {personalPage ? (
+                                userBio.bio != '' ? (
+                                    <p className="bio">{userBio.bio}</p>
+                                ) : (
+                                    <CreateBio userId={userInfoData.id} token={token}  />
                                 )
+                            ) : (
+                                userBio.bio &&
+                                <p className="bio">{userBio.bio}</p>
                             )}
                         </div>
-
-                        {personalPage ? (
-                            userBio.bio != '' ? (
-                                <p className="bio">{userBio.bio}</p>
-                            ) : (
-                                <CreateBio userId={userInfoData.id} token={token}  />
-                            )
-                        ) : (
-                            userBio.bio &&
-                            <p className="bio">{userBio.bio}</p>
-                        )}
-
                     </div>
                 </div>
             </div>
