@@ -69,3 +69,14 @@
     justify-content: space-between;
 }
 
+@media (max-width: 450px) {
+    .infos{
+        display: flex;
+        flex-direction: row;
+        color: white;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+}
+
