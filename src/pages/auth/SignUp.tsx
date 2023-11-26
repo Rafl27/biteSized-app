@@ -47,6 +47,9 @@ const SignUp: React.FC = () => {
         }, 2000);
       } catch (err) {
         console.log(err)
+        if (err.response && err.response.status === 409) {
+          alert('User with this email already exists.')
+        }
       }
     }
 
