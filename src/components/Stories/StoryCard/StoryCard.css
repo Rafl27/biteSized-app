@@ -91,9 +91,9 @@ total-comments {
   padding: 0 0 3% 0;
 }
 
-/*.cards{*/
-/*  display: flex;*/
-/*}*/
+.cards{
+  margin-bottom: 60px;
+}
 
 .vote-button.upvote.clicked,
 .vote-button.downvote.clicked {
