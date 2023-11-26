@@ -34,19 +34,18 @@ const LearnMore = () => {
 
                 Quando comecei a criar essa belezinha, tive um estalo: e se todo mundo pudesse contribuir e tecer histórias juntas? Nada de finais ruins ou buracos na trama que te deixam de cabelo em pé, porque você ou qualquer outra pessoa poderia entrar na jogada e dar um jeito. Demais, né? É essa a nossa pegada por aqui.</p>
 
-            <h3 className="titles">Como eu crio minha primeira história?</h3>
+            <h3 className="titles">Como crio minha primeira história?</h3>
             <p className="paragraphs">
-                Pronto para começar a tecer sua própria história? Basta clicar no sinal de mais na barra superior.
+                Tá afim de começar a criar sua própria história? É só clicar no sinal de mais lá em cima na barra.
             </p>
             <img className="example-images" src={"plus-button-arrpw.png"}/>
-            <p className="paragraphs">Isso te levará a uma página bem legal onde você pode preencher todos os detalhes para a sua história. E adivinha? Tudo o que você digita é atualizado em tempo real no lado direito da tela. Mas aqui está a pegadinha - atualmente não estamos configurados para aceitar uploads de imagens diretamente do seu dispositivo. Então, você precisará fazer o upload da sua imagem em outro lugar primeiro e depois nos fornecer a URL. É um pouco complicado, eu sei. Mas ei, somos uma plataforma sem fins lucrativos no momento, então agradecemos a sua compreensão!</p>
+            <p className="paragraphs">Isso vai te levar para uma página maneira onde você pode preencher todos os detalhes da sua história. E o melhor de tudo? Tudo o que você digita é atualizado em tempo real do lado direito da tela. Mas tem um porém - no momento, não estamos preparados para aceitar uploads de imagens diretamente do seu dispositivo. Então, você vai precisar fazer o upload da sua imagem em outro lugar primeiro e depois nos passar a URL. Eu sei, é meio chato. Mas olha, somos uma plataforma sem fins lucrativos no momento, então agradecemos a sua compreensão!</p>
             <img className="example-images" src="create-story.png"/>
             <h3 className="titles">Como funcionam as threads?</h3>
-            <p className="paragraphs">BiteSized é um lugar legal onde você pode deixar sua criatividade correr solta, criando e colaborando em histórias. Seja você um mestre das palavras que adora tecer contos em parágrafos ou um artista que se expressa através de obras de arte, há um espaço para você aqui. Em nossa plataforma, temos essa coisa chamada ‘threads’. Por quê, você pergunta? Bem, uma das grandes ideias por trás do BiteSized é que histórias criadas por uma comunidade podem se ramificar em inúmeras direções, levando a infinitos finais possíveis. Então, cada thread pode tecer seu próprio conto único, com múltiplos finais independentes. É como se cada história fosse um tapete com padrões infinitos. Muito incrível, certo?</p>
+            <p className="paragraphs">BiteSized é um lugar onde sua criatividade pode voar alto, seja criando ou colaborando em histórias. Se você é daqueles que adora criar contos em parágrafos ou um artista que se expressa através de obras de arte, aqui tem um espaço pra você. Na nossa plataforma, temos as ‘threads’. Por que, você pergunta? Bom, uma das ideias por trás do BiteSized é que histórias criadas por uma comunidade podem se desdobrar em várias direções, levando a finais infinitos. Então, cada thread pode tecer seu próprio conto único, com vários finais independentes. É como se cada história fosse um tapete com padrões infinitos. Demais, né?</p>
             <img className="example-images" src={"threads-example.png"}/>
             <h3 className="titles">E a minha reputação?</h3>
-            <p className="paragraphs">Tudo bem, aqui é onde eu te fisgo! Se você clicar no seu avatar ali em cima na barra superior, você terá uma visão geral bacana da sua jornada no BiteSized. Você verá todas as histórias que criou, o número de seguidores que acumulou e as pessoas que está seguindo.
-                Mas espere, tem mais! Você também pode conferir tudo o que deu um joinha. E para manter as coisas transparentes, mostramos o número de votos positivos e negativos que você recebeu - essa é a sua reputação na comunidade BiteSized. Então, vá em frente e explore!</p>
+            <p className="paragraphs">Agora, deixa eu te fisgar! Se você clicar no seu avatar ali em cima na barra superior, vai ter uma visão geral da sua jornada no BiteSized. Vai ver todas as histórias que criou, o número de seguidores que juntou e as pessoas que está seguindo. Mas calma, ainda tem mais! Você também pode dar uma olhada em tudo que curtiu. E pra manter a transparência, mostramos o número de curtidas e descurtidas que você recebeu - essa é a sua reputação na comunidade BiteSized. Então, se joga e explora!</p>
             <img className="example-images" src={"profile-page.png"}/>
         </div>
     );
