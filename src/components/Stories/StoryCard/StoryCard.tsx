@@ -144,8 +144,9 @@ const StoryCard: React.FC = () => {
                                             <Link to={`/visit-profile/${story.userId}`}>
                                                 <p className="userName">{story.username}</p>
                                             </Link>
-
-                                            <p><b>{story.followerCount}</b> follower(s)</p>
+                                            <p className="follower-count">
+                                                <b>{story.followerCount}</b> follower(s)
+                                            </p>
                                         </div>
                                     </div>
 
