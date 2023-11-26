@@ -133,18 +133,23 @@ const StoryCard: React.FC = () => {
                                 />
                                 <p className="created">Created: {formatDate(story.date)}</p>
 
-                                <Link to={`/visit-profile/${story.userId}`}>
+
                                     <div className="userInfo">
                                         <img
                                             className="profilePicture"
                                             src={story.profile_picture}
                                             alt="user profile picture"
                                         />
-                                        <div className="name-followers"></div>
-                                        <p className="userName">{story.username}</p>
-                                        {/*<p>5 followers</p>*/}
+                                        <div className="name-followers">
+                                            <Link to={`/visit-profile/${story.userId}`}>
+                                                <p className="userName">{story.username}</p>
+                                            </Link>
+                                            <p className="follower-count">
+                                                <b>{story.followerCount}</b> follower(s)
+                                            </p>
+                                        </div>
                                     </div>
-                                </Link>
+
                                 <p className="card-text">{story.content}</p>
                                 <div className="card-title-container">
                                     <div className="vote-container">

@@ -205,22 +205,38 @@ total-comments {
   width: 8%;
 }
 
-.name-followers{
+.name-followers {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
-.name-followers .userName {
-  height: 2px;
+.name-followers a {
+  text-decoration: none;
+  color: #cecece;
 }
 
-.name-followers .followers {
-  text-decoration: none; !important;
-  color: inherit; /* Use the default text color */
-  /* Optionally, you can reset other styles as well */
-  font-weight: inherit;
+.userName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
 }
+
+.follower-count {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #777;
+}
+
+.name-followers a:hover .userName {
+  text-decoration: underline;
+}
+
+.userInfo{
+  align-items: center;
+}
+
 
 
 

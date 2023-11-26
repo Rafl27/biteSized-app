@@ -10,4 +10,5 @@ export interface StoryCard {
     title: string
     content: string
     storyId: number
+    followerCount: number
 }
