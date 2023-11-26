@@ -86,12 +86,9 @@ const TopBar: React.FC = () => {
             <BsPlusCircleFill className="BsPlusCircleFill" />
           </div>
         </Link>
-        <div className="learn-more">
           <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
-            <FaQuestionCircle />
+            <p className="faq-label">FAQ</p>
           </Link>
-
-        </div>
         {/*<div className="option">*/}
         {/*  <BiTrendingUp className="BiTrendingUp" />*/}
         {/*</div>*/}
