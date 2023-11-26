@@ -30,7 +30,9 @@ const LearnMore = () => {
             <img className="example-images" src={"profile-page.png"}/>
 
             <h1 className="titles">Como funciona o BiteSized? <img className="language" src={"brazil-flag.png"}/></h1>
-            <p className="paragraphs">Sabe como a vida fica ocupada e você não tem tanto tempo para mergulhar em fantasia épica como costumava ter? É aí que entra esta plataforma. Tudo se resume a obter sua dose de fantasia em pedaços pequenos (sim, é por isso que chamamos do jeito que chamamos!). Quando comecei a construir isso, tive um momento de inspiração. E se todos pudessem contribuir e tecer histórias juntos? Não mais gemidos em finais ruins ou buracos na trama, porque você ou qualquer outra pessoa poderia intervir e consertar. Legal, né? É disso que se trata aqui.</p>
+            <p className="paragraphs">Sabe quando a vida fica tão corrida que mal sobra tempo para se perder em uma boa fantasia épica como antigamente? Pois é, foi pensando nisso que surgiu a nossa plataforma. A ideia é simples: te oferecer uma dose de fantasia em pedacinhos, ou melhor, em “mordidas” (sacou o nome da plataforma agora, né?).
+
+                Quando comecei a criar essa belezinha, tive um estalo: e se todo mundo pudesse contribuir e tecer histórias juntas? Nada de finais ruins ou buracos na trama que te deixam de cabelo em pé, porque você ou qualquer outra pessoa poderia entrar na jogada e dar um jeito. Demais, né? É essa a nossa pegada por aqui.</p>
 
             <h3 className="titles">Como eu crio minha primeira história?</h3>
             <p className="paragraphs">
