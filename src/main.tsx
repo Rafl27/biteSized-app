@@ -12,6 +12,7 @@ import SingleThread from './pages/SingleThread/SingleThread'
 import NotFoundPage from "./pages/404/404";
 import RemainingThreads from "./pages/RemainingThreads/RemainingThreads";
 import VIsitProfile from "./pages/VIsitProfile/VIsitProfile";
+import LearnMore from "./pages/learnMore/LearnMore";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: '/thread/:idComment',
     element: <RemainingThreads />
+  },
+  {
+    path: '/get-started',
+    element: <LearnMore />
   }
 ])
 

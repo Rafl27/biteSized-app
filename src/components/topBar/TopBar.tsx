@@ -4,6 +4,7 @@ import { MdCookie } from 'react-icons/md'
 import { RiLogoutBoxRLine } from 'react-icons/ri'
 import { BsPlusCircleFill } from 'react-icons/bs'
 import { BiTrendingUp } from 'react-icons/bi'
+import { FaQuestionCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
@@ -62,6 +63,7 @@ const TopBar: React.FC = () => {
           <span className="bitesized-text">BiteSized</span>
         </div>
       </Link>
+
       <div className="options">
         {token ? (
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/profile">
@@ -84,6 +86,9 @@ const TopBar: React.FC = () => {
             <BsPlusCircleFill className="BsPlusCircleFill" />
           </div>
         </Link>
+          <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+            <p className="faq-label">FAQ</p>
+          </Link>
         {/*<div className="option">*/}
         {/*  <BiTrendingUp className="BiTrendingUp" />*/}
         {/*</div>*/}

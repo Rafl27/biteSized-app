@@ -189,7 +189,7 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 150px;
+    margin-top: 150px;
   }
 }
 

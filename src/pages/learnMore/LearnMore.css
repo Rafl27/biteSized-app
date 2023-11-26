@@ -1,0 +1,36 @@
+.paragraphs {
+    color: white;
+    padding: 0 20% 0 20%;
+    text-align: justify;
+}
+.titles{
+    margin-top: 30px;
+    color: white;
+    text-align: center;
+}
+
+.example-images{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.language{
+    height: 20px;
+}
+
+@media (max-width: 450px) {
+    .paragraphs {
+        color: white;
+        padding: 0 4px 0 4px;
+        text-align: justify;
+    }
+
+    .example-images{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
