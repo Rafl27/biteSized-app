@@ -87,7 +87,10 @@ const TopBar: React.FC = () => {
           </div>
         </Link>
         <div className="learn-more">
-          <FaQuestionCircle />
+          <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+            <FaQuestionCircle />
+          </Link>
+
         </div>
         {/*<div className="option">*/}
         {/*  <BiTrendingUp className="BiTrendingUp" />*/}
