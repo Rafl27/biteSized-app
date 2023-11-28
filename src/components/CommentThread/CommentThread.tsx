@@ -24,6 +24,10 @@ const CommentThread = ({ comment, depth = 0 }) => {
 
     const handleUpvote = async (commentId : number) => {
         try {
+            if (!token) {
+                window.location.href = '/auth';
+                return;
+            }
             const updatedComment = await upvoteComment(commentId, token);
             setUpvotes(updatedComment.upvote);
         } catch (err) {
@@ -33,6 +37,10 @@ const CommentThread = ({ comment, depth = 0 }) => {
 
     const handleDownvote = async (commentId : number) => {
         try {
+            if (!token) {
+                window.location.href = '/auth';
+                return;
+            }
             const updatedComment = await downvoteComment(commentId, token);
             setDownvotes(updatedComment.downvote);
         } catch (err) {
