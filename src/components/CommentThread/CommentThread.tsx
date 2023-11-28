@@ -59,6 +59,10 @@ const CommentThread = ({ comment, depth = 0 }) => {
     }, [comment.id]);
 
     const toggleModal = () => {
+        if (!token) {
+            window.location.href = '/auth';
+            return;
+        }
         setShowModal((prevShowModal) => !prevShowModal);
     }
 
