@@ -44,7 +44,12 @@ const StoryCard: React.FC = () => {
 
 
     const handleUpvote = async (storyId: number) => {
+
         try {
+            if (!token) {
+                window.location.href = '/auth';
+                return;
+            }
             const updatedStory = await upvoteStory(storyId, token);
             setStories((prevStories) =>
                 prevStories.map((story) =>
@@ -66,6 +71,10 @@ const StoryCard: React.FC = () => {
 
     const handleDownvote = async (storyId: number) => {
         try {
+            if (!token) {
+                window.location.href = '/auth';
+                return;
+            }
             const updatedStory = await downvoteStory(storyId, token)
             setStories((prevStories) =>
                 prevStories.map((story) =>

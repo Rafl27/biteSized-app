@@ -29,6 +29,10 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
 
     const followUserHandler = async () => {
         try {
+            if (!token) {
+                window.location.href = '/auth';
+                return;
+            }
             const response = await followUser(userInfoData.id, token);
             if (response) {
                 setButtonText('Following');

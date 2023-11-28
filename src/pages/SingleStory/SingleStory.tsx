@@ -29,6 +29,7 @@ const SingleStory = () => {
     const [story, setStory] = useState<Story>(initialStoryState)
     //TODO change this variable to storyID
     const {_id} = useParams()
+    const token: string = localStorage.getItem('token')
 
     useEffect(() => {
         fetchStory(_id)
@@ -54,6 +55,10 @@ const SingleStory = () => {
 
     const [showModal, setShowModal] = useState(false)
     const toggleModal = () => {
+        if (!token) {
+            window.location.href = '/auth';
+            return;
+        }
         setShowModal((prevShowModal) => !prevShowModal)
     }
 

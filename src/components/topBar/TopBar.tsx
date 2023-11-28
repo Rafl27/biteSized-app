@@ -81,11 +81,12 @@ const TopBar: React.FC = () => {
               <button className="get-started-button">Login</button>
             </Link>
         )}
-        <Link style={{ textDecoration: 'none', color: 'black' }} to="/create">
+        <Link style={{ textDecoration: 'none', color: 'black' }} to={token ? '/create' : '/auth'}>
           <div className="option">
             <BsPlusCircleFill className="BsPlusCircleFill" />
           </div>
         </Link>
+
           <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
             <p className="faq-label">FAQ</p>
           </Link>
