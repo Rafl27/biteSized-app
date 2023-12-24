@@ -237,6 +237,15 @@ total-comments {
   align-items: center;
 }
 
+.stories-filter{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  gap: 20%;
+  margin-top: 20px;
+}
+
 
 
 
