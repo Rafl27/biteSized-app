@@ -5,6 +5,7 @@ import './StoryCard.css'
 import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {FaComments} from "react-icons/fa"
+import { MdOutlineWhatshot, MdOutlineNewReleases, MdOutlineVerticalAlignTop  } from "react-icons/md";
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 import {compacNumbers} from "../../../utils/compacNumbers";
 import AlertModal from "../../AlertModal/AlertModal";
@@ -121,6 +122,17 @@ const StoryCard: React.FC = () => {
             {modalOpen && (
                 <AlertModal message={"You've already voted on this story"} onClose={handleCloseModal} />
             )}
+            <div className="stories-filter">
+                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+                    <p className="filter-options"><MdOutlineVerticalAlignTop /> Top</p>
+                </Link>
+                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+                    <p className="filter-options"><MdOutlineNewReleases /> Newest</p>
+                </Link>
+                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+                    <p className="filter-options"> <MdOutlineWhatshot /> Hot</p>
+                </Link>
+            </div>
             <div className="card-container">
                 {stories
                     .sort((a, b) => b.upvotes - a.upvotes)
