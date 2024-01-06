@@ -127,12 +127,12 @@ const StoryCard: React.FC = () => {
                 <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("Top")}>
                     <p className="filter-options"><MdOutlineVerticalAlignTop /> Top</p>
                 </button>
-                <button style={{ textDecoration: 'none', color: 'white' }} onClick={() => setFilter("New")}>
+                <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("New")}>
                     <p className="filter-options"><MdOutlineNewReleases /> Newest</p>
                 </button>
-                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }} onClick={() => setFilter("Hot")}>
+                <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("Hot")}>
                     <p className="filter-options"> <MdOutlineWhatshot /> Hot</p>
-                </Link>
+                </button>
             </div>
             <div className="card-container">
                 {stories
