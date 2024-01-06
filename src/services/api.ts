@@ -33,14 +33,30 @@ export const fetchStory = async (storyId : number) => {
 }
 
 export const fetchStories = async (page: number, pageSize: number, filter: string) => {
+    let response
     try {
         switch (filter) {
             case "Top":
-                console.log("aqui tá no top")
+                response = await axios.get<Story[]>(
+                    `${import.meta.env.VITE_API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
+                )
+                console.log("estou no top")
+                break
+            case "Hot":
+                response = await axios.get<Story[]>(
+                    `${import.meta.env.VITE_API_BASE_URL}/story/all/hot?page=${page}&size=${pageSize}`
+                )
+                console.log("estou no hot")
+                console.log(response.data.content)
+                break
+            case "New":
+                response = await axios.get<Story[]>(
+                    `${import.meta.env.VITE_API_BASE_URL}/story/all/newest?page=${page}&size=${pageSize}`
+                )
+                console.log("estou no new")
+                break
         }
-        const response = await axios.get<Story[]>(
-            `${import.meta.env.VITE_API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
-        );
+
         return {
             data: response.data.content,
             totalPages: response.data.totalPages,
