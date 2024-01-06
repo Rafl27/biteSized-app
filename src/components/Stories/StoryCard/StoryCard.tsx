@@ -19,7 +19,7 @@ const StoryCard: React.FC = () => {
     const [pageSize, setPageSize] = useState(6)
     const [totalPages, setTotalPages] = useState(0)
     const [totalComments, setTotalComments] = useState({});
-    const [filter, setFilter] = useState("Hot")
+    const [filter, setFilter] = useState("Top")
 
     useEffect(() => {
         fetchStories(page, pageSize, filter)
@@ -28,7 +28,7 @@ const StoryCard: React.FC = () => {
                 setTotalPages(data.totalPages)
             })
             .catch(error => console.log('Error', error))
-    }, [page, pageSize])
+    }, [page, pageSize, filter])
 
     useEffect(() => {
         const fetchTotalComments = async () => {
@@ -124,13 +124,13 @@ const StoryCard: React.FC = () => {
                 <AlertModal message={"You've already voted on this story"} onClose={handleCloseModal} />
             )}
             <div className="stories-filter">
-                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+                <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("Top")}>
                     <p className="filter-options"><MdOutlineVerticalAlignTop /> Top</p>
-                </Link>
-                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+                </button>
+                <button style={{ textDecoration: 'none', color: 'white' }} onClick={() => setFilter("New")}>
                     <p className="filter-options"><MdOutlineNewReleases /> Newest</p>
-                </Link>
-                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }}>
+                </button>
+                <Link to="/get-started" style={{ textDecoration: 'none', color: 'white' }} onClick={() => setFilter("Hot")}>
                     <p className="filter-options"> <MdOutlineWhatshot /> Hot</p>
                 </Link>
             </div>
