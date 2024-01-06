@@ -62,9 +62,9 @@ export const fetchStories = async (page: number, pageSize: number, filter: strin
             totalPages: response.data.totalPages,
         };
     } catch (err) {
-        console.error(err);
+        console.error(err)
     }
-};
+}
 
 export const upvoteStory = async (storyId: number, authToken: string) => {
     try {
