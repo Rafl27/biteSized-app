@@ -32,8 +32,12 @@ export const fetchStory = async (storyId : number) => {
     }
 }
 
-export const fetchStories = async (page: number, pageSize: number) => {
+export const fetchStories = async (page: number, pageSize: number, filter: string) => {
     try {
+        switch (filter) {
+            case "Top":
+                console.log("aqui tá no top")
+        }
         const response = await axios.get<Story[]>(
             `${import.meta.env.VITE_API_BASE_URL}/story/all?page=${page}&size=${pageSize}`
         );
