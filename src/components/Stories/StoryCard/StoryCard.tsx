@@ -19,9 +19,10 @@ const StoryCard: React.FC = () => {
     const [pageSize, setPageSize] = useState(6)
     const [totalPages, setTotalPages] = useState(0)
     const [totalComments, setTotalComments] = useState({});
+    const [filter, setFilter] = useState("Top")
 
     useEffect(() => {
-        fetchStories(page, pageSize)
+        fetchStories(page, pageSize, filter)
             .then((data) => {
                 setStories(data.data)
                 setTotalPages(data.totalPages)
