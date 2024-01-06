@@ -5,6 +5,7 @@ import './StoryCard.css'
 import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {StoryCard as Story} from "../../../interfaces/StoryCard";
 import {FaComments} from "react-icons/fa"
+import { MdOutlineWhatshot, MdOutlineNewReleases, MdOutlineVerticalAlignTop  } from "react-icons/md";
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 import {compacNumbers} from "../../../utils/compacNumbers";
 import AlertModal from "../../AlertModal/AlertModal";
@@ -18,15 +19,16 @@ const StoryCard: React.FC = () => {
     const [pageSize, setPageSize] = useState(6)
     const [totalPages, setTotalPages] = useState(0)
     const [totalComments, setTotalComments] = useState({});
+    const [filter, setFilter] = useState("Top")
 
     useEffect(() => {
-        fetchStories(page, pageSize)
+        fetchStories(page, pageSize, filter)
             .then((data) => {
                 setStories(data.data)
                 setTotalPages(data.totalPages)
             })
             .catch(error => console.log('Error', error))
-    }, [page, pageSize])
+    }, [page, pageSize, filter])
 
     useEffect(() => {
         const fetchTotalComments = async () => {
@@ -121,9 +123,20 @@ const StoryCard: React.FC = () => {
             {modalOpen && (
                 <AlertModal message={"You've already voted on this story"} onClose={handleCloseModal} />
             )}
+            <div className="stories-filter">
+                <button className='filter-button' onClick={() => setFilter("Top")}>
+                    <p className="filter-options"><MdOutlineVerticalAlignTop /> Top</p>
+                </button>
+                <button className='filter-button' onClick={() => setFilter("New")}>
+                    <p className="filter-options"><MdOutlineNewReleases /> Newest</p>
+                </button>
+                <button className='filter-button' onClick={() => setFilter("Hot")}>
+                    <p className="filter-options"> <MdOutlineWhatshot /> Hot</p>
+                </button>
+            </div>
             <div className="card-container">
                 {stories
-                    .sort((a, b) => b.upvotes - a.upvotes)
+                    // .sort((a, b) => b.upvotes - a.upvotes)
                     .map((story) => (
                         <div
                             key={story.storyId}
