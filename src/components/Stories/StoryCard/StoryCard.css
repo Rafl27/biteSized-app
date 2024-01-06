@@ -244,8 +244,20 @@ total-comments {
   justify-content: center;
   gap: 20%;
   margin-top: 20px;
+  margin-bottom: -10px;
 }
 
+.filter-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.filter-button:hover{
+  background-color: #4b4848;
+  border-radius: 20px;
+  height: 30px;
+}
 
 
 

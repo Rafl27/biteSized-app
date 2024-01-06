@@ -124,13 +124,13 @@ const StoryCard: React.FC = () => {
                 <AlertModal message={"You've already voted on this story"} onClose={handleCloseModal} />
             )}
             <div className="stories-filter">
-                <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("Top")}>
+                <button className='filter-button' onClick={() => setFilter("Top")}>
                     <p className="filter-options"><MdOutlineVerticalAlignTop /> Top</p>
                 </button>
-                <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("New")}>
+                <button className='filter-button' onClick={() => setFilter("New")}>
                     <p className="filter-options"><MdOutlineNewReleases /> Newest</p>
                 </button>
-                <button style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }} onClick={() => setFilter("Hot")}>
+                <button className='filter-button' onClick={() => setFilter("Hot")}>
                     <p className="filter-options"> <MdOutlineWhatshot /> Hot</p>
                 </button>
             </div>
