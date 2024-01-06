@@ -19,7 +19,7 @@ const StoryCard: React.FC = () => {
     const [pageSize, setPageSize] = useState(6)
     const [totalPages, setTotalPages] = useState(0)
     const [totalComments, setTotalComments] = useState({});
-    const [filter, setFilter] = useState("Top")
+    const [filter, setFilter] = useState("Hot")
 
     useEffect(() => {
         fetchStories(page, pageSize, filter)
@@ -136,7 +136,7 @@ const StoryCard: React.FC = () => {
             </div>
             <div className="card-container">
                 {stories
-                    .sort((a, b) => b.upvotes - a.upvotes)
+                    // .sort((a, b) => b.upvotes - a.upvotes)
                     .map((story) => (
                         <div
                             key={story.storyId}
