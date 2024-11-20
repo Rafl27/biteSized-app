@@ -8,6 +8,32 @@
     height: auto;
 }
 
+.commentArt:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.expandedImage {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
 .art-comment{
     display: flex;
     flex-direction: column;
