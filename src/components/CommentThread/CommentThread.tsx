@@ -22,6 +22,12 @@ const CommentThread = ({ comment, depth = 0 }) => {
     const [showRemainingReplies, setShowRemainingReplies] = useState(false);
     const [remainingThreadsCount, setRemainingThreadsCount] = useState(0)
 
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     const handleUpvote = async (commentId : number) => {
         try {
             if (!token) {
@@ -92,7 +98,19 @@ const CommentThread = ({ comment, depth = 0 }) => {
             </div>
             <div className="art-comment">
                 {comment.artComment !== "" && (
-                    <img className="commentArt" src={comment.artComment} alt="Comment Art" />
+                    <>
+                        {isExpanded && (
+                            <div className="overlay" onClick={toggleExpand}>
+                                <img className="expandedImage" src={comment.artComment} alt="Expanded Comment Art" />
+                            </div>
+                        )}
+                        <img
+                            className="commentArt"
+                            src={comment.artComment}
+                            alt="Comment Art"
+                            onClick={toggleExpand}
+                        />
+                    </>
                 )}
                 <div className="comment-content">{comment.contentComment}</div>
             </div>
