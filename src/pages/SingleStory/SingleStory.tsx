@@ -9,6 +9,7 @@ import NewThread from '../NewThread/NewThread';
 
 import {UserData, Story, Comment} from '../../interfaces';
 import {fetchCommentsByStoryId, fetchUserData, fetchStory} from '../../services/api';
+import ImageExpander from "../../components/ImageExpander/ImageExpander";
 
 const initialStoryState = {
     _id: '',
@@ -75,7 +76,10 @@ const SingleStory = () => {
                 <div className="header">
                     <h1>{story.title}</h1>
                     {story.art && (
-                        <img className="story-img" src={story.art} alt={story.title}/>
+                        <ImageExpander
+                            src={story.art}
+                            alt={story.title}
+                        />
                     )}
                     <p>Published on: {new Date(story.date).toLocaleDateString()}</p>
                     <Link to={`/visit-profile/${userData.id}`}>

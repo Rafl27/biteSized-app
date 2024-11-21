@@ -12,6 +12,7 @@ import {
 import NewThread from "../../pages/NewThread/NewThread";
 import { Link } from "react-router-dom";
 import AlertModal from "../AlertModal/AlertModal";
+import ImageExpander from "../ImageExpander/ImageExpander";
 
 
 const CommentThread = ({ comment, depth = 0 }) => {
@@ -98,19 +99,9 @@ const CommentThread = ({ comment, depth = 0 }) => {
             </div>
             <div className="art-comment">
                 {comment.artComment !== "" && (
-                    <>
-                        {isExpanded && (
-                            <div className="overlay" onClick={toggleExpand}>
-                                <img className="expandedImage" src={comment.artComment} alt="Expanded Comment Art" />
-                            </div>
-                        )}
-                        <img
-                            className="commentArt"
-                            src={comment.artComment}
-                            alt="Comment Art"
-                            onClick={toggleExpand}
-                        />
-                    </>
+                    <ImageExpander src={comment.artComment}
+                    alt={comment.artComment}
+                    />
                 )}
                 <div className="comment-content">{comment.contentComment}</div>
             </div>
