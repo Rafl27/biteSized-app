@@ -9,6 +9,7 @@ import { MdOutlineWhatshot, MdOutlineNewReleases, MdOutlineVerticalAlignTop  } f
 import {downvoteStory, fetchStories, upvoteStory} from "../../../services/api";
 import {compacNumbers} from "../../../utils/compacNumbers";
 import AlertModal from "../../AlertModal/AlertModal";
+import ImageExpander from "../../ImageExpander/ImageExpander";
 
 const StoryCard: React.FC = () => {
     const [stories, setStories] = useState<Story[]>([])
@@ -147,12 +148,7 @@ const StoryCard: React.FC = () => {
                         >
                             <div className="card-body">
                                 <h4 className="card-title">{story.title}</h4>
-                                <img
-                                    src={story.art}
-                                    alt={story.title}
-                                    className="card-img-top"
-                                    style={{ maxWidth: '100%' }}
-                                />
+                                <ImageExpander src={story.art} alt={story.title} />
                                 <p className="created">Created: {formatDate(story.date)}</p>
 
 
