@@ -79,6 +79,7 @@ total-comments {
   max-height: 10em;
   overflow: hidden;
   position: relative;
+  color:white;
 }
 
 .card-text::after {
@@ -93,6 +94,10 @@ total-comments {
 
 .card-title-container {
   padding: 0 0 3% 0;
+}
+
+.title{
+  color: white;
 }
 
 .cards{

@@ -147,7 +147,7 @@ const StoryCard: React.FC = () => {
                             }}
                         >
                             <div className="card-body">
-                                <h4 className="card-title">{story.title}</h4>
+                                <h4 className="title">{story.title}</h4>
                                 <ImageExpander src={story.art} alt={story.title} />
                                 <p className="created">Created: {formatDate(story.date)}</p>
 
