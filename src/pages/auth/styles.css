@@ -75,3 +75,8 @@ label {
 .link-primary{
   cursor: pointer;
 }
+
+.notification {
+  display: flex;
+  justify-content: center;
+}
