@@ -20,6 +20,7 @@ const SignUp: React.FC = () => {
     })
 
     const [passwordVisible, setPasswordVisible] = useState(false)
+    const [notification, setNotification] = useState('');
 
     const handleChange = (e: any) => {
       setValues({ ...values, [e.target.name]: e.target.value })
@@ -76,6 +77,13 @@ const SignUp: React.FC = () => {
         localStorage.setItem('profilePicture', profilePicture)
         navigate('/home')
       } catch (err) {
+
+        if(err.response && err.response.status == 401){
+          setNotification('Invalid email or password.');
+        }
+        else {
+          setNotification('Unexpected error. Please try again later.');
+        }
         console.log(err)
       }
     }
@@ -86,6 +94,11 @@ const SignUp: React.FC = () => {
           <form className="Auth-form" onSubmit={handleLogin}>
             <div className="Auth-form-content">
               <h3 className="Auth-form-title">Sign In</h3>
+              {notification && (
+                  <div className="notification" style={{ color: 'red', marginBottom: '10px' }}>
+                    {notification}
+                  </div>
+                  )}
               <div className="text-center">
                 Not registered yet?{' '}
                 <span className="link-primary" onClick={changeAuthMode}>
