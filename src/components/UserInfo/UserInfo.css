@@ -88,3 +88,39 @@
     }
 }
 
+.votes-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between items */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.vote-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    font-size: 20px;
+}
+
+.vote-icon.upvote {
+    color: #28a745;
+}
+
+.vote-icon.downvote {
+    color: orange;
+}
+
+.vote-icon:hover {
+    transform: scale(1.2);
+}
+
+.votes {
+    margin-left: 4px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.downvotes {
+    color: #ffffff;
+}

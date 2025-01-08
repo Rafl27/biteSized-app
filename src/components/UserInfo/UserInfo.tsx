@@ -5,6 +5,7 @@ import CreateBio from "../CreateBio/CreateBio";
 import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
 import {fetchFollowerCount, fetchFollowingCount, fetchVotesCount, followUser, unfollowUser} from "../../services/api";
+import {ImArrowDown, ImArrowUp} from "react-icons/im";
 
 const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, followingList, visitedUser} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number, followingList? : [], visitedUser : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
@@ -130,10 +131,15 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                                 )
                             ) : (
                                 userBio.bio &&
-                                <div>
+                                <div className="profile-container">
                                     <p className="bio">{userBio.bio}</p>
-                                    <p>total upvotes: {upvotesCount}</p>
-                                    <p>total downvotes: {downvotesCount}</p>
+                                    <p className="votes-container">
+                                        Total Votes
+                                        <ImArrowUp className="vote-icon upvote"/> <span
+                                        className="votes">{upvotesCount}</span>
+                                        <ImArrowDown className="vote-icon downvote"/> <span
+                                        className="downvotes">{downvotesCount}</span>
+                                    </p>
                                 </div>
                             )}
                         </div>
