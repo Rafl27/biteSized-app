@@ -1,6 +1,5 @@
 import axios from "axios";
 import {StoryCard as Story} from "../interfaces/StoryCard";
-import {ca} from "date-fns/locale";
 
 export const fetchCommentsByStoryId = async (storyId : number) => {
     try {
@@ -217,6 +216,18 @@ export const fetchFollowingCount = async (userId : number) => {
         console.log(error)
     }
 }
+export const fetchVotesCount = async (userId : number) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/user/info/votes/${userId}`
+        )
+        return response.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
 
 export const followUser = async (userId : number, token : string) => {
     const config = {
