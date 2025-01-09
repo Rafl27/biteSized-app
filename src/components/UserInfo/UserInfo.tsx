@@ -127,21 +127,20 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                                 userBio.bio != '' ? (
                                     <p className="bio">{userBio.bio}</p>
                                 ) : (
-                                    <CreateBio userId={userInfoData.id} token={token}  />
+                                    <CreateBio userId={userInfoData.id} token={token}/>
                                 )
                             ) : (
-                                userBio.bio &&
-                                <div className="profile-container">
-                                    <p className="bio">{userBio.bio}</p>
-                                    <p className="votes-container">
-                                        Total Votes
-                                        <ImArrowUp className="vote-icon upvote"/> <span
-                                        className="votes">{upvotesCount}</span>
-                                        <ImArrowDown className="vote-icon downvote"/> <span
-                                        className="downvotes">{downvotesCount}</span>
-                                    </p>
-                                </div>
+                                userBio.bio
                             )}
+                            <div className="profile-container">
+                                <p className="votes-container">
+                                    Total Votes
+                                    <ImArrowUp className="vote-icon upvote"/> <span
+                                    className="votes">{upvotesCount}</span>
+                                    <ImArrowDown className="vote-icon downvote"/> <span
+                                    className="downvotes">{downvotesCount}</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
