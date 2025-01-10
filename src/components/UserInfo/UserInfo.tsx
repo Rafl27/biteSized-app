@@ -4,11 +4,14 @@ import React, {useEffect, useState} from 'react';
 import CreateBio from "../CreateBio/CreateBio";
 import {UserBio} from "../../interfaces/UserBio";
 import {UserInfoData} from "../../interfaces/UserInfoData";
-import {fetchFollowerCount, fetchFollowingCount, followUser, unfollowUser} from "../../services/api";
+import {fetchFollowerCount, fetchFollowingCount, fetchVotesCount, followUser, unfollowUser} from "../../services/api";
+import {ImArrowDown, ImArrowUp} from "react-icons/im";
 
 const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, followingList, visitedUser} : {personalPage : boolean, userInfoData : UserInfoData, userBio : UserBio, token? : String, storyCount : number, followingList? : [], visitedUser : number}) => {
     const [followerCount, setFollowerCount] = useState<number>(0)
     const [followingCount, setFollowingCount] = useState<number>(0)
+    const [upvotesCount, setUpvotesCount] = useState<number>(0)
+    const [downvotesCount, setDownvotesCount] = useState<number>(0)
     const [buttonText, setButtonText] = useState('Follow');
 
     useEffect(() => {
@@ -23,6 +26,14 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
         fetchFollowingCount(userInfoData.id)
             .then(data => {
                 setFollowingCount(data.following)
+            })
+            .catch(error => console.error("Error", error))
+    }, [userInfoData]);
+    useEffect(() => {
+        fetchVotesCount(userInfoData.id)
+            .then(data => {
+                setUpvotesCount(data.upvotes)
+                setDownvotesCount(data.downvotes)
             })
             .catch(error => console.error("Error", error))
     }, [userInfoData]);
@@ -116,12 +127,20 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                                 userBio.bio != '' ? (
                                     <p className="bio">{userBio.bio}</p>
                                 ) : (
-                                    <CreateBio userId={userInfoData.id} token={token}  />
+                                    <CreateBio userId={userInfoData.id} token={token}/>
                                 )
                             ) : (
-                                userBio.bio &&
-                                <p className="bio">{userBio.bio}</p>
+                                userBio.bio
                             )}
+                            <div className="profile-container">
+                                <p className="votes-container">
+                                    Total Votes received
+                                    <ImArrowUp className="vote-icon upvote"/> <span
+                                    className="votes">{upvotesCount}</span>
+                                    <ImArrowDown className="vote-icon downvote"/> <span
+                                    className="downvotes">{downvotesCount}</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
