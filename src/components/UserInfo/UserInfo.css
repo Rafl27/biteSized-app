@@ -93,7 +93,7 @@
     align-items: center;
     gap: 8px; /* Space between items */
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     color: #ffffff;
 }
 
@@ -105,10 +105,12 @@
 
 .vote-icon.upvote {
     color: #28a745;
+    font-size: 13px;
 }
 
 .vote-icon.downvote {
     color: orange;
+    font-size: 13px;
 }
 
 .vote-icon:hover {

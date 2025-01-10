@@ -134,7 +134,7 @@ const UserInfo = ({personalPage, userInfoData, userBio, token, storyCount, follo
                             )}
                             <div className="profile-container">
                                 <p className="votes-container">
-                                    Total Votes
+                                    Total Votes received
                                     <ImArrowUp className="vote-icon upvote"/> <span
                                     className="votes">{upvotesCount}</span>
                                     <ImArrowDown className="vote-icon downvote"/> <span
